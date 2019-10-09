@@ -1,5 +1,5 @@
 import React from 'react';
 
 export const Title = (i) => {
-    return <div className="title" key={i}>s</div>;
+    return <div className="title" key={i}></div>;
 }

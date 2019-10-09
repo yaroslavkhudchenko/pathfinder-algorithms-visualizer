@@ -5,10 +5,8 @@ body,html {
 
 
 .grid {
-  display: flex;
-  flex-wrap: wrap;
+  
 }
-.title {
-  width: 20px;
-  height: 20px;
+.oneNode {
+  border:1px solid;
 }
