@@ -5,8 +5,12 @@ body,html {
 
 
 .grid {
-  
+  display: flex;
+  flex-wrap:wrap;
 }
 .oneNode {
-  border:1px solid;
+  border: 1px solid;
+  width: 20px;
+  height: 20px;
+  margin: 1px;
 }

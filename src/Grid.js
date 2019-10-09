@@ -2,25 +2,32 @@ import React, {Component} from 'react';
 
 
 export default class Grid extends Component { 
-        constructor(props) {
+      /*   constructor(props) {
             super(props);
-        }
+        } */
 
         render() {
-            let nodes = [];
-        
+            let rows = [];
+            //let columns = [];
             for(let i = 0; i < 20;i++) {
-                nodes.push([]);
-                for(let j=0;j<20;j++) {
-                    nodes[i].push(<div key={j} className='oneNode'></div>);
+                rows.push([]);
+                for (let j = 0; j < 20; j++) {
+                  rows[i].push(<div key={j} className="oneNode"></div>);
                 }
 
             }
             
-            console.log(nodes);
+            console.log(rows);
             return (
               <div className="grid">
-                {nodes.map(single=>single) }
+                
+               
+                {rows.map((s) => {
+                        return <div>
+                            {s.map((c) => c)} 
+                        </div>
+                    })};
+                }
               </div>
             );
         }
