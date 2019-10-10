@@ -1,5 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
+import shortid from 'shortid';
 
-export const Node = (i) => {
-    return <div className="singleNode" key={i}></div>;
+export default class Node extends Component { 
+    render() {
+        return <div key={shortid.generate(} onClick={this.clickNode} className="oneNode"></div>;
+    }
+    
 }

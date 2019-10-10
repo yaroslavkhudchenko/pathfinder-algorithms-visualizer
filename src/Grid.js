@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import Node from './Node';
 
 export default class Grid extends Component { 
     constructor(props) {
@@ -30,9 +30,12 @@ export default class Grid extends Component {
         let {nodes} = this.state; // assing state's nodes to local variable
         return (
             <div className="grid">
-            {nodes.map(r => { // get every row(main array)
-                return <div>{r.map(c => c)}</div>; // build node based on main array index(20 per row)
-            })}
+            {nodes.map((r, index) => ( // get every row(main array)
+            <div className='row' id={index}> 
+                return 
+                    {r.map(c => <Node />)}}; 
+            </div>
+            ))}
             </div>
         );
     }
