@@ -14,9 +14,9 @@ export default class Grid extends Component {
 
     componentDidMount() {
         let nodes = [];
-        for (let i = 0; i <50; i++) {
+        for (let i = 0; i <35; i++) {
             nodes.push([]); // push array to display row
-            for (let j = 0; j < 40; j++) {
+            for (let j = 0; j < 50; j++) {
                 nodes[i].push(<div key={j} onClick={this.clickNode} className="oneNode"></div>); // every node(column)
             }
         }
@@ -32,8 +32,8 @@ export default class Grid extends Component {
             <div className="grid">
             {nodes.map((r, index) => ( // get every row(main array)
             <div className='row' id={index}> 
-                return 
-                    {r.map(c => <Node />)}}; 
+                
+                    {r.map(() => <Node />)}
             </div>
             ))}
             </div>
