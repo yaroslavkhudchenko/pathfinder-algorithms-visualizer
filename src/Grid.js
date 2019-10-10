@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Node from './Node';
-
+import shortid from 'shortid';
 export default class Grid extends Component { 
     constructor(props) {
         super(props);
@@ -30,11 +30,11 @@ export default class Grid extends Component {
         let {nodes} = this.state; // assing state's nodes to local variable
         return (
             <div className="grid">
-            {nodes.map((r, index) => ( // get every row(main array)
-            <div className='row' id={index}> 
-                
-                    {r.map(() => <Node />)}
-            </div>
+            {nodes.map((r) => ( // get every row(main array)
+                <div className='row' key={shortid.generate()}> 
+                    
+                    {r.map((c) => <Node key={shortid.generate()} />)}
+                </div>
             ))}
             </div>
         );
