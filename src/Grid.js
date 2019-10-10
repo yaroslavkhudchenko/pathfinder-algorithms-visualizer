@@ -5,15 +5,18 @@ export default class Grid extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nodes : []
+            nodes : [],
+            startNode:null,
+            targetNode:null,
+            currentNode:null
         }
     } 
 
     componentDidMount() {
         let nodes = [];
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i <50; i++) {
             nodes.push([]); // push array to display row
-            for (let j = 0; j < 20; j++) {
+            for (let j = 0; j < 40; j++) {
                 nodes[i].push(<div key={j} onClick={this.clickNode} className="oneNode"></div>); // every node(column)
             }
         }

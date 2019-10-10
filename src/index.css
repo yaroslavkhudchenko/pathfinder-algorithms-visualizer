@@ -7,6 +7,7 @@ body,html {
 .grid {
   display: flex;
   flex-wrap:wrap;
+  justify-content: center;
 }
 .oneNode {
   border: 1px solid;
