@@ -18,7 +18,7 @@ export default class Grid extends Component {
         for (let i = 0; i <35; i++) {
             nodes.push([]); // push array to display row
             for (let j = 0; j < 50; j++) {
-                nodes[i].push(<Node key={shortid.generate()} />); // every node(column)
+                nodes[i].push(<Node dataId={j} row={i} clickNode={this.clickNode} key={shortid.generate()} />); // every node(column)
             }
         }
         this.setState({nodes}) // assign local nodes to state's nodes
@@ -34,10 +34,10 @@ export default class Grid extends Component {
         let {nodes} = this.state; // assing state's nodes to local variable
         return (
             <div className="grid">
-            {nodes.map((r, index) => ( // get every row(main array)
-                <div className={`row row${index}`} onClick={this.clickNode} key={shortid.generate()}> 
+            {nodes.map((c, index) => ( // get every row(main array)
+                <div className={`row row${index}`} key={shortid.generate()}> 
                     
-                    {r.map((c) => c )}
+                    {c.map((r) => r )}
                 </div>
             ))}
             </div>
