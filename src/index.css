@@ -3,13 +3,12 @@ body,html {
   padding:0;
 }
 
-
 .grid {
   display: flex;
   flex-wrap:wrap;
   justify-content: center;
 }
-.oneNode {
+.singleNode {
   border: 1px solid;
   width: 20px;
   height: 20px;
@@ -17,4 +16,13 @@ body,html {
 }
 .row {
   display: flex;
+}
+.start {
+  background: red;
+}
+.target {
+  background: green;
+}
+.checked {
+  background: darkblue;
 }

@@ -8,9 +8,11 @@ export default class Grid extends Component {
             nodes : [],
             startNode:null,
             targetNode:null,
-            currentNode:null
+            currentNode:null,
+            startSet:false,
+            targetSet:false
         }
-        this.clickNode.bind(this.clickNode);
+        this.clickNode = this.clickNode.bind(this.clickNode);
     } 
 
     componentDidMount() {
@@ -25,9 +27,23 @@ export default class Grid extends Component {
     }
     clickNode(e) {
         e.persist(); // avoid syntetic problem
-
-        console.log('fafwafawfwafwafwa')
         console.log(e.target);
+        
+        if(this.state.startSet === false) {
+            this.setState = {
+                startSet: true,
+                startNode : e.target
+            }
+            e.target.classlist.add('active');
+            return;
+        } else if(this.state.targetSet === false) {
+            this.setState = {
+                targetSet: true,
+                targetNode: e.target
+            }
+            e.target.classlist.add('target');
+        }
+        console.log(this.state);
     }
     
     render() {
