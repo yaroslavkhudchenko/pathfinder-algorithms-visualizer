@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from "./Grid";
-import './App.css';
+import '../App.css';
 
 export const App = () => {
     return(

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import shortid from 'shortid';
 
 export default class Node extends Component { 
   
