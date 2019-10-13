@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Node from './Node';
+
 import shortid from 'shortid';
-import { dijkstra } from './../algorithms/dijkstra-alg';
 export default class Grid extends Component { 
     constructor(props) {
         super(props);
@@ -41,9 +41,7 @@ export default class Grid extends Component {
         }
 
     }
-    check() {
-        dijkstra()
-    }
+   
     componentDidMount() {
         let nodes = [];
         for (let i = 0; i < 35; i++) {
