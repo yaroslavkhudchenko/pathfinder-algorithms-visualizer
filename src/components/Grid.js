@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Node from './Node';
+import ControlPanel from './ControlPanel';
 
 import shortid from 'shortid';
 export default class Grid extends Component { 
@@ -83,6 +84,7 @@ export default class Grid extends Component {
         let {nodes} = this.state; // assing state's nodes to local variable
         return (
             <div className="grid">
+            <ControlPanel />
             {nodes.map((c, index) => ( // get every row(main array)
                 <div className={`row row${index}`} key={shortid.generate()}> 
                     
