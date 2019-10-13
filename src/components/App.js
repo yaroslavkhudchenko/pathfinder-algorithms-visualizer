@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from "./Grid";
 import '../App.css';
-import ControlPanel from './controlPanel';
+import ControlPanel from './ControlPanel';
 
 export const App = () => {
     return(
