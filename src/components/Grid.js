@@ -4,10 +4,10 @@ import ControlPanel from './ControlPanel';
 
 import shortid from 'shortid';
 
-export const StartNodeRow = 10;
-export const StartNodeColumn = 15;
-export const TargetNodeRow = 10;
-export const TargetNodeColumn = 35;
+export const StartNodeRow = 1;
+export const StartNodeColumn = 1;
+export const TargetNodeColumn= 33;
+export const TargetNodeRow = 48;
 
 export default class Grid extends Component { 
     constructor(props) {
@@ -63,7 +63,7 @@ export default class Grid extends Component {
                         isTarget: false
 
                     }); // start node
-                } else if (TargetNodeColumn === 33 && TargetNodeRow === 48) {
+                } else if (i === TargetNodeColumn && j === TargetNodeRow) {
                     nodes[i].push({
                         column: j,
                         row: i,

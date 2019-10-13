@@ -14,7 +14,8 @@ export default class controlPanel extends Component {
     startAlgorithm() {
 
         console.log(this.props);
-        dijkstra(this.props.grid, document.querySelector('.start'), document.querySelector('.target'))
+        dijkstra(this.props.grid, document.querySelector('.start'), document.querySelector('.target'));
+        console.log(this.props.grid[TargetNodeRow][TargetNodeColumn])
         getNodesInShortestPathOrder(this.props.grid[TargetNodeRow][TargetNodeColumn])
     }
     render() {
