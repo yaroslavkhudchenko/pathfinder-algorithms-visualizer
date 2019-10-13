@@ -4,27 +4,33 @@ import ControlPanel from './ControlPanel';
 
 import shortid from 'shortid';
 
-export const StartNodeRow = 1;
-export const StartNodeColumn = 1;
-export const TargetNodeColumn= 48;
-export const TargetNodeRow = 33;
+// global variables for good start and target node position on the grid
+
+export const StartNode = {
+    row:2,
+    column:2
+}
+export const TargetNode = {
+    row:32,
+    column:47
+}
 
 export default class Grid extends Component { 
     constructor(props) {
         super(props);
         this.state = {
-            nodes : [],
+            nodes : [], // all nodes (array of sub-arrays => columns inside rows)
             startNode:null,
             targetNode:null,
             currentNode:null,
             startSet:false,
             targetSet:false
         }
-        this.clickNode = this.clickNode.bind(this);
+        // this.clickNode = this.clickNode.bind(this);
     } 
 
  
-    clickNode(e) {
+    /* clickNode(e) {
         e.persist(); // avoid syntetic problem
         console.log(e.target);
         
@@ -47,14 +53,15 @@ export default class Grid extends Component {
 
         }
 
-    }
+    } */
    
     componentDidMount() {
+        // create nodes array + choose start and target nodes
         let nodes = [];
         for (let i = 0; i < 35; i++) {
             nodes.push([]); // push array to display row
             for (let j = 0; j < 50; j++) {
-                if(j === StartNodeColumn && i === StartNodeRow) {
+                if(j === StartNode.column && i === StartNode.row) {
                     nodes[i].push({
                         column: j,
                         row: i,
@@ -63,7 +70,7 @@ export default class Grid extends Component {
                         isTarget: false
 
                     }); // start node
-                } else if (j === TargetNodeColumn && i === TargetNodeRow) {
+                } else if (j === TargetNode.column && i === TargetNode.row) {
                     nodes[i].push({
                         column: j,
                         row: i,
@@ -90,7 +97,7 @@ export default class Grid extends Component {
         let {nodes} = this.state; // assing state's nodes to local variable
         return (
             <div className="grid">
-            <ControlPanel grid={nodes}/>
+            <ControlPanel grid={nodes}/> 
             {nodes.map((c, index) => ( // get every row(main array)
                 <div className={`row row${index}`} key={shortid.generate()}> 
                     
@@ -103,7 +110,7 @@ export default class Grid extends Component {
                                 column={node.column}
                                 isStart={isStart}
                                 isTarget={isTarget}
-                                clickNode={this.clickNode}
+                               // clickNode={this.clickNode}
                             />
                         )
                     }

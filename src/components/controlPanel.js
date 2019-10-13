@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { dijkstra, getNodesInShortestPathOrder } from './../algorithms/dijkstra-alg';
-import {TargetNodeRow, TargetNodeColumn, StartNodeRow, StartNodeColumn} from './Grid';
+import {TargetNode, StartNode} from './Grid';
 
 export default class controlPanel extends Component {
     constructor(props) {
@@ -22,20 +22,17 @@ export default class controlPanel extends Component {
         setTimeout(() => {
             const node = visitedNodesInOrder[i];
             document.getElementById(`node-${node.row}-${node.column}`).className =
-            'node node-visited';
+            'singleNode singleNode-visited';
         }, 10 * i);
         }
     }
     startAlgorithm() {
 
-        console.log(this.props);
-        const visitedNodesInOrder = dijkstra(this.props.grid, this.props.grid[StartNodeRow][StartNodeColumn], this.props.grid[TargetNodeRow][TargetNodeColumn]);
-        const shortestPathNodesInOrder = getNodesInShortestPathOrder(this.props.grid[TargetNodeRow][TargetNodeColumn])
-
-        console.log('---------------------')
+        const visitedNodesInOrder = dijkstra(this.props.grid, this.props.grid[StartNode.row][StartNode.column], this.props.grid[TargetNode.row][TargetNode.column]);
+        const shortestPathNodesInOrder = getNodesInShortestPathOrder(this.props.grid[TargetNode.row][TargetNode.column])
         console.log(visitedNodesInOrder)
         console.log(shortestPathNodesInOrder)
-        this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
+        // this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 
     }
     render() {
