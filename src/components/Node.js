@@ -14,7 +14,7 @@ export default class Node extends Component {
             row={this.props.row} 
             column={this.props.column} 
             onClick={this.props.clickNode}
-            className={`singleNode ${this.state.isStart ? 'start':''}`}>
+            className={`singleNode${this.props.isStart ? ' start': this.props.isTarget ? ' target': ''}`}>
         </div>; 
     }
     

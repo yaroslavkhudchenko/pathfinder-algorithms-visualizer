@@ -29,7 +29,7 @@ export default class Grid extends Component {
             })
             console.log('ss')
             console.log(this.state.startSet);
-           // return;
+            return;
         } else if(this.state.targetSet === false) {
             this.setState({
                 targetSet: true,
@@ -45,22 +45,47 @@ export default class Grid extends Component {
         for (let i = 0; i < 35; i++) {
             nodes.push([]); // push array to display row
             for (let j = 0; j < 50; j++) {
-                if(i === 20 && j === 30) {
+                if(i === 1 && j === 1) {
+                    console.log('------------------------------------------')
+                    nodes[i].push(
 
+                        {
+                            column: j,
+                            row: i,
+                            key: shortid.generate(),
+                            isStart: true,
+                            isTarget: false
+
+                        }
+
+                    ); // every node(column)
+                } else if(i === 33 && j === 48) {
+                    nodes[i].push(
+
+                        {
+                            column: j,
+                            row: i,
+                            key: shortid.generate(),
+                            isStart: false,
+                            isTarget: true
+
+                        }
+
+                    ); // every node(column)
+                } else {
+                    nodes[i].push(
+
+                        {
+                            column: j,
+                            row: i,
+                            key: shortid.generate(),
+                            isStart: false,
+                            isTarget: false
+
+                        }
+
+                    ); // every node(column)
                 }
-                nodes[i].push(
-
-                    {
-                        column: j,
-                        row: i,
-                        key: shortid.generate(),
-                        isStart: false,
-                        isTarget: false
-
-                    }
-
-                ); // every node(column)
-
             }
         }
         this.setState({ nodes }) // assign local nodes to state's nodes
