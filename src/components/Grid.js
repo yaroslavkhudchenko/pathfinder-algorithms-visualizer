@@ -12,7 +12,7 @@ export default class Grid extends Component {
             startSet:false,
             targetSet:false
         }
-        this.clickNode = this.clickNode.bind(this.clickNode);
+        this.clickNode = this.clickNode.bind(this);
     } 
 
     componentDidMount() {
@@ -20,7 +20,12 @@ export default class Grid extends Component {
         for (let i = 0; i <35; i++) {
             nodes.push([]); // push array to display row
             for (let j = 0; j < 50; j++) {
-                nodes[i].push(<Node dataId={j} row={i} clickNode={this.clickNode} key={shortid.generate()} />); // every node(column)
+                if(j === 30 && i === 20) {
+                    nodes[i].push(<Node dataId={j} row={i} className='start' clickNode={this.clickNode} key={shortid.generate()} />); // every node(column)
+
+                } else {
+                    nodes[i].push(<Node dataId={j} row={i} clickNode={this.clickNode} key={shortid.generate()} />); // every node(column)
+                }
             }
         }
         this.setState({nodes}) // assign local nodes to state's nodes
@@ -29,21 +34,25 @@ export default class Grid extends Component {
         e.persist(); // avoid syntetic problem
         console.log(e.target);
         
-        if(this.state.startSet === false) {
-            this.setState = {
+        if (this.state.startSet === false) {
+            e.target.classList.add('start'); 
+
+            this.setState({
                 startSet: true,
                 startNode : e.target
-            }
-            e.target.classlist.add('active');
-            return;
+            })
+            console.log('ss')
+            console.log(this.state.startSet);
+           // return;
         } else if(this.state.targetSet === false) {
-            this.setState = {
+            this.setState({
                 targetSet: true,
                 targetNode: e.target
-            }
-            e.target.classlist.add('target');
+            })
+            e.target.classList.add('target');
+
         }
-        console.log(this.state);
+
     }
     
     render() {
