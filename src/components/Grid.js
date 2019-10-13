@@ -3,6 +3,12 @@ import Node from './Node';
 import ControlPanel from './ControlPanel';
 
 import shortid from 'shortid';
+
+export const StartNodeRow = 10;
+export const StartNodeColumn = 15;
+export const TargetNodeRow = 10;
+export const TargetNodeColumn = 35;
+
 export default class Grid extends Component { 
     constructor(props) {
         super(props);
@@ -48,7 +54,7 @@ export default class Grid extends Component {
         for (let i = 0; i < 35; i++) {
             nodes.push([]); // push array to display row
             for (let j = 0; j < 50; j++) {
-                if(i === 1 && j === 1) {
+                if(i === StartNodeColumn && j === StartNodeRow) {
                     nodes[i].push({
                         column: j,
                         row: i,
@@ -57,7 +63,7 @@ export default class Grid extends Component {
                         isTarget: false
 
                     }); // start node
-                } else if(i === 33 && j === 48) {
+                } else if (TargetNodeColumn === 33 && TargetNodeRow === 48) {
                     nodes[i].push({
                         column: j,
                         row: i,

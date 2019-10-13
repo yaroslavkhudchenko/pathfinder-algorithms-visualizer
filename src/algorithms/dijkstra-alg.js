@@ -23,7 +23,10 @@ function sortNodesByDistance(unvisitedNodes) {
 }
 
 function updateUnvisitedNeighbors(node, grid) {
+// console.log(node)
+// console.log(grid)
   const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
+
   for (const neighbor of unvisitedNeighbors) {
     neighbor.distance = node.distance + 1;
     neighbor.previousNode = node;
@@ -32,11 +35,11 @@ function updateUnvisitedNeighbors(node, grid) {
 
 function getUnvisitedNeighbors(node, grid) {
   const neighbors = [];
-  const {col, row} = node;
-  if (row > 0) neighbors.push(grid[row - 1][col]);
-  if (row < grid.length - 1) neighbors.push(grid[row + 1][col]);
-  if (col > 0) neighbors.push(grid[row][col - 1]);
-  if (col < grid[0].length - 1) neighbors.push(grid[row][col + 1]);
+  const {column, row} = node;
+  if (row > 0) neighbors.push(grid[row - 1][column]);
+  if (row < grid.length - 1) neighbors.push(grid[row + 1][column]);
+    if (column > 0) neighbors.push(grid[row][column - 1]);
+  if (column < grid[0].length - 1) neighbors.push(grid[row][column + 1]);
   return neighbors.filter(neighbor => !neighbor.isVisited);
 }
 
@@ -55,9 +58,11 @@ function getAllNodes(grid) {
 export function getNodesInShortestPathOrder(finishNode) {
   const nodesInShortestPathOrder = [];
   let currentNode = finishNode;
+  console.log(currentNode)
   while (currentNode !== null) {
     nodesInShortestPathOrder.unshift(currentNode);
     currentNode = currentNode.previousNode;
   }
+    console.log(nodesInShortestPathOrder, 'swwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwswwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwswwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwswwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwswwwwwwwwwwwwwwwwwwwwwwwwwwwwwww')
   return nodesInShortestPathOrder;
 }
