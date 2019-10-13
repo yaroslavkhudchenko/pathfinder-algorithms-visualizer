@@ -13,8 +13,9 @@ export default class Node extends Component {
     render() {
         return <div 
             row={this.props.row} 
-            column={this.props.dataId} 
+            column={this.props.column} 
             onClick={this.props.clickNode}
+            key={this.props.key}
             className={`singleNode ${this.state.isStart ? 'start':''}`}>
         </div>; 
     }
