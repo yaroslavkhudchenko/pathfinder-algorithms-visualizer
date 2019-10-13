@@ -14,7 +14,8 @@ export default class Node extends Component {
             row={this.props.row} 
             column={this.props.column} 
             onClick={this.props.clickNode}
-            className={`singleNode${this.props.isStart ? ' start': this.props.isTarget ? ' target': ''}`}>
+            className={`singleNode${this.props.isStart ? ' start': this.props.isTarget ? ' target': ''}`}
+            id={`node-${this.props.row}- ${this.props.column}`}>
         </div>; 
     }
     

@@ -58,13 +58,9 @@ function getAllNodes(grid) {
 export function getNodesInShortestPathOrder(finishNode) {
   const nodesInShortestPathOrder = [];
   let currentNode = finishNode;
-  console.log('in dijkstra')
-  console.log(currentNode)
-  while (currentNode !== null) {
-    
+  while (currentNode !== null && currentNode !== undefined) {
     nodesInShortestPathOrder.unshift(currentNode);
     currentNode = currentNode.previousNode;
   }
-    console.log(nodesInShortestPathOrder, 'swwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwswwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwswwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwswwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwswwwwwwwwwwwwwwwwwwwwwwwwwwwwwww')
   return nodesInShortestPathOrder;
 }

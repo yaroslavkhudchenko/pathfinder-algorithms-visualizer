@@ -6,8 +6,8 @@ import shortid from 'shortid';
 
 export const StartNodeRow = 1;
 export const StartNodeColumn = 1;
-export const TargetNodeColumn= 33;
-export const TargetNodeRow = 48;
+export const TargetNodeColumn= 48;
+export const TargetNodeRow = 33;
 
 export default class Grid extends Component { 
     constructor(props) {
@@ -54,7 +54,7 @@ export default class Grid extends Component {
         for (let i = 0; i < 35; i++) {
             nodes.push([]); // push array to display row
             for (let j = 0; j < 50; j++) {
-                if(i === StartNodeColumn && j === StartNodeRow) {
+                if(j === StartNodeColumn && i === StartNodeRow) {
                     nodes[i].push({
                         column: j,
                         row: i,
@@ -63,7 +63,7 @@ export default class Grid extends Component {
                         isTarget: false
 
                     }); // start node
-                } else if (i === TargetNodeColumn && j === TargetNodeRow) {
+                } else if (j === TargetNodeColumn && i === TargetNodeRow) {
                     nodes[i].push({
                         column: j,
                         row: i,
