@@ -15,21 +15,7 @@ export default class Grid extends Component {
         this.clickNode = this.clickNode.bind(this);
     } 
 
-    componentDidMount() {
-        let nodes = [];
-        for (let i = 0; i <35; i++) {
-            nodes.push([]); // push array to display row
-            for (let j = 0; j < 50; j++) {
-                if(j === 30 && i === 20) {
-                    nodes[i].push(<Node dataId={j} row={i} className='start' clickNode={this.clickNode} key={shortid.generate()} />); // every node(column)
-
-                } else {
-                    nodes[i].push(<Node dataId={j} row={i} clickNode={this.clickNode} key={shortid.generate()} />); // every node(column)
-                }
-            }
-        }
-        this.setState({nodes}) // assign local nodes to state's nodes
-    }
+ 
     clickNode(e) {
         e.persist(); // avoid syntetic problem
         console.log(e.target);
@@ -54,15 +40,57 @@ export default class Grid extends Component {
         }
 
     }
-    
+    componentDidMount() {
+        let nodes = [];
+        for (let i = 0; i < 35; i++) {
+            nodes.push([]); // push array to display row
+            for (let j = 0; j < 50; j++) {
+
+                nodes[i].push(
+                    /* { <Node dataId={j} row={i} clickNode={this.clickNode} key={shortid.generate()} /> }*/
+
+                    {
+                        column: j,
+                        row: i,
+                        key: shortid.generate(),
+                        isStart: false,
+                        isTarget: false
+
+                    }
+
+                ); // every node(column)
+
+            }
+        }
+        this.setState({ nodes }) // assign local nodes to state's nodes
+    }
     render() {
         let {nodes} = this.state; // assing state's nodes to local variable
+
+
+    
+
+
+
+
         return (
             <div className="grid">
             {nodes.map((c, index) => ( // get every row(main array)
                 <div className={`row row${index}`} key={shortid.generate()}> 
                     
-                    {c.map((r) => r )}
+                    {c.map(node => {
+                        const {isStart, isTarget} = node;
+                        return (
+                            <Node 
+                                key={node.key}
+                                row={node.row}
+                                column={node.column}
+                                isStart={isStart}
+                                isTarget={isTarget}
+                            />
+                        )
+                    }
+                )}
                 </div>
             ))}
             </div>
