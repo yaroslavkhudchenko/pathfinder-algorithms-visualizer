@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Node from './Node';
 import shortid from 'shortid';
+import { dijkstra } from './../algorithms/dijkstra-alg';
 export default class Grid extends Component { 
     constructor(props) {
         super(props);
@@ -40,51 +41,41 @@ export default class Grid extends Component {
         }
 
     }
+    check() {
+        dijkstra()
+    }
     componentDidMount() {
         let nodes = [];
         for (let i = 0; i < 35; i++) {
             nodes.push([]); // push array to display row
             for (let j = 0; j < 50; j++) {
                 if(i === 1 && j === 1) {
-                    console.log('------------------------------------------')
-                    nodes[i].push(
+                    nodes[i].push({
+                        column: j,
+                        row: i,
+                        key: shortid.generate(),
+                        isStart: true,
+                        isTarget: false
 
-                        {
-                            column: j,
-                            row: i,
-                            key: shortid.generate(),
-                            isStart: true,
-                            isTarget: false
-
-                        }
-
-                    ); // every node(column)
+                    }); // start node
                 } else if(i === 33 && j === 48) {
-                    nodes[i].push(
+                    nodes[i].push({
+                        column: j,
+                        row: i,
+                        key: shortid.generate(),
+                        isStart: false,
+                        isTarget: true
 
-                        {
-                            column: j,
-                            row: i,
-                            key: shortid.generate(),
-                            isStart: false,
-                            isTarget: true
-
-                        }
-
-                    ); // every node(column)
+                    }); // every node(column)
                 } else {
-                    nodes[i].push(
+                    nodes[i].push({
+                        column: j,
+                        row: i,
+                        key: shortid.generate(),
+                        isStart: false,
+                        isTarget: false
 
-                        {
-                            column: j,
-                            row: i,
-                            key: shortid.generate(),
-                            isStart: false,
-                            isTarget: false
-
-                        }
-
-                    ); // every node(column)
+                    }); // target node
                 }
             }
         }
