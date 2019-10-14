@@ -32,7 +32,7 @@ export default class controlPanel extends Component {
         const shortestPathNodesInOrder = getNodesInShortestPathOrder(this.props.grid[TargetNode.row][TargetNode.column])
         console.log(visitedNodesInOrder)
         console.log(shortestPathNodesInOrder)
-        // this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
+         this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 
     }
     render() {
