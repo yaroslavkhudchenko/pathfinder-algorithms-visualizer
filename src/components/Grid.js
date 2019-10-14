@@ -67,7 +67,8 @@ export default class Grid extends Component {
                         row: i,
                         key: shortid.generate(),
                         isStart: true,
-                        isTarget: false
+                        isTarget: false,
+                        distance:Infinity
 
                     }); // start node
                 } else if (j === TargetNode.column && i === TargetNode.row) {
@@ -76,7 +77,8 @@ export default class Grid extends Component {
                         row: i,
                         key: shortid.generate(),
                         isStart: false,
-                        isTarget: true
+                        isTarget: true,
+                        distance:Infinity
 
                     }); // every node(column)
                 } else {
@@ -85,7 +87,8 @@ export default class Grid extends Component {
                         row: i,
                         key: shortid.generate(),
                         isStart: false,
-                        isTarget: false
+                        isTarget: false,
+                        distance:Infinity
 
                     }); // target node
                 }
@@ -110,7 +113,7 @@ export default class Grid extends Component {
                                 column={node.column}
                                 isStart={isStart}
                                 isTarget={isTarget}
-                               // clickNode={this.clickNode}
+                                // clickNode={this.clickNode}
                             />
                         )
                     }

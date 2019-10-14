@@ -1,19 +1,22 @@
-
-export function dijkstra(grid, startNode, finishNode) {
+// global func for dijkstra algorithm
+export function dijkstra(grid, startNode, targetNode) {
   const visitedNodesInOrder = [];
-  startNode.distance = 0;
+  startNode.distance = 0; // set distance for start node to 0 (all the rest to infinity)
   const unvisitedNodes = getAllNodes(grid);
+  // !! will return boolean
   while (!!unvisitedNodes.length) {
     sortNodesByDistance(unvisitedNodes);
     const closestNode = unvisitedNodes.shift();
-    // If we encounter a wall, we skip it.
-    if (closestNode.isWall) continue;
+   /*  // If we encounter a wall, we skip it.
+    if (closestNode.isWall) continue; */
     // If the closest node is at a distance of infinity,
     // we must be trapped and should therefore stop.
     if (closestNode.distance === Infinity) return visitedNodesInOrder;
     closestNode.isVisited = true;
     visitedNodesInOrder.push(closestNode);
-    if (closestNode === finishNode) return visitedNodesInOrder;
+    if (closestNode === targetNode) return visitedNodesInOrder; // if we have reached the target node
+    console.log(startNode.distance)
+      console.log(closestNode.distance)
     updateUnvisitedNeighbors(closestNode, grid);
   }
 }
@@ -23,12 +26,16 @@ function sortNodesByDistance(unvisitedNodes) {
 }
 
 function updateUnvisitedNeighbors(node, grid) {
-// console.log(node)
+  //  console.log('node')
+
+//console.log(node)
 // console.log(grid)
   const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
-
+    // console.log(unvisitedNeighbors)
+    // console.log('00ww')
   for (const neighbor of unvisitedNeighbors) {
     neighbor.distance = node.distance + 1;
+    
     neighbor.previousNode = node;
   }
 }
