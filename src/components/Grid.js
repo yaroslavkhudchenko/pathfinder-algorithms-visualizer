@@ -7,8 +7,8 @@ import shortid from 'shortid';
 // global variables for good start and target node position on the grid
 
 export const StartNode = {
-    row:2,
-    column:2
+    row:12,
+    column:12
 }
 export const TargetNode = {
     row:32,
