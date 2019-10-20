@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Grid from './Grid';
 
 export default class ControlPanel extends Component {
 
@@ -11,7 +10,7 @@ export default class ControlPanel extends Component {
         return (
             <div className='controlPanel'>
                 <div 
-                    onClick={Grid.startAlgorithm}
+                    onClick={this.props.start}
                 >
                     Start
                 </div>
