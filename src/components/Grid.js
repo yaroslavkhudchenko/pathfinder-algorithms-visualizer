@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Node from './Node';
-import ControlPanel from './ControlPanel';
-
+import { dijkstra, getNodesInShortestPathOrder } from './../algorithms/dijkstra-alg';
 import shortid from 'shortid';
 
 // global variables for good start and target node position on the grid
@@ -27,34 +26,38 @@ export default class Grid extends Component {
             targetSet:false
         }
         // this.clickNode = this.clickNode.bind(this);
+        this.startAlgorithm = this.startAlgorithm.bind(this);
+
     } 
-
- 
-    /* clickNode(e) {
-        e.persist(); // avoid syntetic problem
-        console.log(e.target);
-        
-        if (this.state.startSet === false) {
-            e.target.classList.add('start'); 
-
-            this.setState({
-                startSet: true,
-                startNode : e.target
-            })
-            console.log('ss')
-            console.log(this.state.startSet);
-            return;
-        } else if(this.state.targetSet === false) {
-            this.setState({
-                targetSet: true,
-                targetNode: e.target
-            })
-            e.target.classList.add('target');
-
+    animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder) {
+        for (let i = 0; i <= visitedNodesInOrder.length; i++) {
+            if (i === visitedNodesInOrder.length) {
+                setTimeout(() => {
+                    this.animateShortestPath(shortestPathNodesInOrder);
+                }, 10 * i);
+                return;
+            }
+            setTimeout(() => {
+                const node = visitedNodesInOrder[i];
+                document.getElementById(`node-${node.row}-${node.column}`).className =
+                    'singleNode singleNode-visited';
+            }, 10 * i);
         }
+    }
+    startAlgorithm() {
 
-    } */
-   
+        const visitedNodesInOrder = dijkstra(this.props.grid, this.props.grid[StartNode.row][StartNode.column], this.props.grid[TargetNode.row][TargetNode.column]);
+        const shortestPathNodesInOrder = getNodesInShortestPathOrder(this.props.grid[TargetNode.row][TargetNode.column])
+
+        console.log(visitedNodesInOrder)
+        console.log(shortestPathNodesInOrder)
+
+        this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
+
+    }
+
+
+
     componentDidMount() {
         // create nodes array + choose start and target nodes
         let nodes = [];
@@ -100,7 +103,6 @@ export default class Grid extends Component {
         let {nodes} = this.state; // assing state's nodes to local variable
         return (
             <div className="grid">
-            <ControlPanel grid={nodes}/> 
             {nodes.map((c, index) => ( // get every row(main array)
                 <div className={`row row${index}`} key={shortid.generate()}> 
                     

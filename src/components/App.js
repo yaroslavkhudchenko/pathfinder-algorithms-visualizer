@@ -1,11 +1,12 @@
 import React from 'react';
-import Grid from "./Grid";
+import ControlPanel from './ControlPanel';
+import Grid from './Grid';
 import '../App.css';
 
 export const App = () => {
     return(
-    
       <div className="App">
+        <ControlPanel />
         <Grid />
       </div>
     );
