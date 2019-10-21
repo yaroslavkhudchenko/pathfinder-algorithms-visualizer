@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import AppContext from './App';
 export default class ControlPanel extends Component {
 
     componentDidMount() {
@@ -8,6 +8,8 @@ export default class ControlPanel extends Component {
     
     render() {
         return (
+            <AppContext.Consumer>
+
             <div className='controlPanel'>
                 <div 
                     onClick={this.props.start}
@@ -15,6 +17,8 @@ export default class ControlPanel extends Component {
                     Start
                 </div>
             </div>
+                </AppContext.Consumer>
+
         )
     }
 }

@@ -25,7 +25,7 @@ export default class Grid extends Component {
             targetSet:false
         }
         // this.clickNode = this.clickNode.bind(this);
-        this.animateAlgorithm = this.animateAlgorithm.bind(this);
+        //this.animateAlgorithm = this.animateAlgorithm.bind(this);
 
     } 
   
