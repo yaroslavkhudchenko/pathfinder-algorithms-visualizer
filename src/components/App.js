@@ -18,8 +18,22 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nodes: []
-    }
+      nodes: [],
+      startAlgorithm() {
+        console.log('start algorithm');
+        console.log(this.state.nodes);
+        const visitedNodesInOrder = dijkstra(this.state.nodes, this.state.nodes[StartNode.row][StartNode.column], this.state.nodes[TargetNode.row][TargetNode.column]);
+        const shortestPathNodesInOrder = getNodesInShortestPathOrder(this.state.nodes[TargetNode.row][TargetNode.column])
+
+        console.log(visitedNodesInOrder)
+        console.log(shortestPathNodesInOrder)
+
+        this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
+
+      }
+      
+    };
+    this.state.startAlgorithm = this.state.startAlgorithm.bind(this);
   }
    
 componentDidMount() {
@@ -82,18 +96,7 @@ componentDidMount() {
       }, 10 * i);
     }
   }
-  startAlgorithm() {
-    console.log('start algorithm');
-    console.log(this.state.nodes);
-    const visitedNodesInOrder = dijkstra(this.state.nodes, this.state.nodes[StartNode.row][StartNode.column], this.state.nodes[TargetNode.row][TargetNode.column]);
-    const shortestPathNodesInOrder = getNodesInShortestPathOrder(this.state.nodes[TargetNode.row][TargetNode.column])
 
-    console.log(visitedNodesInOrder)
-    console.log(shortestPathNodesInOrder)
-
-    this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
-
-  }
 
   render() {
     return(

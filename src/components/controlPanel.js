@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { AppContext } from './App';
+
 export default class ControlPanel extends Component {
 
     componentDidMount() {
@@ -7,15 +9,17 @@ export default class ControlPanel extends Component {
     
     render() {
         return (
-           
-
-            <div className='controlPanel'>
-                <div onClick={this.context.animateAlgorithm}>
-                    Start
-                </div>
-            </div>
+            <AppContext.Consumer>
+                {context =>
+                    
+                    <div className='controlPanel'>
+                        <div onClick={context.startAlgorithm}>
+                            Start
+                        </div>
+                    </div>
+                }
                 
-
+                </AppContext.Consumer>
         )
     }
 }
