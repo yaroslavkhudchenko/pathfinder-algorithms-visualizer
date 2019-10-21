@@ -1,15 +1,67 @@
 import React, {Component} from 'react';
 import ControlPanel from './ControlPanel';
 import Grid from './Grid';
+import shortid from 'shortid';
 import { dijkstra, getNodesInShortestPathOrder } from './../algorithms/dijkstra-alg';
 import '../App.css';
-import {StartNode, TargetNode } from './Grid';
 export const AppContext = React.createContext();
-
+export const StartNode = {
+  row: 12,
+  column: 12
+}
+export const TargetNode = {
+  row: 32,
+  column: 47
+}
 export default class App extends Component { 
   constructor(props) {
     super(props);
+    this.state = {
+      nodes: []
+    }
   }
+   
+componentDidMount() {
+  // create nodes array + choose start and target nodes
+  let nodes = [];
+  for (let i = 0; i < 35; i++) {
+    nodes.push([]); // push array to display row
+    for (let j = 0; j < 50; j++) {
+      if (j === StartNode.column && i === StartNode.row) {
+        nodes[i].push({
+          column: j,
+          row: i,
+          key: shortid.generate(),
+          isStart: true,
+          isTarget: false,
+          distance: Infinity
+
+        }); // start node
+      } else if (j === TargetNode.column && i === TargetNode.row) {
+        nodes[i].push({
+          column: j,
+          row: i,
+          key: shortid.generate(),
+          isStart: false,
+          isTarget: true,
+          distance: Infinity
+
+        }); // every node(column)
+      } else {
+        nodes[i].push({
+          column: j,
+          row: i,
+          key: shortid.generate(),
+          isStart: false,
+          isTarget: false,
+          distance: Infinity
+
+        }); // target node
+      }
+    }
+  }
+  this.setState({nodes})
+}
 
   animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder) {
     console.log('animate algorithm');
