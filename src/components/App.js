@@ -4,12 +4,11 @@ import Grid from './Grid';
 import { dijkstra, getNodesInShortestPathOrder } from './../algorithms/dijkstra-alg';
 import '../App.css';
 import {StartNode, TargetNode } from './Grid';
-const AppContext = React.createContext();
+export const AppContext = React.createContext();
 
 export default class App extends Component { 
   constructor(props) {
     super(props);
-    
   }
 
   animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder) {
@@ -30,7 +29,6 @@ export default class App extends Component {
   }
   startAlgorithm() {
     console.log('start algorithm');
-    console.log(this.state)
     const visitedNodesInOrder = dijkstra(Grid.state.nodes, Grid.state.nodes[StartNode.row][StartNode.column], Grid.state.nodes[TargetNode.row][TargetNode.column]);
     const shortestPathNodesInOrder = getNodesInShortestPathOrder(Grid.state.nodes[TargetNode.row][TargetNode.column])
 
@@ -43,9 +41,9 @@ export default class App extends Component {
 
   render() {
     return(
-      <AppContext.Provider animateAlgorithm={this.animateAlgorithm}>
+      <AppContext.Provider startAlgorithm={this.startAlgorithm(() => this.startAlgorithm())}>
         <div className="App">
-          <ControlPanel start={this.startAlgorithm} />
+          <ControlPanel />
           <Grid />
         </div>
         </AppContext.Provider>
