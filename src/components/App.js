@@ -37,7 +37,6 @@ export default class App extends Component {
   }
    
 componentDidMount() {
-  console.log('--------------------')
   // create nodes array + choose start and target nodes
   let nodes = [];
   for (let i = 0; i < 35; i++) {
@@ -93,7 +92,15 @@ componentDidMount() {
         const node = visitedNodesInOrder[i];
         document.getElementById(`node-${node.row}-${node.column}`).className =
           'singleNode singleNode-visited';
-      }, 10 * i);
+      }, 7 * i);
+    }
+  }
+  animateShortestPath(shortestPathNodesInOrder) {
+    document.getElementsByClassName('singleNode-visited')
+    for(let i=0;i<shortestPathNodesInOrder.length;i++) {
+      setTimeout(() => {
+        document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.background = 'red';
+      }, 100);
     }
   }
 
