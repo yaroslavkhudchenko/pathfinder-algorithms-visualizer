@@ -13,6 +13,7 @@ export const TargetNode = {
   row: 32,
   column: 47
 }
+
 export default class App extends Component { 
   constructor(props) {
     super(props);
@@ -22,6 +23,7 @@ export default class App extends Component {
   }
    
 componentDidMount() {
+  console.log('--------------------')
   // create nodes array + choose start and target nodes
   let nodes = [];
   for (let i = 0; i < 35; i++) {
@@ -60,6 +62,7 @@ componentDidMount() {
       }
     }
   }
+  console.log(nodes);
   this.setState({nodes})
 }
 
@@ -81,8 +84,9 @@ componentDidMount() {
   }
   startAlgorithm() {
     console.log('start algorithm');
-    const visitedNodesInOrder = dijkstra(Grid.state.nodes, Grid.state.nodes[StartNode.row][StartNode.column], Grid.state.nodes[TargetNode.row][TargetNode.column]);
-    const shortestPathNodesInOrder = getNodesInShortestPathOrder(Grid.state.nodes[TargetNode.row][TargetNode.column])
+    console.log(this.state.nodes);
+    const visitedNodesInOrder = dijkstra(this.state.nodes, this.state.nodes[StartNode.row][StartNode.column], this.state.nodes[TargetNode.row][TargetNode.column]);
+    const shortestPathNodesInOrder = getNodesInShortestPathOrder(this.state.nodes[TargetNode.row][TargetNode.column])
 
     console.log(visitedNodesInOrder)
     console.log(shortestPathNodesInOrder)
@@ -93,7 +97,7 @@ componentDidMount() {
 
   render() {
     return(
-      <AppContext.Provider startAlgorithm={this.startAlgorithm(() => this.startAlgorithm())}>
+      <AppContext.Provider value={this.state}>
         <div className="App">
           <ControlPanel />
           <Grid />

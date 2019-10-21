@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Node from './Node';
 import { StartNode, TargetNode } from './App';
 import shortid from 'shortid';
-
+import { AppContext } from './App';
 // global variables for good start and target node position on the grid
 
 
@@ -27,28 +27,31 @@ export default class Grid extends Component {
 
     
     render() {
-        let {nodes} = this.state; // assing state's nodes to local variable
+
         return (
-            <div className="grid">
-            {nodes.map((c, index) => ( // get every row(main array)
-                <div className={`row row${index}`} key={shortid.generate()}> 
+            <AppContext.Consumer>
+                    {context => 
+                        <div id='grid'>
+                            {context.nodes.map((c, index) => ( // get every row(main array)
+                            <div className={`row row${index}`} key={shortid.generate()}> 
+                                {c.map(node => {
+                                    const {isStart, isTarget} = node;
+                                    return (
+                                        <Node 
+                                            key={node.key}
+                                            row={node.row}
+                                            column={node.column}
+                                            isStart={isStart}
+                                            isTarget={isTarget}
+                                        />
+                                    )
+                                    })}
+                            </div>
+                            ))}
+                       </div>
+                    }           
                     
-                    {c.map(node => {
-                        const {isStart, isTarget} = node;
-                        return (
-                            <Node 
-                                key={node.key}
-                                row={node.row}
-                                column={node.column}
-                                isStart={isStart}
-                                isTarget={isTarget}
-                            />
-                        )
-                    }
-                )}
-                </div>
-            ))}
-            </div>
-        );
+            </AppContext.Consumer>
+        )
     }
 }

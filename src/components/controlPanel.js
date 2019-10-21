@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { AppContext } from './App';
 export default class ControlPanel extends Component {
 
     componentDidMount() {
@@ -11,11 +10,9 @@ export default class ControlPanel extends Component {
            
 
             <div className='controlPanel'>
-                <AppContext.Consumer>
                 <div onClick={this.context.animateAlgorithm}>
                     Start
                 </div>
-                </AppContext.Consumer>
             </div>
                 
 
