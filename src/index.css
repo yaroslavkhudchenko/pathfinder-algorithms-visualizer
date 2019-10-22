@@ -3,6 +3,16 @@ body,html {
   padding:0;
 }
 
+.controlPanel {
+  height: 50px;
+  background: gray;
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .grid {
   display: flex;
   flex-wrap:wrap;

@@ -15,8 +15,8 @@ export function dijkstra(grid, startNode, targetNode) {
     closestNode.isVisited = true;
     visitedNodesInOrder.push(closestNode);
     if (closestNode === targetNode) return visitedNodesInOrder; // if we have reached the target node
-    console.log(startNode.distance)
-      console.log(closestNode.distance)
+    // console.log(startNode.distance)
+    // console.log(closestNode.distance)
     updateUnvisitedNeighbors(closestNode, grid);
   }
 }
