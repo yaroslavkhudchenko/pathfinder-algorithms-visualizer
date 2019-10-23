@@ -21,7 +21,7 @@ export default class ControlPanel extends Component {
                         <div className='startButton' onClick={context.startAlgorithm}>
                             Start
                         </div>
-                        <div class='selectAlgorithm'>
+                        <div className='selectAlgorithm'>
                             <select>
                                 <option onClick={() => this.selectAlgorithm(dijkstra)}>dijkstra</option>
                             </select>

@@ -90,7 +90,7 @@ componentDidMount() {
   animateShortestPath(shortestPathNodesInOrder) {
     for(let i=0;i<shortestPathNodesInOrder.length;i++) {
       setTimeout(() => {
-        document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.background = 'red';
+        document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.background = 'rgba(255, 0, 0, .7);';
       }, 100);
     }
   }
