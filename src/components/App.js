@@ -3,7 +3,7 @@ import ControlPanel from './ControlPanel';
 import Grid from './Grid';
 import shortid from 'shortid';
 import { dijkstra, getNodesInShortestPathOrder } from './../algorithms/dijkstra-alg';
-import '../App.css';
+import '../index.scss';
 export const AppContext = React.createContext();
 
 export default class App extends Component { 

@@ -20,12 +20,12 @@ export default class ControlPanel extends Component {
                 <div
                   className="startButton"
                   onClick={
-                    context.startNode.row && context.targetNode.column
+                    ((context.startNode.row  || context.startNode.row) === 0 && (context.targetNode.column || context.targetNode.column === 0))
                       ? context.startAlgorithm
                       : console.log("first set nodes")
                   }
                 >
-                  {context.startNode.row && context.targetNode.column
+                  {((context.startNode.row  || context.startNode.row === 0) && (context.targetNode.column || context.targetNode.column === 0))
                     ? "Start"
                     : "First set start/target nodes"}
                 </div>
@@ -40,10 +40,10 @@ export default class ControlPanel extends Component {
                  {/*  <div>Build nodes</div> */}
                   <div>
                     <div>
-                      Row: <input className="rowNumber" type="number" onChange={context.setGridSize}/>
+                      Row: <input className="rowNumber" type="number" defaultValue={50} onChange={context.setGridSize} min={1}/>
                     </div>
                     <div>
-                      Column: <input className="columnNumber" type="number" onChange={context.setGridSize}/>
+                      Column: <input className="columnNumber" type="number" defaultValue={35} onChange={context.setGridSize} min={1}/>
                     </div>
                   </div>
                 </div>
