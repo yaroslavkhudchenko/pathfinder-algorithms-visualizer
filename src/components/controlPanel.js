@@ -25,6 +25,12 @@ export default class ControlPanel extends Component {
                                 <option onClick={() => this.selectAlgorithm(dijkstra)}>dijkstra</option>
                             </select>
                         </div>
+                        <div className='buildNodes' onClick={context.buildNodes}>
+                            Build nodes
+                        </div>
+                        Row: <input className='rowNumber' type='number' />
+                        Column: <input className='columnNumber' type='number' />
+
                     </div>
                 }
                 </AppContext.Consumer>
