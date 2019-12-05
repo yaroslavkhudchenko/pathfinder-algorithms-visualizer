@@ -30,6 +30,8 @@ export default class App extends Component {
       startAlgorithm() {
         console.log('start algorithm');
         console.log(this.state.nodes)
+        console.log(this.state.startNode)
+        console.log(this.state.targetNode)
         const visitedNodesInOrder = dijkstra(this.state.nodes, 
           this.state.nodes[this.state.startNode.row][this.state.startNode.column],
           this.state.nodes[this.state.targetNode.row][this.state.targetNode.column]
@@ -37,21 +39,21 @@ export default class App extends Component {
         const shortestPathNodesInOrder = getNodesInShortestPathOrder(this.state.nodes[this.state.targetNode.row][this.state.targetNode.column])
         this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
       },
-      setStartNode() {
-        console.log('set start node');
+      setStartNode(e) {
+        console.log('ee')
         this.setState({
           startNode: {
-            row:1,
-            column:1
+            row:e.target.getAttribute('row')*1,
+            column:e.target.getAttribute('column')*1
           }
         })
       },
-      setTargetNode() {
-        console.log('set target node');
+      setTargetNode(e) {
+        console.log('ee')
         this.setState({
           targetNode: {
-            row: 5,
-            column: 5
+            row: e.target.getAttribute('row')*1,
+            column: e.target.getAttribute('column')*1
           }
         });
       }
