@@ -52,6 +52,10 @@ body,html {
   background: rgba(6, 1, 44, 0.602) 174, 221);
 }
 
+
+.setGridSize {
+  display: flex;
+}
 @keyframes visitedAnimation {
   0% {
     transform: scale(0.3);

@@ -58,7 +58,7 @@ export default class App extends Component {
           }
         });
       },
-      buildNodes() {
+      setGridSize() {
 
         let row = document.querySelector(".rowNumber").value;
         let column = document.querySelector(".columnNumber").value;
@@ -85,7 +85,7 @@ export default class App extends Component {
     this.state.startAlgorithm = this.state.startAlgorithm.bind(this);
     this.state.setStartNode = this.state.setStartNode.bind(this);
     this.state.setTargetNode = this.state.setTargetNode.bind(this);
-    this.state.buildNodes = this.state.buildNodes.bind(this);
+    this.state.setGridSize = this.state.setGridSize.bind(this);
 
   }
    
