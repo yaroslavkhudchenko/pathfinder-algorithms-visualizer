@@ -5,14 +5,6 @@ import shortid from 'shortid';
 import { dijkstra, getNodesInShortestPathOrder } from './../algorithms/dijkstra-alg';
 import '../App.css';
 export const AppContext = React.createContext();
-/* export const StartNode = {
-  row: 12,
-  column: 12
-}
-export const TargetNode = {
-  row: 32,
-  column: 47
-} */
 
 export default class App extends Component { 
   constructor(props) {

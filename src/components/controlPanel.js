@@ -17,8 +17,8 @@ export default class ControlPanel extends Component {
             <AppContext.Consumer>
                 {context =>
                     <div className='controlPanel'>
-                        <div className='startButton' onClick={context.startAlgorithm}>
-                            Start
+                        <div className='startButton' onClick={context.startNode.row && context.targetNode.column ? context.startAlgorithm : console.log('first set nodes')}>
+                            {context.startNode.row && context.targetNode.column ? 'Start' : 'First set start/target nodes' }
                         </div>
                         <div className='selectAlgorithm'>
                             <select>
