@@ -20,7 +20,7 @@ export default class ControlPanel extends Component {
                 <div
                   className="startButton"
                   onClick={
-                    ((context.startNode.row  || context.startNode.row) === 0 && (context.targetNode.column || context.targetNode.column === 0))
+                    ((context.startNode.row  || context.startNode.row === 0) && (context.targetNode.column || context.targetNode.column === 0))
                       ? context.startAlgorithm
                       : console.log("first set nodes")
                   }
