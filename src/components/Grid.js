@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Node from './Node';
-import { StartNode, TargetNode } from './App';
-import shortid from 'shortid';
+/* import { StartNode, TargetNode } from './App';
+ */import shortid from 'shortid';
 import { AppContext } from './App';
 // global variables for good start and target node position on the grid
 

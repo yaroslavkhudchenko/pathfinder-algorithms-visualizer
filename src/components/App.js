@@ -5,28 +5,56 @@ import shortid from 'shortid';
 import { dijkstra, getNodesInShortestPathOrder } from './../algorithms/dijkstra-alg';
 import '../App.css';
 export const AppContext = React.createContext();
-export const StartNode = {
+/* export const StartNode = {
   row: 12,
   column: 12
 }
 export const TargetNode = {
   row: 32,
   column: 47
-}
+} */
 
 export default class App extends Component { 
   constructor(props) {
     super(props);
     this.state = {
       nodes: [],
+      startNode : {
+        row: null,
+        column: null
+      },
+      targetNode : {
+        row: null,
+        column: null
+      },
       startAlgorithm() {
         console.log('start algorithm');
-        const visitedNodesInOrder = dijkstra(this.state.nodes, this.state.nodes[StartNode.row][StartNode.column], this.state.nodes[TargetNode.row][TargetNode.column]);
-        const shortestPathNodesInOrder = getNodesInShortestPathOrder(this.state.nodes[TargetNode.row][TargetNode.column])
+        console.log(this.state.nodes)
+        const visitedNodesInOrder = dijkstra(this.state.nodes, 
+          this.state.nodes[this.state.startNode.row][this.state.startNode.column],
+          this.state.nodes[this.state.targetNode.row][this.state.targetNode.column]
+        );
+        const shortestPathNodesInOrder = getNodesInShortestPathOrder(this.state.nodes[this.state.targetNode.row][this.state.targetNode.column])
         this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
+      },
+      setStartTargetNodes() {
+        console.log('set start node');
+        this.setState({
+          startNode: {
+            row: 1,
+            column: 1
+          },
+          targetNode: {
+            row: 5,
+            column: 5
+          }
+        });
       }
     };
     this.state.startAlgorithm = this.state.startAlgorithm.bind(this);
+    this.state.setStartTargetNodes = this.state.setStartTargetNodes.bind(this);
+   // this.state.setTargetNode = this.state.setTargetNode.bind(this);
+
   }
    
 componentDidMount() {
@@ -35,7 +63,7 @@ componentDidMount() {
   for (let i = 0; i < 35; i++) {
     nodes.push([]); // push array to display row
     for (let j = 0; j < 50; j++) {
-      if (j === StartNode.column && i === StartNode.row) {
+      /* if (j === StartNode.column && i === StartNode.row) {
         nodes[i].push({
           column: j,
           row: i,
@@ -54,7 +82,7 @@ componentDidMount() {
           isTarget: true,
           distance: Infinity
         }); // every node(column)
-      } else {
+      } else { */
         nodes[i].push({
           column: j,
           row: i,
@@ -63,7 +91,7 @@ componentDidMount() {
           isTarget: false,
           distance: Infinity
         }); // target node
-      }
+      //}
     }
   }
   this.setState({nodes})

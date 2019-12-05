@@ -16,7 +16,6 @@ export default class ControlPanel extends Component {
         return (
             <AppContext.Consumer>
                 {context =>
-                    
                     <div className='controlPanel'>
                         <div className='startButton' onClick={context.startAlgorithm}>
                             Start
@@ -28,7 +27,6 @@ export default class ControlPanel extends Component {
                         </div>
                     </div>
                 }
-                
                 </AppContext.Consumer>
         )
     }
