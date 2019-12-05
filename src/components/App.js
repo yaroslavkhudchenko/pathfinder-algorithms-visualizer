@@ -37,13 +37,18 @@ export default class App extends Component {
         const shortestPathNodesInOrder = getNodesInShortestPathOrder(this.state.nodes[this.state.targetNode.row][this.state.targetNode.column])
         this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
       },
-      setStartTargetNodes() {
+      setStartNode() {
         console.log('set start node');
         this.setState({
           startNode: {
-            row: 1,
-            column: 1
-          },
+            row:1,
+            column:1
+          }
+        })
+      },
+      setTargetNode() {
+        console.log('set target node');
+        this.setState({
           targetNode: {
             row: 5,
             column: 5
@@ -52,8 +57,8 @@ export default class App extends Component {
       }
     };
     this.state.startAlgorithm = this.state.startAlgorithm.bind(this);
-    this.state.setStartTargetNodes = this.state.setStartTargetNodes.bind(this);
-   // this.state.setTargetNode = this.state.setTargetNode.bind(this);
+    this.state.setStartNode = this.state.setStartNode.bind(this);
+    this.state.setTargetNode = this.state.setTargetNode.bind(this);
 
   }
    

@@ -23,7 +23,8 @@ export default class Node extends Component {
                                 this.props.row === context.targetNode.row && this.props.column === context.targetNode.column ? ' target': ''}`
                             } // set good color for start and target nodes
                             id={`node-${this.props.row}-${this.props.column}`} // id for future animation
-                            onClick={context.setStartTargetNodes}
+                            onClick={context.setStartNode}
+                            onContextMenu={context.setTargetNode}
                         > 
                         </div>
                     }           
