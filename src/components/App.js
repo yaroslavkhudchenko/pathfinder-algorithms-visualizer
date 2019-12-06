@@ -20,10 +20,6 @@ export default class App extends Component {
         column: null
       },
       startAlgorithm() {
-        console.log("start algorithm");
-        console.log(this.state.nodes);
-        console.log(this.state.startNode);
-        console.log(this.state.targetNode);
         const visitedNodesInOrder = dijkstra(
           this.state.nodes,
           this.state.nodes[this.state.startNode.row][
@@ -38,6 +34,8 @@ export default class App extends Component {
             this.state.targetNode.column
           ]
         );
+
+        console.log(shortestPathNodesInOrder)
         this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
       },
       setStartNode(e) {
@@ -51,6 +49,7 @@ export default class App extends Component {
       },
       setTargetNode(e) {
         console.log("ee");
+        e.preventDefault();
         this.setState({
           targetNode: {
             row: e.target.getAttribute("row") * 1,
@@ -149,9 +148,12 @@ componentDidMount() {
 
   // draw line from start to target
   animateShortestPath(shortestPathNodesInOrder) {
+    console.log('animate shortest path func')
     for(let i=0;i<shortestPathNodesInOrder.length;i++) {
-      setTimeout(() => {
-        document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.background = 'rgba(255, 0, 0, .7);';
+      console.log('shortes for loop')
+       setTimeout(() => {
+         console.log( document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`))
+        document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = 'black';
       }, 100);
     }
   }
