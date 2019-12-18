@@ -20,7 +20,7 @@ export default class App extends Component {
 				column: 35
 			},
 			startAlgorithm() {
-				console.log(this.state.nodes);
+				//console.log(this.state.nodes);
 				//console.log(`start ${this.state.startNode.row} target ${this.state.targetNode.row}`)
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
@@ -50,11 +50,16 @@ export default class App extends Component {
 				
 				// console.log('this state nodes')
 				// console.log(this.state.nodes)
-				for(let i=0;i<this.state.nodes.length;i++) {
+				/* for(let i=0;i<this.state.nodes.length;i++) {
 					for (let j = 0; j < this.state.nodes[i].length; j++) {
-						this.state.nodes[i][j].distance = Infinity;
+						//this.state.nodes[i][j].distance = Infinity;
 						//this.state.nodes[i][j].isVisited = false;
 					}
+				} */
+				let g = document.getElementsByClassName('singleNode-visited');
+
+				for (let i = 0; i < g.length; i++) {
+					g[i].style.animationPlayState = "paused";
 				}
 				//return;
 
@@ -81,7 +86,6 @@ export default class App extends Component {
 					}
 				})
 
-				let g = document.getElementsByClassName('singleNode-visited');
 				// console.log(';;;;;;;;;')
 				// console.log(g.length)
 
@@ -164,26 +168,29 @@ export default class App extends Component {
 		this.state.resetGrid = this.state.resetGrid.bind(this);
 	}
 	 
-componentDidMount() {
-	// create nodes array + choose start and target nodes
-	let nodes = [];
-	for (let i = 0; i < 35; i++) {
-		nodes.push([]); // push array to display row
-		for (let j = 0; j < 40; j++) {
-				nodes[i].push({
-					column: j,
-					row: i,
-					key: shortid.generate(),
-					distance: Infinity
-				}); // target node
-			//}
+	componentDidMount() {
+		// create nodes array + choose start and target nodes
+		let nodes = [];
+		for (let i = 0; i < 35; i++) {
+			nodes.push([]); // push array to display row
+			for (let j = 0; j < 40; j++) {
+					nodes[i].push({
+						column: j,
+						row: i,
+						key: shortid.generate(),
+						distance: Infinity
+					}); // target node
+				//}
+			}
 		}
+		this.setState({nodes})
 	}
-	this.setState({nodes})
-}
  
 
 	animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder) {
+		console.log('%c animateALGORITHM', 'font-size:30px;color:yellow;')
+		console.log(visitedNodesInOrder)
+		console.log(shortestPathNodesInOrder)
 		//console.log('animate algorithm');
 		for (let i = 0; i <= visitedNodesInOrder.length; i++) {
 			if (i === visitedNodesInOrder.length) {
