@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import Node from './Node';
-/* import { StartNode, TargetNode } from './App';
- */import shortid from 'shortid';
+import shortid from 'shortid';
 import { AppContext } from './App';
-// global variables for good start and target node position on the grid
-
-
 
 export default class Grid extends Component { 
     constructor(props) {
@@ -18,9 +14,6 @@ export default class Grid extends Component {
             startSet:false,
             targetSet:false
         }
-        // this.clickNode = this.clickNode.bind(this);
-        //this.animateAlgorithm = this.animateAlgorithm.bind(this);
-
     } 
   
 

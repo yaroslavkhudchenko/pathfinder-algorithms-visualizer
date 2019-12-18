@@ -39,6 +39,10 @@ export default class App extends Component {
         this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
       },
       setStartNode(e) {
+        if (this.state.startNode.row && this.state.targetNode.row){
+          console.log('set already both')
+          return;
+        }
         console.log("ee");
         this.setState({
           startNode: {
@@ -48,6 +52,10 @@ export default class App extends Component {
         });
       },
       setTargetNode(e) {
+        if (this.state.startNode.row && this.state.targetNode.row) {
+          console.log('set already both')
+          return;
+        }
         console.log("ee");
         e.preventDefault();
         this.setState({
