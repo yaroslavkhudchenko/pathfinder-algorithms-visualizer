@@ -20,6 +20,7 @@ export default class App extends Component {
 				column: null
 			},
 			startAlgorithm() {
+				//console.log(`start ${this.state.startNode.row} target ${this.state.targetNode.row}`)
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
 					this.state.nodes[this.state.startNode.row][
@@ -29,16 +30,32 @@ export default class App extends Component {
 						this.state.targetNode.column
 					]
 				);
+				console.log('visitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrder')
+				console.log(visitedNodesInOrder)
+				console.log(visitedNodesInOrder.length)
+
 				const shortestPathNodesInOrder = getNodesInShortestPathOrder(
 					this.state.nodes[this.state.targetNode.row][
 						this.state.targetNode.column
 					]
 				);
+				console.log('shortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrder')
 
 				console.log(shortestPathNodesInOrder)
+				console.log(shortestPathNodesInOrder.length)
 				this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 			},
 			resetGrid() {
+				let g = document.getElementsByClassName('.singleNode-visited');
+				for(let i=0;i<g.length;i++) {
+					g[i].classList.add('fadeReset');
+					setTimeout(() => {
+						g[i].classList.remove('singleNode-visited');
+					}, 1000);
+					
+
+				}
+				//g.map(one => one.classList.remove('singleNode-visited'))
 				this.setState({
 					startNode: {
 						row: null,
@@ -49,12 +66,14 @@ export default class App extends Component {
 						column: null
 					}
 				})
-				this.state.node.map(one => document.getElementById(`node-${one.row}-${one.column}`).classList.remove('singleNode-visited'))
+				
+				//this.state.node.map(one => document.getElementById(`node-${one.row}-${one.column}`).classList.remove('singleNode-visited'))
 				
 			},
 			setStartNode(e) {
-				if (this.state.startNode.row && this.state.targetNode.row){
-					console.log('set already both')
+				//console.log('set start node he22222222222222222222222222222222222222222222222222222222222222222222222222222222222222')
+				if (this.state.startNode.row === true && this.state.targetNode.row === true){
+					//console.log('set already both')
 
 					this.setState({
 						targetNode: {
@@ -66,9 +85,9 @@ export default class App extends Component {
 
 					return;
 				}
-				console.log("ee");
+				//console.log("ee");
 
-				if (!this.state.startNode.row) {
+				if (!this.state.startNode.row && this.state.startNode.row !== 0) {
 					this.setState({
 						startNode: {
 							row: e.target.getAttribute("row") * 1,
@@ -138,7 +157,7 @@ componentDidMount() {
  
 
 	animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder) {
-		console.log('animate algorithm');
+		//console.log('animate algorithm');
 		for (let i = 0; i <= visitedNodesInOrder.length; i++) {
 			if (i === visitedNodesInOrder.length) {
 				setTimeout(() => {
@@ -156,11 +175,11 @@ componentDidMount() {
 
 	// draw line from start to target
 	animateShortestPath(shortestPathNodesInOrder) {
-		console.log('animate shortest path func')
+		//console.log('animate shortest path func')
 		for(let i=0;i<shortestPathNodesInOrder.length;i++) {
-			console.log('shortes for loop')
+			//console.log('shortes for loop')
 			 setTimeout(() => {
-				 console.log( document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`))
+				 //console.log( document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`))
 				 document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = '#ffeb3b';
 			}, 100);
 		}
