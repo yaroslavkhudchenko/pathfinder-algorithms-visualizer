@@ -38,6 +38,20 @@ export default class App extends Component {
 				console.log(shortestPathNodesInOrder)
 				this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 			},
+			resetGrid() {
+				this.setState({
+					startNode: {
+						row: null,
+						column: null
+					},
+					targetNode: {
+						row: null,
+						column: null
+					}
+				})
+				this.state.node.map(one => document.getElementById(`node-${one.row}-${one.column}`).classList.remove('singleNode-visited'))
+				
+			},
 			setStartNode(e) {
 				if (this.state.startNode.row && this.state.targetNode.row){
 					console.log('set already both')
@@ -99,6 +113,7 @@ export default class App extends Component {
 		this.state.startAlgorithm = this.state.startAlgorithm.bind(this);
 		this.state.setStartNode = this.state.setStartNode.bind(this);
 		this.state.setGridSize = this.state.setGridSize.bind(this);
+		this.state.resetGrid = this.state.resetGrid.bind(this);
 	}
 	 
 componentDidMount() {
