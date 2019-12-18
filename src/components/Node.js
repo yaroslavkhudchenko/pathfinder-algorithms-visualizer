@@ -2,14 +2,10 @@ import React, {Component} from 'react';
 import { AppContext } from "./App";
 
 export default class Node extends Component { 
-    constructor(props) {
+   /*  constructor(props) {
         super(props);
-        this.state = {
-            isStart:false,
-            isTarget:false,
-            isChecked:false
-        }
-    }
+        
+    } */
     render() {
         return ( 
             <AppContext.Consumer>

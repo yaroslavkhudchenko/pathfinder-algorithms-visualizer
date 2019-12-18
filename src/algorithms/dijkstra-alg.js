@@ -1,5 +1,10 @@
 // global func for dijkstra algorithm
 export function dijkstra(grid, startNode, targetNode) {
+  console.log('ss00000000000000000000000000000000000000000000000000000000000000000000000000')
+  console.log(grid)
+  console.log(startNode)
+  console.log(targetNode)
+  console.log('------------------------------------.......')
   const visitedNodesInOrder = [];
   startNode.distance = 0; // set distance for start node to 0 (all the rest to infinity)
   const unvisitedNodes = getAllNodes(grid);
@@ -14,6 +19,8 @@ export function dijkstra(grid, startNode, targetNode) {
     if (closestNode.distance === Infinity) return visitedNodesInOrder;
     closestNode.isVisited = true;
     visitedNodesInOrder.push(closestNode);
+    console.log('before jsuyt before')
+    console.log(visitedNodesInOrder)
     if (closestNode === targetNode) return visitedNodesInOrder; // if we have reached the target node
     // console.log(startNode.distance)
     // console.log(closestNode.distance)
