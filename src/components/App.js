@@ -94,26 +94,6 @@ componentDidMount() {
   for (let i = 0; i < 35; i++) {
     nodes.push([]); // push array to display row
     for (let j = 0; j < 50; j++) {
-      /* if (j === StartNode.column && i === StartNode.row) {
-        nodes[i].push({
-          column: j,
-          row: i,
-          key: shortid.generate(),
-          isStart: true,
-          isTarget: false,
-          distance: Infinity
-
-        }); // start node
-      } else if (j === TargetNode.column && i === TargetNode.row) {
-        nodes[i].push({
-          column: j,
-          row: i,
-          key: shortid.generate(),
-          isStart: false,
-          isTarget: true,
-          distance: Infinity
-        }); // every node(column)
-      } else { */
         nodes[i].push({
           column: j,
           row: i,
@@ -153,7 +133,7 @@ componentDidMount() {
       console.log('shortes for loop')
        setTimeout(() => {
          console.log( document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`))
-        document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = 'black';
+         document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = '#ffeb3b';
       }, 100);
     }
   }

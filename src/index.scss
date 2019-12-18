@@ -38,8 +38,9 @@ body,html {
   animation-delay: 0;
   animation-direction: alternate;
   animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+  animation-fill-mode: backwards;
   animation-play-state: running;
+  background:navy;
 }
 .row {
   display: flex;
