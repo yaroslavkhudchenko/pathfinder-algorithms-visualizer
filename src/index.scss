@@ -1,11 +1,12 @@
 body,html {
   margin: 0;
   padding:0;
+  background: crimson;
 }
 
 .controlPanel {
   height: 50px;
-  background: gray;
+  background: crimson;
   width: 100%;
   color: white;
   display: flex;
@@ -55,6 +56,7 @@ body,html {
 }
 .row {
   display: flex;
+  justify-content: center;
 }
 .start {
   background: red;

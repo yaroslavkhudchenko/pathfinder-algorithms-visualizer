@@ -12,14 +12,15 @@ export default class App extends Component {
 		this.state = {
 			nodes: [],
 			startNode: {
-				row: null,
-				column: null
+				row: 4,
+				column: 4
 			},
 			targetNode: {
-				row: null,
-				column: null
+				row: 30,
+				column: 35
 			},
 			startAlgorithm() {
+				console.log(this.state.nodes);
 				//console.log(`start ${this.state.startNode.row} target ${this.state.targetNode.row}`)
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
@@ -30,45 +31,34 @@ export default class App extends Component {
 						this.state.targetNode.column
 					]
 				);
-				console.log('visitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrder')
-				console.log(visitedNodesInOrder)
-				console.log(visitedNodesInOrder.length)
+				// console.log('visitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrder')
+				// console.log(visitedNodesInOrder)
+				// console.log(visitedNodesInOrder.length)
 
 				const shortestPathNodesInOrder = getNodesInShortestPathOrder(
 					this.state.nodes[this.state.targetNode.row][
 						this.state.targetNode.column
 					]
 				);
-				console.log('shortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrder')
+				// console.log('shortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrder')
 
-				console.log(shortestPathNodesInOrder)
-				console.log(shortestPathNodesInOrder.length)
+				// console.log(shortestPathNodesInOrder)
+				// console.log(shortestPathNodesInOrder.length)
 				this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 			},
 			resetGrid() {
-				console.log('this state nodes')
-				console.log(this.state.nodes)
-
+				
+				// console.log('this state nodes')
+				// console.log(this.state.nodes)
 				for(let i=0;i<this.state.nodes.length;i++) {
 					for (let j = 0; j < this.state.nodes[i].length; j++) {
 						this.state.nodes[i][j].distance = Infinity;
-						// this.state.nodes[i][j].isVisited = this.state.nodes[i][j].isVisited !== null ? false : null
+						//this.state.nodes[i][j].isVisited = false;
 					}
 				}
-				
-				
-					
+				//return;
 
-
-				let g = document.getElementsByClassName('.singleNode-visited');
-				for(let i=0;i<g.length;i++) {
-					g[i].classList.add('fadeReset');
-					setTimeout(() => {
-						g[i].classList.remove('singleNode-visited');
-					}, 1000);
-				}
-				//g.map(one => one.classList.remove('singleNode-visited'))
-				this.setState({
+			/* 	this.setState({
 					startNode: {
 						row: null,
 						column: null
@@ -78,12 +68,40 @@ export default class App extends Component {
 						column: null
 					}
 				})
+					
+ */
+				this.setState({
+					startNode: {
+						row: 4,
+						column: 4
+					},
+					targetNode: {
+						row: 30,
+						column: 35
+					}
+				})
+
+				let g = document.getElementsByClassName('singleNode-visited');
+				// console.log(';;;;;;;;;')
+				// console.log(g.length)
+
+			/* 	for (let i = 0; i < g.length; i++) {
+					console.log('v')
+
+					//g[i].classList.add('fadeReset');
+					//setTimeout(() => {
+						g[i].classList.remove('singleNode-visited');
+					//}, 1000);
+				}  */
+				//g.map(one => one.classList.remove('singleNode-visited'))
+				
 				
 				//this.state.node.map(one => document.getElementById(`node-${one.row}-${one.column}`).classList.remove('singleNode-visited'))
 				
 			},
 			setStartNode(e) {
 				//console.log('set start node he22222222222222222222222222222222222222222222222222222222222222222222222222222222222222')
+				// if both are set only target can be changed
 				if (this.state.startNode.row === true && this.state.targetNode.row === true){
 					//console.log('set already both')
 
@@ -99,6 +117,7 @@ export default class App extends Component {
 				}
 				//console.log("ee");
 
+				// if start is set set target if not set start
 				if (!this.state.startNode.row && this.state.startNode.row !== 0) {
 					this.setState({
 						startNode: {
@@ -131,8 +150,6 @@ export default class App extends Component {
 							column: j,
 							row: i,
 							key: shortid.generate(),
-							/* isStart: false,
-							isTarget: false, */
 							distance: Infinity
 						}); // target node
 						//}
@@ -152,13 +169,11 @@ componentDidMount() {
 	let nodes = [];
 	for (let i = 0; i < 35; i++) {
 		nodes.push([]); // push array to display row
-		for (let j = 0; j < 50; j++) {
+		for (let j = 0; j < 40; j++) {
 				nodes[i].push({
 					column: j,
 					row: i,
 					key: shortid.generate(),
-					/* isStart={ i === this.state.startNode.row && j === this.state.startNode.column ? true : false },
-					isTarget = {(i === this.state.startNode.row && j === this.state.startNode.column) ? true : false }, */
 					distance: Infinity
 				}); // target node
 			//}

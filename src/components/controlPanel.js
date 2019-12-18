@@ -48,7 +48,7 @@ export default class ControlPanel extends Component {
                  {/*  <div>Build nodes</div> */}
                   <div>
                     <div>
-                      Row: <input className="rowNumber" type="number" defaultValue={50} onChange={context.setGridSize} min={1}/>
+                      Row: <input className="rowNumber" type="number" defaultValue={40} onChange={context.setGridSize} min={1}/>
                     </div>
                     <div>
                       Column: <input className="columnNumber" type="number" defaultValue={35} onChange={context.setGridSize} min={1}/>
