@@ -46,14 +46,26 @@ export default class App extends Component {
 				this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 			},
 			resetGrid() {
+				console.log('this state nodes')
+				console.log(this.state.nodes)
+
+				for(let i=0;i<this.state.nodes.length;i++) {
+					for (let j = 0; j < this.state.nodes[i].length; j++) {
+						this.state.nodes[i][j].distance = Infinity;
+						// this.state.nodes[i][j].isVisited = this.state.nodes[i][j].isVisited !== null ? false : null
+					}
+				}
+				
+				
+					
+
+
 				let g = document.getElementsByClassName('.singleNode-visited');
 				for(let i=0;i<g.length;i++) {
 					g[i].classList.add('fadeReset');
 					setTimeout(() => {
 						g[i].classList.remove('singleNode-visited');
 					}, 1000);
-					
-
 				}
 				//g.map(one => one.classList.remove('singleNode-visited'))
 				this.setState({
@@ -119,8 +131,8 @@ export default class App extends Component {
 							column: j,
 							row: i,
 							key: shortid.generate(),
-							isStart: false,
-							isTarget: false,
+							/* isStart: false,
+							isTarget: false, */
 							distance: Infinity
 						}); // target node
 						//}
@@ -145,8 +157,8 @@ componentDidMount() {
 					column: j,
 					row: i,
 					key: shortid.generate(),
-					isStart: false,
-					isTarget: false,
+					/* isStart={ i === this.state.startNode.row && j === this.state.startNode.column ? true : false },
+					isTarget = {(i === this.state.startNode.row && j === this.state.startNode.column) ? true : false }, */
 					distance: Infinity
 				}); // target node
 			//}
