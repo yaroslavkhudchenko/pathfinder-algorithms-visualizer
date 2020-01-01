@@ -20,13 +20,14 @@ export default class App extends Component {
 				column: 35
 			},
 			isStarted: false,
+			// reseting:false,
 			startAlgorithm() {
 				// avoid multiple start
-				if(this.state.isStarted)return;
+				if(this.isStarted)return;
 				
-				this.setState({
-					isStarted:true
-				})
+				this.isStarted = true;
+				
+
 				
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
@@ -48,17 +49,18 @@ export default class App extends Component {
 				this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 			},
 			resetGrid() {
-				this.setState({
-					isStarted: false
-				})
+				if(this.isStarted)return;
+				
+				this.isStarted = false;
 				
 				let g = document.querySelectorAll('.singleNode-visited');
 
 				for (let i = 0; i < g.length; i++) {
-					g[i].style.animationPlayState = "paused";
+					//g[i].style.animationPlayState = "paused";
+					g[i].classList.toggle('singleNode-visited')
 				}
 			
-				setTimeout(() => {
+				//setTimeout(() => {
 					this.setState({
 						startNode: {
 							row: 4,
@@ -69,12 +71,14 @@ export default class App extends Component {
 							column: 35
 						}
 					})
-				}, 1000);
+				//}, 1000);
 				
 
 			},
 			setNodes(e) {
-				
+				/* this.setState({
+					isStarted: false
+				}) */
 				// if both are set only target can be changed
 				if (this.state.startNode.row === true && this.state.targetNode.row === true){
 					//console.log('set already both')
@@ -128,13 +132,15 @@ export default class App extends Component {
 					}
 				}
 				this.setState({ nodes });
-			}
+			},
 		};
 		this.state.startAlgorithm = this.state.startAlgorithm.bind(this);
 		this.state.setNodes = this.state.setNodes.bind(this);
 		this.state.setGridSize = this.state.setGridSize.bind(this);
 		this.state.resetGrid = this.state.resetGrid.bind(this);
+		this.isStarted = false;
 	}
+
 	 
 	componentDidMount() {
 		// create nodes array + choose start and target nodes
@@ -161,6 +167,11 @@ export default class App extends Component {
 		// console.log(shortestPathNodesInOrder)
 		// console.log('animate algorithm');
 		for (let i = 0; i <= visitedNodesInOrder.length; i++) {
+			// console.log('before+++++++++++++++++++++++++' + this.state.isStarted)
+
+			// if (!this.state.isStarted) { break;}
+
+			// console.log('afterafter----------------------------------------' + this.state.isStarted);
 			// console.log(i)
 			// console.log('visi'+ visitedNodesInOrder.length);
 			if (i === visitedNodesInOrder.length) {
@@ -168,15 +179,15 @@ export default class App extends Component {
 				setTimeout(() => {
 					// drawing line fron start to finish based on shortest path
 					this.animateShortestPath(shortestPathNodesInOrder);
-				}, 5.5 * i);
+				}, 4 * i);
 				return;
 			}
 			setTimeout(() => {
 				// colored visited nodes
 				const node = visitedNodesInOrder[i];
-				document.getElementById(`node-${node.row}-${node.column}`).className =
-					'singleNode singleNode-visited';
+				document.getElementById(`node-${node.row}-${node.column}`).classList.toggle('singleNode-visited');
 			}, 3 * i);
+
 		}
 	}
 
@@ -188,8 +199,14 @@ export default class App extends Component {
 			setTimeout(() => {
 				// console.log( document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`))
 				 document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = '#ffeb3b';
-			}, i * 10);
+			}, i * 7);
+			
 		}
+		/* this.setState({
+			
+		}) */
+
+		this.isStarted = false;
 	}
 
 	render() {

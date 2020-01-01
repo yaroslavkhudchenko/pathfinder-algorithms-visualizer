@@ -34,7 +34,7 @@ body,html {
 }
 .singleNode-visited {
   animation-name: visitedAnimation;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
   animation-timing-function: ease-in;
   animation-delay: 0;
   animation-direction: alternate;
@@ -85,10 +85,11 @@ body,html {
     border-radius: 100%;
   }
   50% {
+    transform: scale(1.9);
     background-color: rgba(83, 196, 216, 0.767);
   }
   75% {
-    transform: scale(1.9);
+    //transform: scale(1.9);
     background-color: rgba(35, 46, 167, 0.657);
   }
   100% {
