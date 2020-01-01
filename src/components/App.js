@@ -76,9 +76,8 @@ export default class App extends Component {
 
 			},
 			setNodes(e) {
-				/* this.setState({
-					isStarted: false
-				}) */
+				if (this.isStarted) return;
+
 				// if both are set only target can be changed
 				if (this.state.startNode.row === true && this.state.targetNode.row === true){
 					//console.log('set already both')
