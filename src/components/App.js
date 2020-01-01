@@ -85,7 +85,7 @@ export default class App extends Component {
 							column: e.target.getAttribute("column") * 1
 						}
 					});
-
+					
 
 					return;
 				}
@@ -161,13 +161,18 @@ export default class App extends Component {
 		// console.log(shortestPathNodesInOrder)
 		// console.log('animate algorithm');
 		for (let i = 0; i <= visitedNodesInOrder.length; i++) {
+			// console.log(i)
+			// console.log('visi'+ visitedNodesInOrder.length);
 			if (i === visitedNodesInOrder.length) {
+				console.log('%c EQUEL', 'font-size:40px')
 				setTimeout(() => {
+					// drawing line fron start to finish based on shortest path
 					this.animateShortestPath(shortestPathNodesInOrder);
-				}, 10 * i);
+				}, 5.5 * i);
 				return;
 			}
 			setTimeout(() => {
+				// colored visited nodes
 				const node = visitedNodesInOrder[i];
 				document.getElementById(`node-${node.row}-${node.column}`).className =
 					'singleNode singleNode-visited';
@@ -177,13 +182,13 @@ export default class App extends Component {
 
 	// draw line from start to target
 	animateShortestPath(shortestPathNodesInOrder) {
-		console.log('animate shortest path func')
+		//console.log('animate shortest path func')
 		for(let i=0;i<shortestPathNodesInOrder.length;i++) {
-			//console.log('shortes for loop')
-			 setTimeout(() => {
-				 //console.log( document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`))
+			console.log('shortes for loop')
+			setTimeout(() => {
+				// console.log( document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`))
 				 document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = '#ffeb3b';
-			}, 100);
+			}, i * 10);
 		}
 	}
 
