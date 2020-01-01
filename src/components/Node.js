@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import { AppContext } from "./App";
 
 export default class Node extends Component { 
-   /*  constructor(props) {
-        super(props);
-        
-    } */
+   
     render() {
         return ( 
             <AppContext.Consumer>

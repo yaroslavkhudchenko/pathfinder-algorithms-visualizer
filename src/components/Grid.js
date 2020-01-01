@@ -4,12 +4,6 @@ import shortid from 'shortid';
 import { AppContext } from './App';
 
 export default class Grid extends Component { 
-    /* constructor(props) {
-        super(props);
-        this.state = {
-           // nodes : [] // all nodes (array of sub-arrays => columns inside rows)
-        }
-    }  */
 
     render() {
 
