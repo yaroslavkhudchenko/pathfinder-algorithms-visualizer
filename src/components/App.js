@@ -23,11 +23,11 @@ export default class App extends Component {
 			startAlgorithm() {
 				// avoid multiple start
 				if(this.state.isStarted)return;
+				
 				this.setState({
 					isStarted:true
 				})
-				//console.log(this.state.nodes);
-				//console.log(`start ${this.state.startNode.row} target ${this.state.targetNode.row}`)
+				
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
 					this.state.nodes[this.state.startNode.row][
@@ -37,53 +37,27 @@ export default class App extends Component {
 						this.state.targetNode.column
 					]
 				);
-				// console.log('visitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrdervisitedNodesInOrder')
-				// console.log(visitedNodesInOrder)
-				// console.log(visitedNodesInOrder.length)
+			
 
 				const shortestPathNodesInOrder = getNodesInShortestPathOrder(
 					this.state.nodes[this.state.targetNode.row][
 						this.state.targetNode.column
 					]
 				);
-				// console.log('shortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrdershortestPathNodesInOrder')
-
-				// console.log(shortestPathNodesInOrder)
-				// console.log(shortestPathNodesInOrder.length)
+				
 				this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 			},
 			resetGrid() {
 				this.setState({
 					isStarted: false
 				})
-				// console.log('this state nodes')
-				// console.log(this.state.nodes)
-				/* for(let i=0;i<this.state.nodes.length;i++) {
-					for (let j = 0; j < this.state.nodes[i].length; j++) {
-						//this.state.nodes[i][j].distance = Infinity;
-						//this.state.nodes[i][j].isVisited = false;
-					}
-				} */
-				//document.querySelectorAll('.singleNode');
+				
 				let g = document.querySelectorAll('.singleNode-visited');
 
 				for (let i = 0; i < g.length; i++) {
 					g[i].style.animationPlayState = "paused";
 				}
-				//return;
-
-			/* 	this.setState({
-					startNode: {
-						row: null,
-						column: null
-					},
-					targetNode: {
-						row: null,
-						column: null
-					}
-				})
-					
- */
+			
 				setTimeout(() => {
 					this.setState({
 						startNode: {
@@ -98,25 +72,9 @@ export default class App extends Component {
 				}, 1000);
 				
 
-				// console.log(';;;;;;;;;')
-				// console.log(g.length)
-
-			/* 	for (let i = 0; i < g.length; i++) {
-					console.log('v')
-
-					//g[i].classList.add('fadeReset');
-					//setTimeout(() => {
-						g[i].classList.remove('singleNode-visited');
-					//}, 1000);
-				}  */
-				//g.map(one => one.classList.remove('singleNode-visited'))
-				
-				
-				//this.state.node.map(one => document.getElementById(`node-${one.row}-${one.column}`).classList.remove('singleNode-visited'))
-				
 			},
-			setStartNode(e) {
-				//console.log('set start node he22222222222222222222222222222222222222222222222222222222222222222222222222222222222222')
+			setNodes(e) {
+				
 				// if both are set only target can be changed
 				if (this.state.startNode.row === true && this.state.targetNode.row === true){
 					//console.log('set already both')
@@ -131,8 +89,6 @@ export default class App extends Component {
 
 					return;
 				}
-				//console.log("ee");
-
 				// if start is set set target if not set start
 				if (!this.state.startNode.row && this.state.startNode.row !== 0) {
 					this.setState({
@@ -175,7 +131,7 @@ export default class App extends Component {
 			}
 		};
 		this.state.startAlgorithm = this.state.startAlgorithm.bind(this);
-		this.state.setStartNode = this.state.setStartNode.bind(this);
+		this.state.setNodes = this.state.setNodes.bind(this);
 		this.state.setGridSize = this.state.setGridSize.bind(this);
 		this.state.resetGrid = this.state.resetGrid.bind(this);
 	}
