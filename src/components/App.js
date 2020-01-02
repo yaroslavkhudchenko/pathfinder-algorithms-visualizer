@@ -79,6 +79,8 @@ export default class App extends Component {
 
 			},
 			setNodes(e) {
+				console.log(e)
+				console.log(e.which)
 				if (this.isStarted) return;
 
 				// if both are set only target can be changed

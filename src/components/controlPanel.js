@@ -37,13 +37,30 @@ export default class ControlPanel extends Component {
                 >
                   Reset
                 </div>
-                <div className="selectAlgorithm">
+               {/*  <div className="selectAlgorithm">
                   <select>
                     <option onClick={() => this.selectAlgorithm(dijkstra)}>
                       dijkstra
                     </option>
                   </select>
+                </div> */}
+                <div className="selectTool">
+                  <select onSelect={context.selectTool}>
+                    <option>
+                      Start
+                    </option>
+                    <option>
+                      Target
+                    </option>
+                    <option>
+                      Wall
+                    </option>
+                    <option>
+                      Clear Wall
+                    </option>
+                  </select>
                 </div>
+                
                 <div className="setGridSize" /* onClick={context.setGridSize} */>
                  {/*  <div>Build nodes</div> */}
                   <div>
