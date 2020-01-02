@@ -20,6 +20,7 @@ export default class App extends Component {
 				column: 35
 			},
 			isStarted: false,
+			selectedTool: 'target',
 			// reseting:false,
 			startAlgorithm() {
 				// avoid multiple start
@@ -78,9 +79,12 @@ export default class App extends Component {
 				
 
 			},
+			selectTool(e) {
+				console.log('SELECT TOLLLL HE HE HE HE HE HE HE HE HE HE HE')
+				this.selectedTool = e;
+			},
 			setNodes(e) {
-				console.log(e)
-				console.log(e.which)
+			
 				if (this.isStarted) return;
 
 				// if both are set only target can be changed
