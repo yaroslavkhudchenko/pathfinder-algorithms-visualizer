@@ -24,11 +24,12 @@ export default class App extends Component {
 			startAlgorithm() {
 				// avoid multiple start
 				if(this.isStarted)return;
+				if (document.getElementById(`node-${this.state.targetNode.row}-${this.state.targetNode.column}`).classList.contains('singleNode-visited'))return;
 				
 				this.isStarted = true;
 				
+			
 
-				
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
 					this.state.nodes[this.state.startNode.row][
@@ -49,9 +50,11 @@ export default class App extends Component {
 				this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 			},
 			resetGrid() {
+				console.log('reset grid start')
+				console.log(this.isStarted);
 				if(this.isStarted)return;
 				
-				this.isStarted = false;
+				// this.isStarted = false;
 				
 				let g = document.querySelectorAll('.singleNode-visited');
 
