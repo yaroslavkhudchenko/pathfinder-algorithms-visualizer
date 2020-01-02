@@ -19,8 +19,8 @@ export default class App extends Component {
 				row: 30,
 				column: 35
 			},
-			isStarted: false,
-			selectedTool: 'target',
+			// isStarted: false,
+			// selectedTool: null,
 			// reseting:false,
 			startAlgorithm() {
 				// avoid multiple start
@@ -80,44 +80,39 @@ export default class App extends Component {
 
 			},
 			selectTool(e) {
+				let s = document.getElementById("selectTool").value;
 				console.log('SELECT TOLLLL HE HE HE HE HE HE HE HE HE HE HE')
-				this.selectedTool = e;
+				console.log(s);
+				this.selectedTool = s;
 			},
 			setNodes(e) {
-			
+				console.log('setnodes')
+				if(this.selectedTool === undefined)this.selectedTool = 'target';
 				if (this.isStarted) return;
-
-				// if both are set only target can be changed
-				if (this.state.startNode.row === true && this.state.targetNode.row === true){
-					//console.log('set already both')
-
-					this.setState({
-						targetNode: {
-							row: e.target.getAttribute("row") * 1,
-							column: e.target.getAttribute("column") * 1
-						}
-					});
-					
-
-					return;
-				}
-				// if start is set set target if not set start
-				if (!this.state.startNode.row && this.state.startNode.row !== 0) {
+				console.log(e.target)
+				console.log(this.selectTool);
+				if(this.selectTool === 'start') {
 					this.setState({
 						startNode: {
 							row: e.target.getAttribute("row") * 1,
 							column: e.target.getAttribute("column") * 1
 						}
-				});
-
-				} else {
+					});
+					console.log('set nodes start')
+				} else if (this.selectTool === 'target') {
 					this.setState({
 						targetNode: {
 							row: e.target.getAttribute("row") * 1,
 							column: e.target.getAttribute("column") * 1
 						}
 					});
+					console.log('set nodes target') 
+				} else if (this.selectTool === 'wall') {
+					console.log('set nodes wall')
+				} else if (this.selectTool === 'delete wall') {
+					console.log('set nodes delete wall')
 				}
+
 			},
 			
 			setGridSize() {
@@ -146,7 +141,10 @@ export default class App extends Component {
 		this.state.setNodes = this.state.setNodes.bind(this);
 		this.state.setGridSize = this.state.setGridSize.bind(this);
 		this.state.resetGrid = this.state.resetGrid.bind(this);
+		this.state.selectTool = this.state.selectTool.bind(this);
 		this.isStarted = false;
+		this.selectedTool = 'target';
+
 	}
 
 	 

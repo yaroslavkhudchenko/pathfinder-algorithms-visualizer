@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { AppContext } from './App';
-import { dijkstra } from '../algorithms/dijkstra-alg';
+// import { dijkstra } from '../algorithms/dijkstra-alg';
 
 export default class ControlPanel extends Component {
 
@@ -45,7 +45,7 @@ export default class ControlPanel extends Component {
                   </select>
                 </div> */}
                 <div className="selectTool">
-                  <select onSelect={context.selectTool}>
+                  <select id='selectTool' onChange={context.selectTool}>
                     <option>
                       Start
                     </option>

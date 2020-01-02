@@ -17,7 +17,6 @@ export default class Node extends Component {
                             } // set good color for start and target nodes
                             id={`node-${this.props.row}-${this.props.column}`} // id for future animation
                             onClick={context.setNodes}
-                            
                            
                 > 
                         </div>
