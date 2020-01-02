@@ -87,19 +87,37 @@ export default class App extends Component {
 			},
 			setNodes(e) {
 				console.log('setnodes')
-				if(this.selectedTool === undefined)this.selectedTool = 'target';
+
+
+				
 				if (this.isStarted) return;
-				console.log(e.target)
-				console.log(this.selectTool);
-				if(this.selectTool === 'start') {
+
+
+
+				let nodes = this.state.nodes;
+				for (let i = 0; i < nodes.length; i++) {
+					nodes[i].distance = Infinity;
+				}
+				this.setState({
+					nodes: nodes
+				})
+
+				
+				let s = this.selectedTool.toLowerCase();
+				if(s === 'start') {
+				
 					this.setState({
+						
 						startNode: {
 							row: e.target.getAttribute("row") * 1,
 							column: e.target.getAttribute("column") * 1
 						}
 					});
-					console.log('set nodes start')
-				} else if (this.selectTool === 'target') {
+				} else if (s === 'target') {
+
+					
+
+
 					this.setState({
 						targetNode: {
 							row: e.target.getAttribute("row") * 1,
@@ -107,9 +125,9 @@ export default class App extends Component {
 						}
 					});
 					console.log('set nodes target') 
-				} else if (this.selectTool === 'wall') {
+				} else if (s === 'wall') {
 					console.log('set nodes wall')
-				} else if (this.selectTool === 'delete wall') {
+				} else if (s === 'delete wall') {
 					console.log('set nodes delete wall')
 				}
 
