@@ -29,7 +29,8 @@ export default class App extends Component {
 				
 				this.isStarted = true;
 				
-			
+				console.log('state nodesssssssssss')
+				console.log(this.state.nodes)
 
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
@@ -93,16 +94,19 @@ export default class App extends Component {
 				if (this.isStarted) return;
 
 
-
+/* 
 				let nodes = this.state.nodes;
 				for (let i = 0; i < nodes.length; i++) {
-					nodes[i].distance = Infinity;
-				}
-				this.setState({
-					nodes: nodes
-				})
+					for(let j=0;j <nodes[i].length;j++) {
+						nodes[i][j].distance = Infinity;
+					}
+					
+				} */
+			/* 	console.log('local')
+				console.log(nodes)
+				console.log('state nodes')
+				console.log(this.state.nodes) */
 
-				
 				let s = this.selectedTool.toLowerCase();
 				if(s === 'start') {
 				
@@ -126,6 +130,7 @@ export default class App extends Component {
 					});
 					console.log('set nodes target') 
 				} else if (s === 'wall') {
+					
 					console.log('set nodes wall')
 				} else if (s === 'delete wall') {
 					console.log('set nodes delete wall')
