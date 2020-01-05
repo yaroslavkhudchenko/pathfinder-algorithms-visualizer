@@ -19,6 +19,7 @@ export default class App extends Component {
 				row: 30,
 				column: 35
 			},
+			walls: [],
 			// isStarted: false,
 			// selectedTool: null,
 			// reseting:false,
@@ -109,19 +110,13 @@ export default class App extends Component {
 
 				let s = this.selectedTool.toLowerCase();
 				if(s === 'start') {
-				
 					this.setState({
-						
 						startNode: {
 							row: e.target.getAttribute("row") * 1,
 							column: e.target.getAttribute("column") * 1
 						}
 					});
 				} else if (s === 'target') {
-
-					
-
-
 					this.setState({
 						targetNode: {
 							row: e.target.getAttribute("row") * 1,
@@ -130,7 +125,12 @@ export default class App extends Component {
 					});
 					console.log('set nodes target') 
 				} else if (s === 'wall') {
-					
+					console.log(e.target)
+					console.log(e)
+					let nodes = this.state.nodes;
+
+					nodes[e.target.getAttribute['row']][e.target.getAttribute['column']].isWall = true;
+					this.setState({ nodes });
 					console.log('set nodes wall')
 				} else if (s === 'delete wall') {
 					console.log('set nodes delete wall')
