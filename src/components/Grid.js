@@ -21,7 +21,7 @@ export default class Grid extends Component {
                                             row={node.row}
                                             column={node.column}
                                             isVisited={false}
-                                            isWall={node.isWall}
+                                            isWall={node.isWall ? true : false}
                                         />
                                     )
                                     })}

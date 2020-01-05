@@ -83,8 +83,8 @@ export default class App extends Component {
 			},
 			selectTool(e) {
 				let s = document.getElementById("selectTool").value;
-				console.log('SELECT TOLLLL HE HE HE HE HE HE HE HE HE HE HE')
-				console.log(s);
+				// console.log('SELECT TOLLLL HE HE HE HE HE HE HE HE HE HE HE')
+				// console.log(s);
 				this.selectedTool = s;
 			},
 			setNodes(e) {
@@ -97,12 +97,13 @@ export default class App extends Component {
 
  
 				let nodes = this.state.nodes;
-				/* for (let i = 0; i < nodes.length; i++) {
-					for(let j=0;j <nodes[i].length;j++) {
+				for (let i = 0; i < nodes.length; i++) {
+					for(let j=0;j < nodes[i].length;j++) {
 						nodes[i][j].distance = Infinity;
+						nodes[i][j].isVisited = false;
 					}
 					
-				} */
+				} 
 			/* 	console.log('local')
 				console.log(nodes)
 				console.log('state nodes')
@@ -123,17 +124,19 @@ export default class App extends Component {
 							column: e.target.getAttribute("column") * 1
 						}
 					});
-					console.log('set nodes target') 
+					// console.log(`%c hello', 'font-size:40px;color:yellow;`);
+					// console.log(nodes);
+					// console.log('set nodes target') 
 				} else if (s === 'wall') {
-					console.log(e.target)
-					console.log(e)
+					// console.log(e.target)
+					// console.log(e)
 					//let nodes = this.state.nodes;
 
 					nodes[e.target.getAttribute('row')][e.target.getAttribute('column')].isWall = true;
 					this.setState({ nodes });	
-					console.log('set nodes wall')
+					// console.log('set nodes wall')
 				} else if (s === 'clear wall') {
-					console.log('111111111111111111111set nodes delete wall')
+					// console.log('111111111111111111111set nodes delete wall')
 					//let nodes = this.state.nodes;
 
 					nodes[e.target.getAttribute('row')][e.target.getAttribute('column')].isWall = false;
