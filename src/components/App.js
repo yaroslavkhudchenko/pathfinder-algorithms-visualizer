@@ -129,8 +129,8 @@ export default class App extends Component {
 					console.log(e)
 					let nodes = this.state.nodes;
 
-					nodes[e.target.getAttribute['row']][e.target.getAttribute['column']].isWall = true;
-					this.setState({ nodes });
+					nodes[e.target.getAttribute('row')][e.target.getAttribute('column')].isWall = true;
+					this.setState({ nodes });	
 					console.log('set nodes wall')
 				} else if (s === 'delete wall') {
 					console.log('set nodes delete wall')
