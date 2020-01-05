@@ -60,12 +60,26 @@ export default class App extends Component {
 				// this.isStarted = false;
 				
 				let g = document.querySelectorAll('.singleNode-visited');
+				let w = document.querySelectorAll('.wall');
+				console.log('w', w)
 
+				// not working, why? I have no idea
+				/* for (let i = 0; i < w.length; i++) {
+					console.log(w[i])
+					w[i].classList.toggle('wall')
+				} */
 				for (let i = 0; i < g.length; i++) {
 					//g[i].style.animationPlayState = "paused";
 					g[i].classList.toggle('singleNode-visited')
 				}
-			
+				let nodes = this.state.nodes;
+
+				for (let i = 0; i < nodes.length; i++) {
+					for (let j = 0; j < nodes[i].length; j++) {
+						nodes[i][j].walls = false;
+					}
+
+				} 
 				//setTimeout(() => {
 					this.setState({
 						startNode: {
@@ -173,18 +187,7 @@ export default class App extends Component {
 
 
 	animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder) {
-		// console.log('%c animateALGORITHM', 'font-size:30px;color:yellow;')
-		// console.log(visitedNodesInOrder)
-		// console.log(shortestPathNodesInOrder)
-		// console.log('animate algorithm');
 		for (let i = 0; i <= visitedNodesInOrder.length; i++) {
-			// console.log('before+++++++++++++++++++++++++' + this.state.isStarted)
-
-			// if (!this.state.isStarted) { break;}
-
-			// console.log('afterafter----------------------------------------' + this.state.isStarted);
-			// console.log(i)
-			// console.log('visi'+ visitedNodesInOrder.length);
 			if (i === visitedNodesInOrder.length) {
 				console.log('%c EQUEL', 'font-size:40px')
 				setTimeout(() => {
@@ -213,10 +216,6 @@ export default class App extends Component {
 			}, i * 7);
 			
 		}
-		/* this.setState({
-			
-		}) */
-
 		this.isStarted = false;
 	}
 
