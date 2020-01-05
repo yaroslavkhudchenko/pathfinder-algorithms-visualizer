@@ -9,8 +9,8 @@ export function dijkstra(grid, startNode, targetNode) {
   while (!!unvisitedNodes.length) {
     sortNodesByDistance(unvisitedNodes);
     const closestNode = unvisitedNodes.shift();
-   /*  // If we encounter a wall, we skip it.
-    if (closestNode.isWall) continue; */
+    // If we encounter a wall, we skip it.
+    if (closestNode.isWall) continue;
     // If the closest node is at a distance of infinity,
     // we must be trapped and should therefore stop.
     if (closestNode.distance === Infinity)return visitedNodesInOrder;
