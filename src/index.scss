@@ -76,8 +76,14 @@ body,html {
   display: flex;
   div {
     display: flex;
+    align-items: center;
     input {
-      width: 35px;
+      width: 38px;
+      background: lavender;
+      padding: 4px;
+      border-radius: 3px;
+      font-size: 20px;
+      border: none;
     }
   }
 }
@@ -110,3 +116,14 @@ body,html {
 
 }
  */
+
+#selectTool {
+  background: lavender;
+  padding: 4px;
+  border-radius: 3px;
+  font-size: 20px;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+  opacity: 1;
+}
