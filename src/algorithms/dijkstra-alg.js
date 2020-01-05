@@ -4,7 +4,8 @@ export function dijkstra(grid, startNode, targetNode) {
  
   startNode.distance = 0; // set distance for start node to 0 (all the rest to infinity)
   const unvisitedNodes = getAllNodes(grid);
- 
+ // console.log('gri0000000000000>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><FAWFWAAFWAFd')
+  //console.log(grid)
   // !! will return boolean value
   while (!!unvisitedNodes.length) {
     sortNodesByDistance(unvisitedNodes);

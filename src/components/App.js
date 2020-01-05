@@ -95,9 +95,9 @@ export default class App extends Component {
 				if (this.isStarted) return;
 
 
-/* 
+ 
 				let nodes = this.state.nodes;
-				for (let i = 0; i < nodes.length; i++) {
+				/* for (let i = 0; i < nodes.length; i++) {
 					for(let j=0;j <nodes[i].length;j++) {
 						nodes[i][j].distance = Infinity;
 					}
@@ -127,14 +127,14 @@ export default class App extends Component {
 				} else if (s === 'wall') {
 					console.log(e.target)
 					console.log(e)
-					let nodes = this.state.nodes;
+					//let nodes = this.state.nodes;
 
 					nodes[e.target.getAttribute('row')][e.target.getAttribute('column')].isWall = true;
 					this.setState({ nodes });	
 					console.log('set nodes wall')
 				} else if (s === 'clear wall') {
 					console.log('111111111111111111111set nodes delete wall')
-					let nodes = this.state.nodes;
+					//let nodes = this.state.nodes;
 
 					nodes[e.target.getAttribute('row')][e.target.getAttribute('column')].isWall = false;
 					this.setState({ nodes });	
