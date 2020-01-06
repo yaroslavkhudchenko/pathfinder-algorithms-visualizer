@@ -4,14 +4,6 @@ export function dijkstra(grid, startNode, targetNode) {
  
   startNode.distance = 0; // set distance for start node to 0 (all the rest to infinity)
   const unvisitedNodes = getAllNodes(grid);
-  console.log('gri0000000000000>>>>>>wwwwwwwwwwwwwwwwwwwwwwww>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><FAWFWAAFWAFd')
-  console.log(unvisitedNodes)
-  for(let i=0;i<unvisitedNodes.length;i++) {  
-    // console.log(unvisitedNodes[i].distance)
-    console.log(unvisitedNodes[i].isWall)
-    // console.log(unvisitedNodes[i].isVisited)
-    // console.log(unvisitedNodes[i].previousNode)
-  }
   // !! will return boolean value
   while (!!unvisitedNodes.length) {
     sortNodesByDistance(unvisitedNodes);
@@ -33,16 +25,9 @@ function sortNodesByDistance(unvisitedNodes) {
 }
 
 function updateUnvisitedNeighbors(node, grid) {
-  //  console.log('node')
-
-//console.log(node)
-// console.log(grid)
   const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
-    // console.log(unvisitedNeighbors)
-    // console.log('00ww')
   for (const neighbor of unvisitedNeighbors) {
     neighbor.distance = node.distance + 1;
-    
     neighbor.previousNode = node;
   }
 }
@@ -50,10 +35,16 @@ function updateUnvisitedNeighbors(node, grid) {
 function getUnvisitedNeighbors(node, grid) {
   const neighbors = [];
   const {column, row} = node;
-  if (row > 0) neighbors.push(grid[row - 1][column]);
-  if (row < grid.length - 1) neighbors.push(grid[row + 1][column]);
-  if (column > 0) neighbors.push(grid[row][column - 1]);
-  if (column < grid[0].length - 1) neighbors.push(grid[row][column + 1]);
+
+  row > 0 ? neighbors.push(grid[row - 1][column]) : console.log('none')
+  row < (grid.length - 1) ? neighbors.push(grid[row + 1][column]): console.log('none')
+  column > 0 ? neighbors.push(grid[row][column - 1]) : console.log('none')
+  column < (grid[0].length - 1) ? neighbors.push(grid[row][column + 1]) : console.log('none')
+
+  // if (row > 0) neighbors.push(grid[row - 1][column]);
+  // if (row < grid.length - 1) neighbors.push(grid[row + 1][column]);
+  // if (column > 0) neighbors.push(grid[row][column - 1]);
+  // if (column < grid[0].length - 1) neighbors.push(grid[row][column + 1]);
   return neighbors.filter(neighbor => !neighbor.isVisited);
 }
 
