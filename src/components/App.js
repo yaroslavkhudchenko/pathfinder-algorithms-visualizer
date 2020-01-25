@@ -30,8 +30,8 @@ export default class App extends Component {
 				
 				this.isStarted = true;
 				
-				console.log('state nodesssssssssss')
-				console.log(this.state.nodes)
+				// console.log('state nodesssssssssss')
+				// console.log(this.state.nodes)
 
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
@@ -53,15 +53,15 @@ export default class App extends Component {
 				this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 			},
 			resetGrid() {
-				console.log('reset grid start')
-				console.log(this.isStarted);
+				// console.log('reset grid start')
+				// console.log(this.isStarted);
 				if(this.isStarted)return;
 				
 				// this.isStarted = false;
 				
 				let g = document.querySelectorAll('.singleNode-visited');
 				let w = document.querySelectorAll('.wall');
-				console.log('w', w)
+				// console.log('w', w)
 
 				// not working, why? I have no idea
 				/* for (let i = 0; i < w.length; i++) {
@@ -100,7 +100,7 @@ export default class App extends Component {
 				this.selectedTool = s;
 			},
 			setNodes(e) {
-				console.log('setnodes')
+				// console.log('setnodes')
 				if (this.isStarted) return;
 				let nodes = this.state.nodes;
 				for (let i = 0; i < nodes.length; i++) {
@@ -133,7 +133,10 @@ export default class App extends Component {
 					this.setState({ nodes });	
 				}
 			},
-			
+			dragPlayground(e) {
+				console.log('drag playground')
+				
+			},
 			setGridSize() {
 
 				let row = document.querySelector(".rowNumber").value;
@@ -161,6 +164,7 @@ export default class App extends Component {
 		this.state.setGridSize = this.state.setGridSize.bind(this);
 		this.state.resetGrid = this.state.resetGrid.bind(this);
 		this.state.selectTool = this.state.selectTool.bind(this);
+		this.state.dragPlayground = this.state.dragPlayground.bind(this);
 		this.isStarted = false;
 		this.selectedTool = 'target';
 
@@ -189,7 +193,7 @@ export default class App extends Component {
 	animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder) {
 		for (let i = 0; i <= visitedNodesInOrder.length; i++) {
 			if (i === visitedNodesInOrder.length) {
-				console.log('%c EQUEL', 'font-size:40px')
+				// console.log('%c EQUEL', 'font-size:40px')
 				setTimeout(() => {
 					// drawing line fron start to finish based on shortest path
 					this.animateShortestPath(shortestPathNodesInOrder);
@@ -209,7 +213,7 @@ export default class App extends Component {
 	animateShortestPath(shortestPathNodesInOrder) {
 		//console.log('animate shortest path func')
 		for(let i=0;i<shortestPathNodesInOrder.length;i++) {
-			console.log('shortes for loop')
+			// console.log('shortes for loop')
 			setTimeout(() => {
 				// console.log( document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`))
 				 document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = '#ffeb3b';
