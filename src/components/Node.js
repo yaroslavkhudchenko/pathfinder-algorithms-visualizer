@@ -22,8 +22,9 @@ export default class Node extends Component {
                                     (this.props.row === context.targetNode.row && this.props.column === context.targetNode.column)) ? 
                                         true : false
                             }
-                            ondrop={context.onDropPlayground}
+                            onDrop={context.onDropPlayground}
                             onDrag={context.dragPlayground}
+                            onDragOver={context.dragOver}
                             id={`node-${this.props.row}-${this.props.column}`} // id for future animation
                             onClick={context.setNodes}
                            

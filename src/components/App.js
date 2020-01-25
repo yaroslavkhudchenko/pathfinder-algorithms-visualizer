@@ -134,13 +134,18 @@ export default class App extends Component {
 				}
 			},
 			dragPlayground(e) {
-				console.log(e.target)
-				console.log('drag playground')
+				//console.log(e.target)
+				//console.log('drag playground')
 				
 			},
 			onDropPlayground(e) {
 				console.log(e.target)
 				console.log('drag drop')
+				alert('here')
+			},
+			dragOver(e) {
+				console.log('dragover')
+				e.preventDefault();
 			},
 			setGridSize() {
 
@@ -171,6 +176,7 @@ export default class App extends Component {
 		this.state.selectTool = this.state.selectTool.bind(this);
 		this.state.dragPlayground = this.state.dragPlayground.bind(this);
 		this.state.onDropPlayground = this.state.onDropPlayground.bind(this);
+		this.state.dragOver = this.state.dragOver.bind(this);
 		this.isStarted = false;
 		this.selectedTool = 'target';
 
