@@ -136,12 +136,35 @@ export default class App extends Component {
 			dragPlayground(e) {
 				//console.log(e.target)
 				//console.log('drag playground')
-				
+				if(e.target.classList.contains('start')) {
+					this.setState({
+						currentDrag:'start'
+					})
+				} else {
+					this.setState({
+						currentDrag:'target'
+					})
+				}
 			},
 			onDropPlayground(e) {
 				console.log(e.target)
 				console.log('drag drop')
-				alert('here')
+				if (this.state.currentDrag === 'start') {
+					this.setState({
+						startNode: {
+							row: e.target.getAttribute("row") * 1,
+							column: e.target.getAttribute("column") * 1
+						}
+					})
+				} else if(this.state.currentDrag === 'target') {
+					this.setState({
+						targetNode: {
+							row: e.target.getAttribute("row") * 1,
+							column: e.target.getAttribute("column") * 1
+						}
+					})
+				}
+				//alert('here')
 			},
 			dragOver(e) {
 				console.log('dragover')
