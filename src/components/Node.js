@@ -16,6 +16,14 @@ export default class Node extends Component {
                                 this.props.row === context.targetNode.row && this.props.column === context.targetNode.column ? ' target': 
                                 this.props.isWall ? ' wall': ''}`
                             } // set good color for start and target nodes
+                    //dragPlayground
+                            draggable={
+                                ((this.props.row === context.startNode.row && this.props.column === context.startNode.column) || 
+                                    (this.props.row === context.targetNode.row && this.props.column === context.targetNode.column)) ? 
+                                        true : false
+                            }
+                            ondrop={context.onDropPlayground}
+                            onDrag={context.dragPlayground}
                             id={`node-${this.props.row}-${this.props.column}`} // id for future animation
                             onClick={context.setNodes}
                            
