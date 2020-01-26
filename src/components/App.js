@@ -139,7 +139,7 @@ export default class App extends Component {
 				console.log('onMouseDown')
 				console.log(e)
 				console.log(e.target)
-				this.mousePressed = true;
+				
 				
 				if (this.isStarted) return;
 				//console.log(e.target)
@@ -148,10 +148,12 @@ export default class App extends Component {
 					this.setState({
 						currentDrag:'start'
 					})
-				} else {
+					this.mousePressed = true;
+				} else if(e.target.classList.contains('target')) {
 					this.setState({
 						currentDrag:'target'
 					})
+					this.mousePressed = true;
 				} return;
 			if (e.target.classList.contains('start')) {
 					// console.log('-0000000000000000000000000000000000000000000000000000000000')
