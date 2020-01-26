@@ -22,11 +22,11 @@ export default class Node extends Component {
                                     (this.props.row === context.targetNode.row && this.props.column === context.targetNode.column)) ? 
                                         true : false
                             } */
-                            onMouseUp={context.onDropPlayground}
-                            onMouseDown={context.dragPlayground}
-                            onMouseOver={context.dragOver}
+                            onMouseDown={context.downMouse}
+                            onMouseOver={context.moveOver}
+                            onMouseUp={context.upMouse}
                             id={`node-${this.props.row}-${this.props.column}`} // id for future animation
-                            onClick={context.setNodes}
+                            //onClick={context.setNodes}
                            
                 > 
                         </div>

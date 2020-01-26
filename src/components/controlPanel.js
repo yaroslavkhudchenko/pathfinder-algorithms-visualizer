@@ -17,61 +17,66 @@ export default class ControlPanel extends Component {
           <AppContext.Consumer>
             {context => (
               <div className="controlPanel">
-                <div
-                  className="startButton"
-                  onClick={
-                    
-                    ((context.startNode.row  || context.startNode.row === 0) && (context.targetNode.column || context.targetNode.column === 0))
-                      ? context.startAlgorithm
-                      : console.log("first set nodes")
-                  }
-                >
-                  {((context.startNode.row  || context.startNode.row === 0) && (context.targetNode.column || context.targetNode.column === 0))
-                    ? "Start"
-                    : "First set start/target nodes"}
-                </div>
-                <div className='resetButton'
-                onClick={
-                  context.resetGrid
-                }
-                >
-                  Reset
-                </div>
-               {/*  <div className="selectAlgorithm">
-                  <select>
-                    <option onClick={() => this.selectAlgorithm(dijkstra)}>
-                      dijkstra
-                    </option>
-                  </select>
-                </div> */}
-                <div className="selectTool">
-                  <select id='selectTool' onChange={context.selectTool} defaultValue='Target'>
-                    <option>
-                      Start
-                    </option>
-                    <option >
-                      Target
-                    </option>
-                    <option>
-                      Wall
-                    </option>
-                    <option>
-                      Clear Wall
-                    </option>
-                  </select>
-                </div>
-                
-                <div className="setGridSize" /* onClick={context.setGridSize} */>
-                 {/*  <div>Build nodes</div> */}
-                  <div>
-                    <div>
-                      Row: <input className="rowNumber" type="number" defaultValue={40} onChange={context.setGridSize} min={1}/>
-                    </div>
-                    <div>
-                      Column: <input className="columnNumber" type="number" defaultValue={35} onChange={context.setGridSize} min={1}/>
-                    </div>
-                  </div>
-                </div>
+				  <div className='cTop'>
+					<div
+						className="startButton"
+						onClick={
+							
+							((context.startNode.row  || context.startNode.row === 0) && (context.targetNode.column || context.targetNode.column === 0))
+							? context.startAlgorithm
+							: console.log("first set nodes")
+						}
+					>
+						{((context.startNode.row  || context.startNode.row === 0) && (context.targetNode.column || context.targetNode.column === 0))
+							? "Start"
+							: "First set start/target nodes"}
+					</div>
+					<div className='resetButton'
+					onClick={
+					context.resetGrid
+					}
+					>
+					Reset
+					</div>
+				{/*  <div className="selectAlgorithm">
+					<select>
+						<option onClick={() => this.selectAlgorithm(dijkstra)}>
+						dijkstra
+						</option>
+					</select>
+					</div> */}
+					{/* <div className="selectTool">
+					<select id='selectTool' onChange={context.selectTool} defaultValue='Target'>
+						<option>
+						Start
+						</option>
+						<option >
+						Target
+						</option>
+						<option>
+						Wall
+						</option>
+						<option>
+						Clear Wall
+						</option>
+					</select>
+					</div> */}
+					
+					<div className="setGridSize" /* onClick={context.setGridSize} */>
+					{/*  <div>Build nodes</div> */}
+					<div>
+						<div>
+						Row: <input className="rowNumber" type="number" defaultValue={40} onChange={context.setGridSize} min={1}/>
+						</div>
+						<div>
+						Column: <input className="columnNumber" type="number" defaultValue={35} onChange={context.setGridSize} min={1}/>
+						</div>
+					</div>
+					</div>
+						</div>
+					<div className='cBottom'>
+
+					</div>
               </div>
             )}
           </AppContext.Consumer>
