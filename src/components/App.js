@@ -100,6 +100,7 @@ export default class App extends Component {
 				this.selectedTool = s;
 			},
 			setNodes(e) {
+				return;
 				// console.log('setnodes')
 				if (this.isStarted) return;
 				let nodes = this.state.nodes;
@@ -134,6 +135,13 @@ export default class App extends Component {
 				}
 			},
 			dragPlayground(e) {
+				
+				console.log('onMouseDown')
+				console.log(e)
+				console.log(e.target)
+				this.mousePressed = true;
+				
+				if (this.isStarted) return;
 				//console.log(e.target)
 				//console.log('drag playground')
 				if(e.target.classList.contains('start')) {
@@ -144,10 +152,37 @@ export default class App extends Component {
 					this.setState({
 						currentDrag:'target'
 					})
-				}
+				} return;
+			if (e.target.classList.contains('start')) {
+					// console.log('-0000000000000000000000000000000000000000000000000000000000')
+					this.setState({
+						startNode: {
+							row: e.target.getAttribute("row") * 1,
+							column: e.target.getAttribute("column") * 1
+						}
+					})
+				} else if (e.target.classList.contains('target')) {
+					// console.log('-0000000000000000000000000000000000000000000000000000000000')
+					this.setState({
+						targetNode: {
+							row: e.target.getAttribute("row") * 1,
+							column: e.target.getAttribute("column") * 1
+						}
+					})
+				} 
+				
 			},
 			onDropPlayground(e) {
 				console.log(e.target)
+				console.log('onMouseUp')
+				/* for (let i = 0; i < nodes.length; i++) {
+					for (let j = 0; j < nodes[i].length; j++) {
+						nodes[i][j].distance = Infinity;
+						nodes[i][j].isVisited = false;
+					}
+
+				}  */
+				/* console.log(e.target)
 				console.log('drag drop')
 				if (this.state.currentDrag === 'start') {
 					this.setState({
@@ -163,12 +198,70 @@ export default class App extends Component {
 							column: e.target.getAttribute("column") * 1
 						}
 					})
-				}
+				}  */
 				//alert('here')
+				this.mousePressed = false;
 			},
 			dragOver(e) {
-				console.log('dragover')
-				e.preventDefault();
+				if(!this.mousePressed)return;
+				console.log(e.target)
+				console.log('onmouseover')
+				//return;
+					let current;
+					//e.persist()
+					//console.log('dragover')
+					console.log(e.target.getAttribute("row") * 1, e.target.getAttribute("rcolumnow") * 1)
+					//e.preventDefault();
+					if (this.state.currentDrag === 'start') {
+						current = 'start'
+						//console.log('dragOver - start')
+						
+							/* this.setState({
+								startNode: {
+									row: e.target.getAttribute("row") * 1,
+									column: e.target.getAttribute("column") * 1
+								}
+							}) */
+						this.startN = {
+							row: e.target.getAttribute("row") * 1,
+							column: e.target.getAttribute("column") * 1
+						}
+						
+					} else if (this.state.currentDrag === 'target') {
+						current = 'target'
+						//console.log('dragOver - target')
+						
+						/* 	this.setState({
+								targetNode: {
+									row: e.target.getAttribute("row") * 1,
+									column: e.target.getAttribute("column") * 1
+								}
+							}) */
+						
+						this.targetN = {
+							row: e.target.getAttribute("row") * 1,
+							column: e.target.getAttribute("column") * 1
+						}
+					}
+				
+				
+				//	console.log(this.startN)
+					//console.log(this.targetN)
+					//setTimeout(() => {
+						
+						if(current === 'start') {
+							this.setState({
+								startNode: this.startN
+							})
+						} else if (current === 'target') {
+							this.setState({
+								targetNode: this.targetN
+							})
+						}
+					//}, 1000);
+				
+				
+			//	console.log(this.state.startNode.row)
 			},
 			setGridSize() {
 
@@ -202,6 +295,9 @@ export default class App extends Component {
 		this.state.dragOver = this.state.dragOver.bind(this);
 		this.isStarted = false;
 		this.selectedTool = 'target';
+		this.startN = this.state.startNode;
+		this.targetN = this.state.targetNode;
+		this.mousePressed = false;
 
 	}
 
