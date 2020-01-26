@@ -1,36 +1,15 @@
 import React, {Component} from 'react';
 import { AppContext } from './App';
-// import { dijkstra } from '../algorithms/dijkstra-alg';
+import { dijkstra } from '../algorithms/dijkstra-alg';
 
 export default class ControlPanel extends Component {
-
-    componentDidMount() {
-        console.log(this.props);
-    } 
-    selectAlgorithm(e) {
-        console.log(e)
-        console.log('selectAlgorithm')
-    }
-    
     render() {
         return (
           <AppContext.Consumer>
             {context => (
               <div className="controlPanel">
 				  <div className='cTop'>
-					<div
-						className="startButton"
-						onClick={
-							
-							((context.startNode.row  || context.startNode.row === 0) && (context.targetNode.column || context.targetNode.column === 0))
-							? context.startAlgorithm
-							: console.log("first set nodes")
-						}
-					>
-						{((context.startNode.row  || context.startNode.row === 0) && (context.targetNode.column || context.targetNode.column === 0))
-							? "Start"
-							: "First set start/target nodes"}
-					</div>
+					
 					<div className='resetButton'
 					onClick={
 					context.resetGrid
@@ -38,13 +17,13 @@ export default class ControlPanel extends Component {
 					>
 					Reset
 					</div>
-				{/*  <div className="selectAlgorithm">
+				<div className="selectAlgorithm">
 					<select>
 						<option onClick={() => this.selectAlgorithm(dijkstra)}>
 						dijkstra
 						</option>
 					</select>
-					</div> */}
+					</div>	
 					{/* <div className="selectTool">
 					<select id='selectTool' onChange={context.selectTool} defaultValue='Target'>
 						<option>
@@ -59,19 +38,20 @@ export default class ControlPanel extends Component {
 						<option>
 						Clear Wall
 						</option>
-					</select>
+					</select>	
 					</div> */}
-					
-					<div className="setGridSize" /* onClick={context.setGridSize} */>
-					{/*  <div>Build nodes</div> */}
-					<div>
-						<div>
-						Row: <input className="rowNumber" type="number" defaultValue={40} onChange={context.setGridSize} min={1}/>
-						</div>
-						<div>
-						Column: <input className="columnNumber" type="number" defaultValue={35} onChange={context.setGridSize} min={1}/>
-						</div>
-					</div>
+					<div
+						className="startButton"
+						onClick={
+
+							((context.startNode.row || context.startNode.row === 0) && (context.targetNode.column || context.targetNode.column === 0))
+								? context.startAlgorithm
+								: console.log("first set nodes")
+						}
+					>
+						{((context.startNode.row || context.startNode.row === 0) && (context.targetNode.column || context.targetNode.column === 0))
+							? "Start"
+							: "First set start/target nodes"}
 					</div>
 						</div>
 					<div className='cBottom'>

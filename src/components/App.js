@@ -185,14 +185,7 @@ export default class App extends Component {
 					console.log(e.target.getAttribute("row") * 1, e.target.getAttribute("rcolumnow") * 1)
 					if (this.state.currentDrag === 'start') {
 						current = 'start'
-						//console.log('dragOver - start')
 						
-							/* this.setState({
-								startNode: {
-									row: e.target.getAttribute("row") * 1,
-									column: e.target.getAttribute("column") * 1
-								}
-							}) */
 						this.startN = {
 							row: e.target.getAttribute("row") * 1,
 							column: e.target.getAttribute("column") * 1
@@ -200,15 +193,6 @@ export default class App extends Component {
 						
 					} else if (this.state.currentDrag === 'target') {
 						current = 'target'
-						//console.log('dragOver - target')
-						
-						/* 	this.setState({
-								targetNode: {
-									row: e.target.getAttribute("row") * 1,
-									column: e.target.getAttribute("column") * 1
-								}
-							}) */
-						
 						this.targetN = {
 							row: e.target.getAttribute("row") * 1,
 							column: e.target.getAttribute("column") * 1
@@ -218,7 +202,7 @@ export default class App extends Component {
 				
 				//	console.log(this.startN)
 					//console.log(this.targetN)
-					//setTimeout(() => {
+					setTimeout(() => {
 						
 						if(current === 'start') {
 							this.setState({
@@ -229,7 +213,7 @@ export default class App extends Component {
 								targetNode: this.targetN
 							})
 						}
-					//}, 1000);
+					}, 1000);
 				
 				
 			//	console.log(this.state.startNode.row)
