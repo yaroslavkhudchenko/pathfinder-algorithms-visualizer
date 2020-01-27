@@ -24,6 +24,7 @@ export default class App extends Component {
 			// selectedTool: null,
 			// reseting:false,
 			startAlgorithm() {
+				return;
 				this.state.resetGrid()
 				// avoid multiple start
 				// if(this.isStarted)return; //////////////////
@@ -54,27 +55,54 @@ export default class App extends Component {
 				this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 			},
 			startAlgorithmQuick() {
+				// this.state.resetGrid()
+				//console.log('reset in start quick')
+
+				let g = document.querySelectorAll('.singleNode-visited');
+				
+				for (let i = 0; i < g.length; i++) {
+					//g[i].style.animationPlayState = "paused";
+					g[i].classList.remove('singleNode-visited')
+				}
+				let nodes = this.state.nodes;
+				// console.log(nodes.length)
+				
+				for (let i = 0; i < nodes.length; i++) {
+					// console.log('nodes i',i)
+					for (let j = 0; j < nodes[i].length; j++) {
+						//console.log('nodes[i] j',j)
+						//nodes[i][j].distance = Infinity;
+						//nodes[i][j].isVisited = false;
+					}
+
+				}/*
+				await this.setState({ 
+					nodes:nodes,
+					startNode:this.startN,
+					targetNode: this.targetN
+				})
+
+ */
+
+
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
-					this.state.nodes[this.state.startNode.row][
-					this.state.startNode.column
-					],
-					this.state.nodes[this.state.targetNode.row][
-					this.state.targetNode.column
-					]
+					this.state.nodes[this.startN.row][this.startN.column],
+					this.state.nodes[this.targetN.row][this.targetN.column]
 				);
 				const shortestPathNodesInOrder = getNodesInShortestPathOrder(
-					this.state.nodes[this.state.targetNode.row][
-					this.state.targetNode.column
-					]
+					this.state.nodes[this.targetN.row][this.targetN.column]
 				);
 
+				// console.log('%c big break', 'font-size:30px; color:red;')
+				// console.log(visitedNodesInOrder);
+				// console.log(shortestPathNodesInOrder);
 
 				///////////////////////////wwwwwwwwwwwwwwwwww
 				for (let i = 0; i <= visitedNodesInOrder.length; i++) {
 					if (i === visitedNodesInOrder.length) {
 						for (let i = 0; i < shortestPathNodesInOrder.length; i++) {
-							// console.log('shortes for loop')
+							//console.log('shortes for loop new')
 							// setTimeout(() => {
 							// console.log( document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`))
 							document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = '#ffeb3b';
@@ -86,7 +114,7 @@ export default class App extends Component {
 					// setTimeout(() => {
 						// colored visited nodes
 						const node = visitedNodesInOrder[i];
-						document.getElementById(`node-${node.row}-${node.column}`).classList.toggle('singleNode-visited');
+						document.getElementById(`node-${node.row}-${node.column}`).classList.add('singleNode-visited');
 					// }, 3 * i);
 
 				}
@@ -102,12 +130,12 @@ export default class App extends Component {
 				console.log('reset')
 				// console.log('reset grid start')
 				// console.log(this.isStarted);
-				if(this.isStarted)return;
-				
+				//	if(this.isStarted)return;
+			
 				// this.isStarted = false;
 				
 				let g = document.querySelectorAll('.singleNode-visited');
-				let w = document.querySelectorAll('.wall');
+				//let w = document.querySelectorAll('.wall');
 				// console.log('w', w)
 
 				// not working, why? I have no idea
@@ -121,12 +149,23 @@ export default class App extends Component {
 				}
 				let nodes = this.state.nodes;
 
-				for (let i = 0; i < nodes.length; i++) {
+				for (let i = 0; i < 35; i++) {
+					for (let j = 0; j < 40; j++) {
+						nodes[i][j].distance = Infinity;
+						nodes[i][j].isVisited = false;
+					}
+
+				} 
+				 this.setState({nodes})
+
+
+
+			/* 	for (let i = 0; i < nodes.length; i++) {
 					for (let j = 0; j < nodes[i].length; j++) {
 						nodes[i][j].walls = false;
 					}
 
-				} 
+				}  */
 				//setTimeout(() => {
 					/* this.setState({
 						startNode: {
@@ -224,8 +263,8 @@ export default class App extends Component {
 			moveOver(e) {
 				if(!this.mousePressed)return;
 					let current;
-					this.state.resetGrid();
-					this.state.startAlgorithmQuick();
+					// this.state.resetGrid();
+					
 					console.log(e.target.getAttribute("row") * 1, e.target.getAttribute("rcolumnow") * 1)
 					if (this.state.currentDrag === 'start') {
 						current = 'start'
@@ -248,15 +287,17 @@ export default class App extends Component {
 							this.setState({
 								startNode: this.startN
 							})
+							this.state.startAlgorithmQuick();
 						} else if (current === 'target') {
 							this.setState({
 								targetNode: this.targetN
 							})
+							this.state.startAlgorithmQuick();
 						}
 					}, 1000);
 			},
 			upMouse(e) {
-				console.log('on upMouse playground')				
+				console.log('on up dawfwafwa Mouse playground')				
 				if (this.state.currentDrag === 'start') {
 					this.setState({
 						 startNode: this.startN
