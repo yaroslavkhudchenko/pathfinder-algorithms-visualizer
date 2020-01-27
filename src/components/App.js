@@ -24,8 +24,8 @@ export default class App extends Component {
 			// selectedTool: null,
 			// reseting:false,
 			startAlgorithm() {
-				return;
-				this.state.resetGrid()
+			//	return;
+			//	this.state.resetGrid()
 				// avoid multiple start
 				// if(this.isStarted)return; //////////////////
 				if (document.getElementById(`node-${this.state.targetNode.row}-${this.state.targetNode.column}`).classList.contains('singleNode-visited'))return;
@@ -34,7 +34,7 @@ export default class App extends Component {
 				
 				// console.log('state nodesssssssssss')
 				// console.log(this.state.nodes)
-				console.log("START ALGORITHM")
+				// console.log("START ALGORITHM")
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
 					this.state.nodes[this.state.startNode.row][
@@ -54,7 +54,7 @@ export default class App extends Component {
 		//		if (this.mousePressed)return;
 				this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 			},
-			startAlgorithmQuick() {
+			async startAlgorithmQuick() {
 				// this.state.resetGrid()
 				//console.log('reset in start quick')
 
@@ -66,14 +66,14 @@ export default class App extends Component {
 				}
 				let nodes = this.state.nodes;
 				// console.log(nodes.length)
-				console.log('---------------------------------------------')
-				console.log(nodes[this.startN.row][this.startN.column])
-				console.log(nodes[this.targetN.row][this.targetN.column])
+				// console.log('---------------------------------------------')
+				// console.log(nodes[this.startN.row][this.startN.column])
+				// console.log(nodes[this.targetN.row][this.targetN.column])
 				
-				console.log(this.state.nodes[this.state.startNode.row][this.state.startNode.column])
-				console.log(this.state.nodes[this.state.targetNode.row][this.state.targetNode.column])
-console.log('-ssssssssssssssssssssssssssssssssssss--------------------------------------------')
-				for (let i = 0; i < nodes.length; i++) {
+				// console.log(this.state.nodes[this.state.startNode.row][this.state.startNode.column])
+				// console.log(this.state.nodes[this.state.targetNode.row][this.state.targetNode.column])
+				// console.log('-ssssssssssssssssssssssssssssssssssss--------------------------------------------')
+				 for (let i = 0; i < nodes.length; i++) {
 					// console.log('nodes i',i)
 					for (let j = 0; j < nodes[i].length; j++) {
 						//console.log('nodes[i] j',j)
@@ -83,18 +83,18 @@ console.log('-ssssssssssssssssssssssssssssssssssss------------------------------
 					}
 					//nodes[this.startN.row][this.startN.column].distance = 0;
 				}
-				this.setState({ nodes })
+				
 
-
+				await this.setState({ nodes })
 
 
 				const visitedNodesInOrder = dijkstra(
-					nodes,
-					nodes[this.startN.row][this.startN.column],
-					nodes[this.targetN.row][this.targetN.column]
+					this.state.nodes,
+					this.state.nodes[this.state.startNode.row][this.state.startNode.column],
+					this.state.nodes[this.state.targetNode.row][this.state.targetNode.column]
 				);
 				const shortestPathNodesInOrder = getNodesInShortestPathOrder(
-					nodes[this.targetN.row][this.targetN.column]
+					this.state.nodes[this.state.targetNode.row][this.state.targetNode.column]
 				);
 
 				// console.log('%c big break', 'font-size:30px; color:red;')
@@ -120,10 +120,11 @@ console.log('-ssssssssssssssssssssssssssssssssssss------------------------------
 						document.getElementById(`node-${node.row}-${node.column}`).classList.add('singleNode-visited');
 					// }, 3 * i);
 
-				}
+				} 
 
 				/////////////////
 
+				
 
 				
 
@@ -268,7 +269,7 @@ console.log('-ssssssssssssssssssssssssssssssssssss------------------------------
 					let current;
 					// this.state.resetGrid();
 					
-					console.log(e.target.getAttribute("row") * 1, e.target.getAttribute("rcolumnow") * 1)
+					//	console.log(e.target.getAttribute("row") * 1, e.target.getAttribute("rcolumnow") * 1)
 					if (this.state.currentDrag === 'start') {
 						current = 'start'
 						
@@ -284,20 +285,21 @@ console.log('-ssssssssssssssssssssssssssssssssssss------------------------------
 							column: e.target.getAttribute("column") * 1
 						}
 					}
-					setTimeout( async () => {
+					setTimeout(  () => {
 						
 						if(current === 'start') {
-							await this.setState({
+							 this.setState({
 								startNode: this.startN
 							})
 							this.state.startAlgorithmQuick();
 						} else if (current === 'target') {
-							await this.setState({
+							 this.setState({
 								targetNode: this.targetN
+
 							})
 							this.state.startAlgorithmQuick();
 						}
-					}, 1000);
+					},10);
 			},
 			upMouse(e) {
 				console.log('on up dawfwafwa Mouse playground')				
@@ -340,7 +342,8 @@ console.log('-ssssssssssssssssssssssssssssssssssss------------------------------
 						column: j,
 						row: i,
 						key: shortid.generate(),
-						distance: Infinity
+						distance: Infinity,
+						isWall: i === 25 && j === 5 ? true : false
 					}); // target node
 				//}
 			}
