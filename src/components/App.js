@@ -66,10 +66,13 @@ export default class App extends Component {
 				}
 				let nodes = this.state.nodes;
 				// console.log(nodes.length)
-				
+				console.log('---------------------------------------------')
 				console.log(nodes[this.startN.row][this.startN.column])
 				console.log(nodes[this.targetN.row][this.targetN.column])
-
+				
+				console.log(this.state.nodes[this.state.startNode.row][this.state.startNode.column])
+				console.log(this.state.nodes[this.state.targetNode.row][this.state.targetNode.column])
+console.log('-ssssssssssssssssssssssssssssssssssss--------------------------------------------')
 				for (let i = 0; i < nodes.length; i++) {
 					// console.log('nodes i',i)
 					for (let j = 0; j < nodes[i].length; j++) {
@@ -78,15 +81,11 @@ export default class App extends Component {
 						nodes[i][j].distance = Infinity;
 						nodes[i][j].isVisited = false;
 					}
+					//nodes[this.startN.row][this.startN.column].distance = 0;
+				}
+				this.setState({ nodes })
 
-				}/*
-				await this.setState({ 
-					nodes:nodes,
-					startNode:this.startN,
-					targetNode: this.targetN
-				})
 
- */
 
 
 				const visitedNodesInOrder = dijkstra(
@@ -285,15 +284,15 @@ export default class App extends Component {
 							column: e.target.getAttribute("column") * 1
 						}
 					}
-					setTimeout(() => {
+					setTimeout( async () => {
 						
 						if(current === 'start') {
-							this.setState({
+							await this.setState({
 								startNode: this.startN
 							})
 							this.state.startAlgorithmQuick();
 						} else if (current === 'target') {
-							this.setState({
+							await this.setState({
 								targetNode: this.targetN
 							})
 							this.state.startAlgorithmQuick();
