@@ -67,12 +67,16 @@ export default class App extends Component {
 				let nodes = this.state.nodes;
 				// console.log(nodes.length)
 				
+				console.log(nodes[this.startN.row][this.startN.column])
+				console.log(nodes[this.targetN.row][this.targetN.column])
+
 				for (let i = 0; i < nodes.length; i++) {
 					// console.log('nodes i',i)
 					for (let j = 0; j < nodes[i].length; j++) {
 						//console.log('nodes[i] j',j)
-						//nodes[i][j].distance = Infinity;
-						//nodes[i][j].isVisited = false;
+						
+						nodes[i][j].distance = Infinity;
+						nodes[i][j].isVisited = false;
 					}
 
 				}/*
@@ -86,12 +90,12 @@ export default class App extends Component {
 
 
 				const visitedNodesInOrder = dijkstra(
-					this.state.nodes,
-					this.state.nodes[this.startN.row][this.startN.column],
-					this.state.nodes[this.targetN.row][this.targetN.column]
+					nodes,
+					nodes[this.startN.row][this.startN.column],
+					nodes[this.targetN.row][this.targetN.column]
 				);
 				const shortestPathNodesInOrder = getNodesInShortestPathOrder(
-					this.state.nodes[this.targetN.row][this.targetN.column]
+					nodes[this.targetN.row][this.targetN.column]
 				);
 
 				// console.log('%c big break', 'font-size:30px; color:red;')
