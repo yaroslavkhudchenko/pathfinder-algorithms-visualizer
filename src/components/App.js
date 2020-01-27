@@ -24,15 +24,16 @@ export default class App extends Component {
 			// selectedTool: null,
 			// reseting:false,
 			startAlgorithm() {
+				this.state.resetGrid()
 				// avoid multiple start
-				if(this.isStarted)return;
+				// if(this.isStarted)return; //////////////////
 				if (document.getElementById(`node-${this.state.targetNode.row}-${this.state.targetNode.column}`).classList.contains('singleNode-visited'))return;
-				
+				console.log('START ALGORITHM')
 				this.isStarted = true;
 				
 				// console.log('state nodesssssssssss')
 				// console.log(this.state.nodes)
-
+				console.log("START ALGORITHM")
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
 					this.state.nodes[this.state.startNode.row][
@@ -49,10 +50,56 @@ export default class App extends Component {
 						this.state.targetNode.column
 					]
 				);
-				
+		//		if (this.mousePressed)return;
 				this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 			},
+			startAlgorithmQuick() {
+				const visitedNodesInOrder = dijkstra(
+					this.state.nodes,
+					this.state.nodes[this.state.startNode.row][
+					this.state.startNode.column
+					],
+					this.state.nodes[this.state.targetNode.row][
+					this.state.targetNode.column
+					]
+				);
+				const shortestPathNodesInOrder = getNodesInShortestPathOrder(
+					this.state.nodes[this.state.targetNode.row][
+					this.state.targetNode.column
+					]
+				);
+
+
+				///////////////////////////wwwwwwwwwwwwwwwwww
+				for (let i = 0; i <= visitedNodesInOrder.length; i++) {
+					if (i === visitedNodesInOrder.length) {
+						for (let i = 0; i < shortestPathNodesInOrder.length; i++) {
+							// console.log('shortes for loop')
+							// setTimeout(() => {
+							// console.log( document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`))
+							document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = '#ffeb3b';
+							// }, i * 7);
+
+						}
+						return;
+					}
+					// setTimeout(() => {
+						// colored visited nodes
+						const node = visitedNodesInOrder[i];
+						document.getElementById(`node-${node.row}-${node.column}`).classList.toggle('singleNode-visited');
+					// }, 3 * i);
+
+				}
+
+				/////////////////
+
+
+				
+
+
+			},
 			resetGrid() {
+				console.log('reset')
 				// console.log('reset grid start')
 				// console.log(this.isStarted);
 				if(this.isStarted)return;
@@ -81,7 +128,7 @@ export default class App extends Component {
 
 				} 
 				//setTimeout(() => {
-					this.setState({
+					/* this.setState({
 						startNode: {
 							row: 4,
 							column: 4
@@ -90,7 +137,7 @@ export default class App extends Component {
 							row: 30,
 							column: 35
 						}
-					})
+					}) */
 				//}, 1000);
 				
 
@@ -135,9 +182,9 @@ export default class App extends Component {
 				}
 			},
 			downMouse(e) {
-				console.log('onMouseDown')
-				console.log(e)
-				console.log(e.target)
+				// console.log('onMouseDown')
+				// console.log(e)
+				// console.log(e.target)
 				
 				
 				if (this.isStarted) return;
@@ -176,12 +223,9 @@ export default class App extends Component {
 			
 			moveOver(e) {
 				if(!this.mousePressed)return;
-				//console.log(e.target)
-				//console.log('onmouseover')
-				//return;
 					let current;
-					//e.persist()
-					//console.log('dragover')
+					this.state.resetGrid();
+					this.state.startAlgorithmQuick();
 					console.log(e.target.getAttribute("row") * 1, e.target.getAttribute("rcolumnow") * 1)
 					if (this.state.currentDrag === 'start') {
 						current = 'start'
@@ -198,10 +242,6 @@ export default class App extends Component {
 							column: e.target.getAttribute("column") * 1
 						}
 					}
-				
-				
-				//	console.log(this.startN)
-					//console.log(this.targetN)
 					setTimeout(() => {
 						
 						if(current === 'start') {
@@ -214,72 +254,29 @@ export default class App extends Component {
 							})
 						}
 					}, 1000);
-				
-				
-			//	console.log(this.state.startNode.row)
 			},
 			upMouse(e) {
-				console.log('on drop playground')				
-				console.log(e.target)
-
-				alert('onMouseUp ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-				/* for (let i = 0; i < nodes.length; i++) {
-					for (let j = 0; j < nodes[i].length; j++) {
-						nodes[i][j].distance = Infinity;
-						nodes[i][j].isVisited = false;
-					}
-
-				}  */
-				console.log(e.target)
-				console.log('drag drop')
+				console.log('on upMouse playground')				
 				if (this.state.currentDrag === 'start') {
 					this.setState({
-						startNode: {
-							row: e.target.getAttribute("row") * 1,
-							column: e.target.getAttribute("column") * 1
-						}
+						 startNode: this.startN
 					})
 				} else if (this.state.currentDrag === 'target') {
 					this.setState({
-						targetNode: {
-							row: e.target.getAttribute("row") * 1,
-							column: e.target.getAttribute("column") * 1
-						}
+						targetNode: this.targetN
 					})
 				}
-				//alert('here')
 				this.mousePressed = false;
-			},
-			setGridSize() {
-
-				let row = document.querySelector(".rowNumber").value;
-				let column = document.querySelector(".columnNumber").value;
-
-				// create nodes array + choose start and target nodes
-				let nodes = [];
-				for (let i = 0; i < column; i++) {
-					nodes.push([]); // push array to display row
-					for (let j = 0; j < row; j++) {
-						nodes[i].push({
-							column: j,
-							row: i,
-							key: shortid.generate(),
-							distance: Infinity
-						}); // target node
-						//}
-					}
-				}
-				this.setState({ nodes });
 			},
 		};
 		this.state.startAlgorithm = this.state.startAlgorithm.bind(this);
 		this.state.setNodes = this.state.setNodes.bind(this);
-		this.state.setGridSize = this.state.setGridSize.bind(this);
 		this.state.resetGrid = this.state.resetGrid.bind(this);
 		this.state.selectTool = this.state.selectTool.bind(this);
 		this.state.downMouse = this.state.downMouse.bind(this);
 		this.state.moveOver = this.state.moveOver.bind(this); 
 		this.state.upMouse = this.state.upMouse.bind(this);
+		this.state.startAlgorithmQuick = this.state.startAlgorithmQuick.bind(this);
 		this.isStarted = false;
 		this.selectedTool = 'target';
 		this.startN = this.state.startNode;
@@ -325,6 +322,9 @@ export default class App extends Component {
 			}, 3 * i);
 
 		}
+
+
+
 	}
 
 	// draw line from start to target

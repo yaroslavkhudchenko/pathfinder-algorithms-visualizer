@@ -37,10 +37,12 @@ function getUnvisitedNeighbors(node, grid) {
   const neighbors = [];
   const {column, row} = node;
 
-  row > 0 ? neighbors.push(grid[row - 1][column]) : console.log('z')
-  row < (grid.length - 1) ? neighbors.push(grid[row + 1][column]): console.log('z')
-  column > 0 ? neighbors.push(grid[row][column - 1]) : console.log('z')
-  column < (grid[0].length - 1) ? neighbors.push(grid[row][column + 1]) : console.log('z')
+  
+
+  row > 0 ? neighbors.push(grid[row - 1][column]) : null
+  row < (grid.length - 1) ? neighbors.push(grid[row + 1][column]): null
+  column > 0 ? neighbors.push(grid[row][column - 1]) : null
+  column < (grid[0].length - 1) ? neighbors.push(grid[row][column + 1]) : null
 
   return neighbors.filter(neighbor => !neighbor.isVisited);
 }
