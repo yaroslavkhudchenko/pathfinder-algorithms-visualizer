@@ -266,7 +266,15 @@ export default class App extends Component {
 			
 			moveOver(e) {
 				if(!this.mousePressed)return;
-					let current;
+				// console.log(e.target)
+				// console.log(this.lastTargetOver)
+				if (e.target === this.lastTargetOver) {
+					console.log(" THE SAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+					alert('smae')
+				}
+				if (e.target === this.lastTargetOver)return;
+					let current = e.target;
+					this.lastTargetOver = current;
 					// this.state.resetGrid();
 					
 					//	console.log(e.target.getAttribute("row") * 1, e.target.getAttribute("rcolumnow") * 1)
@@ -328,7 +336,7 @@ export default class App extends Component {
 		this.startN = this.state.startNode;
 		this.targetN = this.state.targetNode;
 		this.mousePressed = false;
-
+		this.lastTargetOver = null;
 	}
 
 	 
