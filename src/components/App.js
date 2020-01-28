@@ -266,13 +266,16 @@ export default class App extends Component {
 			
 			moveOver(e) {
 				if(!this.mousePressed)return;
-				// console.log(e.target)
+				 // console.log(e.target)
 				// console.log(this.lastTargetOver)
-				if (e.target === this.lastTargetOver) {
-					console.log(" THE SAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-					alert('smae')
+				if(this.lastTargetOver) {
+					if (e.target.getAttribute('row') === this.lastTargetOver.getAttribute('row') && e.target.getAttribute('column') === this.lastTargetOver.getAttribute('column')) {
+						console.log(" THE SAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+					//	alert('smae')
+					return;
+					}
 				}
-				if (e.target === this.lastTargetOver)return;
+				
 					let current = e.target;
 					this.lastTargetOver = current;
 					// this.state.resetGrid();
@@ -296,18 +299,20 @@ export default class App extends Component {
 					setTimeout(  () => {
 						
 						if(current === 'start') {
+							console.log('current is tart')
 							 this.setState({
 								startNode: this.startN
 							})
 							this.state.startAlgorithmQuick();
 						} else if (current === 'target') {
+							console.log('current is arget')
 							 this.setState({
 								targetNode: this.targetN
 
 							})
 							this.state.startAlgorithmQuick();
 						}
-					},10);
+					 },10);
 			},
 			upMouse(e) {
 				console.log('on up dawfwafwa Mouse playground')				
