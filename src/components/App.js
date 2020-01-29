@@ -4,6 +4,8 @@ import Grid from './Grid';
 import shortid from 'shortid';
 import { dijkstra, getNodesInShortestPathOrder } from './../algorithms/dijkstra-alg';
 import '../index.scss';
+import _, { debounce} from 'lodash';
+
 export const AppContext = React.createContext();
 
 export default class App extends Component { 
@@ -296,23 +298,25 @@ export default class App extends Component {
 							column: e.target.getAttribute("column") * 1
 						}
 					}
-					setTimeout(  () => {
-						
-						if(current === 'start') {
-							console.log('current is tart')
-							 this.setState({
-								startNode: this.startN
-							})
-							this.state.startAlgorithmQuick();
-						} else if (current === 'target') {
-							console.log('current is arget')
-							 this.setState({
-								targetNode: this.targetN
 
-							})
-							this.state.startAlgorithmQuick();
-						}
-					 },10);
+				//this.debouncedFunction();
+
+				(debounce(() => {
+					if (current === 'start') {
+						console.log('current is tart')
+						this.setState({
+							startNode: this.startN
+						})
+						this.state.startAlgorithmQuick();
+					} else if (current === 'target') {
+						console.log('current is arget')
+						this.setState({
+							targetNode: this.targetN
+
+						})
+						this.state.startAlgorithmQuick();
+					}
+				}, 10))
 			},
 			upMouse(e) {
 				console.log('on up dawfwafwa Mouse playground')				
@@ -332,6 +336,8 @@ export default class App extends Component {
 		this.state.setNodes = this.state.setNodes.bind(this);
 		this.state.resetGrid = this.state.resetGrid.bind(this);
 		this.state.selectTool = this.state.selectTool.bind(this);
+		this.state.slowDownMouseOver = this.state.slowDownMouseOver.bind(this);
+
 		this.state.downMouse = this.state.downMouse.bind(this);
 		this.state.moveOver = this.state.moveOver.bind(this); 
 		this.state.upMouse = this.state.upMouse.bind(this);
@@ -342,6 +348,7 @@ export default class App extends Component {
 		this.targetN = this.state.targetNode;
 		this.mousePressed = false;
 		this.lastTargetOver = null;
+		//	this.debouncedFunction = 
 	}
 
 	 
