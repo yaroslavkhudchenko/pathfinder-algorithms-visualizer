@@ -1,7 +1,7 @@
 body,html {
   margin: 0;
   padding:0;
-  background:#d5ebef;// crimson;
+  background:#42EADDFF;// #d5ebef; // crimson;
 }
 
 .controlPanel {
@@ -43,7 +43,7 @@ body,html {
   height: 25px;
   min-width: 24px;
   min-height: 25px; */
-    border: 1px solid #677475;
+    border: 1px solid transparent;
     width: 35px;
     border-radius: 5px;
     height: 35px;
@@ -60,7 +60,7 @@ body,html {
   animation-iteration-count: 1;
   animation-fill-mode: backwards;
   animation-play-state: running; */
-  background:#3f3f88;// navy;
+  background: #CDB599FF;//#3f3f88;// navy;
 }
 .singleNode-visited-animation {
 animation-name: visitedAnimation;
