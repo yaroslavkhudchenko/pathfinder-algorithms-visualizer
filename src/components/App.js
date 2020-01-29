@@ -316,7 +316,7 @@ export default class App extends Component {
 						})
 						this.state.startAlgorithmQuick();
 					}
-				}, 10))
+				}, 10))()
 			},
 			upMouse(e) {
 				console.log('on up dawfwafwa Mouse playground')				
@@ -336,8 +336,6 @@ export default class App extends Component {
 		this.state.setNodes = this.state.setNodes.bind(this);
 		this.state.resetGrid = this.state.resetGrid.bind(this);
 		this.state.selectTool = this.state.selectTool.bind(this);
-		this.state.slowDownMouseOver = this.state.slowDownMouseOver.bind(this);
-
 		this.state.downMouse = this.state.downMouse.bind(this);
 		this.state.moveOver = this.state.moveOver.bind(this); 
 		this.state.upMouse = this.state.upMouse.bind(this);
