@@ -1,7 +1,7 @@
 body,html {
   margin: 0;
   padding:0;
-  background: crimson;
+  background:#d5ebef;// crimson;
 }
 
 .controlPanel {
@@ -38,12 +38,18 @@ body,html {
   justify-content: center;
 }
 .singleNode {
-  border: 1px solid white;
+  /* border: 1px solid white;
   width: 25px;
   height: 25px;
-  /* margin: 1px; */
   min-width: 24px;
-  min-height: 25px;
+  min-height: 25px; */
+    border: 1px solid #677475;
+    width: 35px;
+    border-radius: 5px;
+    height: 35px;
+    min-width: 35px;
+    min-height: 35px;
+    margin: 1px;
 }
 .singleNode-visited {
   /* animation-name: visitedAnimation;
@@ -54,7 +60,7 @@ body,html {
   animation-iteration-count: 1;
   animation-fill-mode: backwards;
   animation-play-state: running; */
-  background:navy;
+  background:#3f3f88;// navy;
 }
 .singleNode-visited-animation {
 animation-name: visitedAnimation;

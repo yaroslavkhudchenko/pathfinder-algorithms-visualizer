@@ -303,20 +303,20 @@ export default class App extends Component {
 
 				(debounce(() => {
 					if (current === 'start') {
-						console.log('current is tart')
+						// console.log('current is tart')
 						this.setState({
 							startNode: this.startN
 						})
 						this.state.startAlgorithmQuick();
 					} else if (current === 'target') {
-						console.log('current is arget')
+						// console.log('current is arget')
 						this.setState({
 							targetNode: this.targetN
 
 						})
 						this.state.startAlgorithmQuick();
 					}
-				}, 10))()
+				}, 50))()
 			},
 			upMouse(e) {
 				console.log('on up dawfwafwa Mouse playground')				
