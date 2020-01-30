@@ -270,14 +270,14 @@ export default class App extends Component {
 				if(!this.mousePressed)return;
 				 // console.log(e.target)
 				// console.log(this.lastTargetOver)
-				if(this.lastTargetOver) {
+				if(this.lastTargetOver && !this.firstTouchOnMoveOver) {
 					if (e.target.getAttribute('row') === this.lastTargetOver.getAttribute('row') && e.target.getAttribute('column') === this.lastTargetOver.getAttribute('column')) {
 						// console.log(" THE SAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 					//	alert('smae')
 					return;
 					}
 				}
-				
+				this.firstTouchOnMoveOver = false;
 					let current = e.target;
 					this.lastTargetOver = current;
 					// this.state.resetGrid();
@@ -320,7 +320,7 @@ export default class App extends Component {
 			},
 			upMouse(e) {
 				console.log('on up dawfwafwa Mouse playground')				
-				if (this.state.currentDrag === 'start') {
+				/* if (this.state.currentDrag === 'start') {
 					this.setState({
 						 startNode: this.startN
 					})
@@ -328,7 +328,7 @@ export default class App extends Component {
 					this.setState({
 						targetNode: this.targetN
 					})
-				}
+				} */
 				this.mousePressed = false;
 			},
 		};
@@ -346,6 +346,7 @@ export default class App extends Component {
 		this.targetN = this.state.targetNode;
 		this.mousePressed = false;
 		this.lastTargetOver = null;
+		this.firstTouchOnMoveOver = true;
 		//	this.debouncedFunction = 
 	}
 
