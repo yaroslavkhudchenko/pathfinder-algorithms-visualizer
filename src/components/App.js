@@ -301,7 +301,7 @@ export default class App extends Component {
 
 				//this.debouncedFunction();
 
-				(debounce(() => {
+				(debounce((e) => {
 					if (current === 'start') {
 						// console.log('current is tart')
 						this.setState({
@@ -316,7 +316,7 @@ export default class App extends Component {
 						})
 						this.state.startAlgorithmQuick();
 					}
-				}, 50))()
+				}, .1))()
 			},
 			upMouse(e) {
 				console.log('on up dawfwafwa Mouse playground')				
@@ -352,7 +352,7 @@ export default class App extends Component {
 	 
 	componentDidMount() {
 		// create nodes array + choose start and target nodes
-		let numberC = (window.innerHeight-100) / 39.5; 
+		let numberC = (window.innerHeight-100) / 40.4; 
 		let numberR = window.innerWidth / 39.5;
 
 		console.log(numberC)
