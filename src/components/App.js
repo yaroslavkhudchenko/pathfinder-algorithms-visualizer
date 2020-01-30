@@ -18,8 +18,8 @@ export default class App extends Component {
 				column: 4
 			},
 			targetNode: {
-				row: 30,
-				column: 35
+				row: 15,
+				column: 20
 			},
 			walls: [],
 			// isStarted: false,
@@ -352,8 +352,8 @@ export default class App extends Component {
 	 
 	componentDidMount() {
 		// create nodes array + choose start and target nodes
-		let numberC = window.innerHeight / 39; 
-		let numberR = window.innerWidth / 39;
+		let numberC = (window.innerHeight-100) / 39.5; 
+		let numberR = window.innerWidth / 39.5;
 
 		console.log(numberC)
 		console.log(numberR)
@@ -367,7 +367,7 @@ export default class App extends Component {
 						row: i,
 						key: shortid.generate(),
 						distance: Infinity,
-						isWall: i === 25 && j === 5 ? true : false
+						isWall: i === 11 && j === 11 ? true : false
 					}); // target node
 				//}
 			}
