@@ -110,7 +110,7 @@ export default class App extends Component {
 							//console.log('shortes for loop new')
 							// setTimeout(() => {
 							// console.log( document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`))
-							document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = '#7cfff0a3';// '#ffeb3b';
+							document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = '#255a40a3';// '#ffeb3b';
 							// }, i * 7);
 
 						}
@@ -399,7 +399,7 @@ export default class App extends Component {
 			// console.log('shortes for loop')
 			setTimeout(() => {
 				// console.log( document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`))
-				document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = '#7cfff0a3';// '#ffeb3b';
+				document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = '#255a40a3';// '#ffeb3b';
 			}, i * 7);
 			
 		}

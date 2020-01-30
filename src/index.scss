@@ -1,7 +1,7 @@
 body,html {
   margin: 0;
   padding:0;
-  background:#ADEFD1FF;// #42EADDFF;// #d5ebef; // crimson;
+  background: #42EADDFF;// #d5ebef; // crimson;
 }
 
 .controlPanel {
@@ -17,13 +17,13 @@ body,html {
   .cTop {
     height: 50%;
     width: 100%;
-    background: gray;
+    background: #00203FFF;
     display: flex;
   }
   .cBottom {
     height: 50%;
     width: 100%;
-    background: yellow;
+    background: #ADEFD1FF;
   }
 }
 .startButton {
@@ -60,7 +60,7 @@ body,html {
   animation-iteration-count: 1;
   animation-fill-mode: backwards;
   animation-play-state: running; */
-  background: #00203FFF;// #CDB599FF;//#3f3f88;// navy;
+  background:  #CDB599FF;//#3f3f88;// navy;
 }
 .singleNode-visited-animation {
 animation-name: visitedAnimation;
