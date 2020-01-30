@@ -277,7 +277,7 @@ export default class App extends Component {
 					return;
 					}
 				}
-				this.firstTouchOnMoveOver = false;
+					this.firstTouchOnMoveOver = false;
 					let current = e.target;
 					this.lastTargetOver = current;
 					// this.state.resetGrid();
@@ -301,7 +301,7 @@ export default class App extends Component {
 
 				//this.debouncedFunction();
 
-				(debounce((e) => {
+				(debounce(() => {
 					if (current === 'start') {
 						// console.log('current is tart')
 						this.setState({
