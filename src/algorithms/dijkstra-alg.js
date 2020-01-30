@@ -1,7 +1,6 @@
 // global func for dijkstra algorithm
 export function dijkstra(grid, startNode, targetNode) {
   const visitedNodesInOrder = [];
-  console.log('wwwwwwwwwwwwwwwwww')
 
   startNode.distance = 0; // set distance for start node to 0 (all the rest to infinity)
   const unvisitedNodes = getAllNodes(grid);

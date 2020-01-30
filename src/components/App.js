@@ -110,7 +110,7 @@ export default class App extends Component {
 							//console.log('shortes for loop new')
 							// setTimeout(() => {
 							// console.log( document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`))
-							document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = '#ffeb3b';
+							document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = '#7cfff0a3';// '#ffeb3b';
 							// }, i * 7);
 
 						}
@@ -272,7 +272,7 @@ export default class App extends Component {
 				// console.log(this.lastTargetOver)
 				if(this.lastTargetOver) {
 					if (e.target.getAttribute('row') === this.lastTargetOver.getAttribute('row') && e.target.getAttribute('column') === this.lastTargetOver.getAttribute('column')) {
-						console.log(" THE SAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+						// console.log(" THE SAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 					//	alert('smae')
 					return;
 					}
@@ -399,7 +399,7 @@ export default class App extends Component {
 			// console.log('shortes for loop')
 			setTimeout(() => {
 				// console.log( document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`))
-				 document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = '#ffeb3b';
+				document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`).style.backgroundColor = '#7cfff0a3';// '#ffeb3b';
 			}, i * 7);
 			
 		}
