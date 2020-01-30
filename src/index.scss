@@ -78,6 +78,8 @@ animation-name: visitedAnimation;
 }
 .start {
   background: #6e31bf;
+  background-image: url('./assets/startA.png');
+  background-size:cover;
 }
 .target {
   background: #cacaca;
