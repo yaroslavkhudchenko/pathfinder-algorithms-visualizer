@@ -352,10 +352,16 @@ export default class App extends Component {
 	 
 	componentDidMount() {
 		// create nodes array + choose start and target nodes
+		let numberC = window.innerHeight / 39; 
+		let numberR = window.innerWidth / 39;
+
+		console.log(numberC)
+		console.log(numberR)
+
 		let nodes = [];
-		for (let i = 0; i < 35; i++) {
+		for (let i = 0; i < numberC; i++) {
 			nodes.push([]); // push array to display row
-			for (let j = 0; j < 40; j++) {
+			for (let j = 0; j < numberR; j++) {
 					nodes[i].push({
 						column: j,
 						row: i,

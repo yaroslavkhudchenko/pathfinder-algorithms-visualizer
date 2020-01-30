@@ -32,10 +32,11 @@ body,html {
   border-radius: 3px;
   background: indigo;
 }
-.grid {
+#grid {
   display: flex;
   flex-wrap:wrap;
   justify-content: center;
+  position: absolute;
 }
 .singleNode {
   /* border: 1px solid white;
@@ -77,18 +78,20 @@ animation-name: visitedAnimation;
   justify-content: center;
 }
 .start {
-  background: #6e31bf;
+  // background: #6e31bf;
   background-image: url('./assets/startA.png');
   background-size:cover;
 }
 .target {
-  background: #cacaca;
+  //background: #cacaca;
+  background-image: url('./assets/startA.png');
+  background-size:cover;
 }
 .checked {
   background: blue;
 }
 .wall {
-  background: #a8b9f7;
+  background: black;
 }
 
 
