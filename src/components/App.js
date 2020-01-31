@@ -58,7 +58,7 @@ export default class App extends Component {
 			},
 			async startAlgorithmQuick() {
 				// this.state.resetGrid()
-				//console.log('reset in start quick')
+				console.log('reset in start quick')
 
 				let g = document.querySelectorAll('.singleNode-visited');
 				
@@ -67,28 +67,22 @@ export default class App extends Component {
 					g[i].classList.remove('singleNode-visited')
 				}
 				let nodes = this.state.nodes;
-				// console.log(nodes.length)
-				// console.log('---------------------------------------------')
-				// console.log(nodes[this.startN.row][this.startN.column])
-				// console.log(nodes[this.targetN.row][this.targetN.column])
-				
-				// console.log(this.state.nodes[this.state.startNode.row][this.state.startNode.column])
-				// console.log(this.state.nodes[this.state.targetNode.row][this.state.targetNode.column])
-				// console.log('-ssssssssssssssssssssssssssssssssssss--------------------------------------------')
 				 for (let i = 0; i < nodes.length; i++) {
 					// console.log('nodes i',i)
 					for (let j = 0; j < nodes[i].length; j++) {
 						//console.log('nodes[i] j',j)
-						
-						nodes[i][j].distance = Infinity;
-						nodes[i][j].isVisited = false;
+						console.log(nodes[i].distance)
+						// nodes[i][j].distance = Infinity;
+						// nodes[i][j].isVisited = false;
 					}
 					//nodes[this.startN.row][this.startN.column].distance = 0;
 				}
 				
-
-				await this.setState({ nodes })
-
+				
+				 this.setState({ nodes })
+				console.log(this.state.nodes)
+				console.log(this.state.startNode)
+				console.log(this.state.targetNode)
 
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
@@ -227,43 +221,25 @@ export default class App extends Component {
 				}
 			},
 			downMouse(e) {
-				// console.log('onMouseDown')
-				// console.log(e)
-				// console.log(e.target)
-				
 				
 				if (this.isStarted) return;
-				//console.log(e.target)
-				//console.log('drag playground')
+				
 				if(e.target.classList.contains('start')) {
+					console.log('downmouse in check 1')
 					this.setState({
 						currentDrag:'start'
 					})
+					console.log('downmouse in check 2')
+
 					this.mousePressed = true;
+					console.log('downmouse in check 3')
+
 				} else if(e.target.classList.contains('target')) {
 					this.setState({
 						currentDrag:'target'
 					})
 					this.mousePressed = true;
 				} return;
-			if (e.target.classList.contains('start')) {
-					// console.log('-0000000000000000000000000000000000000000000000000000000000')
-					this.setState({
-						startNode: {
-							row: e.target.getAttribute("row") * 1,
-							column: e.target.getAttribute("column") * 1
-						}
-					})
-				} else if (e.target.classList.contains('target')) {
-					// console.log('-0000000000000000000000000000000000000000000000000000000000')
-					this.setState({
-						targetNode: {
-							row: e.target.getAttribute("row") * 1,
-							column: e.target.getAttribute("column") * 1
-						}
-					})
-				} 
-				
 			},
 			
 			moveOver(e) {
@@ -285,7 +261,7 @@ export default class App extends Component {
 					//	console.log(e.target.getAttribute("row") * 1, e.target.getAttribute("rcolumnow") * 1)
 					if (this.state.currentDrag === 'start') {
 						current = 'start'
-						
+						console.log('in moveover in check start')
 						this.startN = {
 							row: e.target.getAttribute("row") * 1,
 							column: e.target.getAttribute("column") * 1
@@ -303,10 +279,11 @@ export default class App extends Component {
 
 				(debounce(() => {
 					if (current === 'start') {
-						// console.log('current is tart')
+						 console.log('current is tart')
 						this.setState({
 							startNode: this.startN
 						})
+						
 						this.state.startAlgorithmQuick();
 					} else if (current === 'target') {
 						// console.log('current is arget')
