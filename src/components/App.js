@@ -71,7 +71,7 @@ export default class App extends Component {
 					// console.log('nodes i',i)
 					for (let j = 0; j < nodes[i].length; j++) {
 						//console.log('nodes[i] j',j)
-						console.log(nodes[i].distance)
+						console.log(nodes[i][j].distance)
 						// nodes[i][j].distance = Infinity;
 						// nodes[i][j].isVisited = false;
 					}
@@ -79,7 +79,7 @@ export default class App extends Component {
 				}
 				
 				
-				 this.setState({ nodes })
+				this.setState({ nodes })
 				console.log(this.state.nodes)
 				console.log(this.state.startNode)
 				console.log(this.state.targetNode)
