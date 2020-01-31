@@ -1,9 +1,14 @@
 // global func for dijkstra algorithm
 export function dijkstra(grid, startNode, targetNode) {
   const visitedNodesInOrder = [];
+  console.log(grid)
+  console.log(startNode)
+  console.log(targetNode)
+  debugger;
 
   startNode.distance = 0; // set distance for start node to 0 (all the rest to infinity)
-  const unvisitedNodes = getAllNodes(grid);
+  const unvisitedNodes = getAllNodes(grid); 
+  debugger;
   // !! will return boolean value
   while (!!unvisitedNodes.length) {
     sortNodesByDistance(unvisitedNodes); 
@@ -22,10 +27,12 @@ export function dijkstra(grid, startNode, targetNode) {
 
 
 function sortNodesByDistance(unvisitedNodes) {
+ // debugger;
   unvisitedNodes.sort((nodeA, nodeB) => nodeA.distance - nodeB.distance);
 }
 
 function updateUnvisitedNeighbors(node, grid) {
+ // debugger;
   const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
   for (const neighbor of unvisitedNeighbors) {
     neighbor.distance = node.distance + 1;
@@ -34,6 +41,7 @@ function updateUnvisitedNeighbors(node, grid) {
 }
 
 function getUnvisitedNeighbors(node, grid) {
+ // debugger;
   const neighbors = [];
   const {column, row} = node;
 
@@ -48,6 +56,7 @@ function getUnvisitedNeighbors(node, grid) {
 }
 
 function getAllNodes(grid) {
+  debugger;
   const nodes = [];
   for (const row of grid) {
     for (const node of row) {
@@ -60,11 +69,21 @@ function getAllNodes(grid) {
 // Backtracks from the finishNode to find the shortest path.
 // Only works when called *after* the dijkstra method above.
 export function getNodesInShortestPathOrder(finishNode) {
+  console.log(finishNode)
+  debugger;
+
   const nodesInShortestPathOrder = [];
   let currentNode = finishNode;
+
+  debugger;
   while (currentNode !== null && currentNode !== undefined) {
+    console.log('in lopp')
+    console.log(nodesInShortestPathOrder)
     nodesInShortestPathOrder.unshift(currentNode);
     currentNode = currentNode.previousNode;
   }
+  console.log(nodesInShortestPathOrder)
+  debugger;
+
   return nodesInShortestPathOrder;
 }

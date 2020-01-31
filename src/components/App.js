@@ -31,12 +31,9 @@ export default class App extends Component {
 				// avoid multiple start
 				// if(this.isStarted)return; //////////////////
 				if (document.getElementById(`node-${this.state.targetNode.row}-${this.state.targetNode.column}`).classList.contains('singleNode-visited'))return;
-				console.log('START ALGORITHM')
 				this.isStarted = true;
 				
-				// console.log('state nodesssssssssss')
-				// console.log(this.state.nodes)
-				// console.log("START ALGORITHM")
+				
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
 					this.state.nodes[this.state.startNode.row][
@@ -58,7 +55,6 @@ export default class App extends Component {
 			},
 			async startAlgorithmQuick() {
 				// this.state.resetGrid()
-				console.log('reset in start quick')
 
 				let g = document.querySelectorAll('.singleNode-visited');
 				
@@ -66,24 +62,24 @@ export default class App extends Component {
 					//g[i].style.animationPlayState = "paused";
 					g[i].classList.remove('singleNode-visited')
 				}
-				let nodes = this.state.nodes;
+				let nodes = this.state.nodes; 
+
 				 for (let i = 0; i < nodes.length; i++) {
-					// console.log('nodes i',i)
 					for (let j = 0; j < nodes[i].length; j++) {
-						//console.log('nodes[i] j',j)
-						console.log(nodes[i][j].distance)
-						// nodes[i][j].distance = Infinity;
-						// nodes[i][j].isVisited = false;
+						nodes[i][j].distance = Infinity;
+						nodes[i][j].isVisited = false;
+						(i === this.state.startNode.row && j === this.state.startNode.column) ? console.log(nodes[i][j].distance) : console.log('nothing')
+
 					}
 					//nodes[this.startN.row][this.startN.column].distance = 0;
 				}
 				
 				
 				this.setState({ nodes })
-				console.log(this.state.nodes)
-				console.log(this.state.startNode)
-				console.log(this.state.targetNode)
-
+			//console.log(this.state.nodes)
+			//console.log(this.state.startNode)
+			//console.log(this.state.targetNode)
+				
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
 					this.state.nodes[this.state.startNode.row][this.state.startNode.column],
@@ -127,7 +123,7 @@ export default class App extends Component {
 
 			},
 			resetGrid() {
-				console.log('reset')
+				// console.log('reset')
 				// console.log('reset grid start')
 				// console.log(this.isStarted);
 				//	if(this.isStarted)return;
@@ -225,14 +221,14 @@ export default class App extends Component {
 				if (this.isStarted) return;
 				
 				if(e.target.classList.contains('start')) {
-					console.log('downmouse in check 1')
+					//console.log('downmouse in check 1')
 					this.setState({
 						currentDrag:'start'
 					})
-					console.log('downmouse in check 2')
+					//console.log('downmouse in check 2')
 
 					this.mousePressed = true;
-					console.log('downmouse in check 3')
+					//console.log('downmouse in check 3')
 
 				} else if(e.target.classList.contains('target')) {
 					this.setState({
@@ -261,7 +257,7 @@ export default class App extends Component {
 					//	console.log(e.target.getAttribute("row") * 1, e.target.getAttribute("rcolumnow") * 1)
 					if (this.state.currentDrag === 'start') {
 						current = 'start'
-						console.log('in moveover in check start')
+					//	console.log('in moveover in check start')
 						this.startN = {
 							row: e.target.getAttribute("row") * 1,
 							column: e.target.getAttribute("column") * 1
@@ -276,15 +272,16 @@ export default class App extends Component {
 					}
 
 				//this.debouncedFunction();
-
+				
 				(debounce(() => {
 					if (current === 'start') {
-						 console.log('current is tart')
+						
+						 //console.log('current is tart')
 						this.setState({
 							startNode: this.startN
 						})
 						
-						this.state.startAlgorithmQuick();
+						this.state.startAlgorithmQuick(); 
 					} else if (current === 'target') {
 						// console.log('current is arget')
 						this.setState({
