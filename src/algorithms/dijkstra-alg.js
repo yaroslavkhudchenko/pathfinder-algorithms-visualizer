@@ -1,17 +1,17 @@
 // global func for dijkstra algorithm
 export function dijkstra(grid, startNode, targetNode) {
   const visitedNodesInOrder = [];
-  console.log(grid)
-  console.log(startNode)
-  console.log(targetNode)
-  debugger;
+ // console.log(grid)
+ // console.log(startNode)
+ // console.log(targetNode)
 
   startNode.distance = 0; // set distance for start node to 0 (all the rest to infinity)
-  const unvisitedNodes = getAllNodes(grid); 
-  debugger;
+  const unvisitedNodes = getAllNodes(grid);
+  // console.log('unvisited length begginningn') 
+  // console.log(unvisitedNodes.length)
   // !! will return boolean value
   while (!!unvisitedNodes.length) {
-    sortNodesByDistance(unvisitedNodes); 
+    sortNodesByDistance(unvisitedNodes); // resort every time
     const closestNode = unvisitedNodes.shift();
     // If we encounter a wall, we skip it.
     if (closestNode.isWall) continue;
@@ -27,21 +27,20 @@ export function dijkstra(grid, startNode, targetNode) {
 
 
 function sortNodesByDistance(unvisitedNodes) {
- // debugger;
   unvisitedNodes.sort((nodeA, nodeB) => nodeA.distance - nodeB.distance);
 }
 
 function updateUnvisitedNeighbors(node, grid) {
- // debugger;
+ // console.log('update unvisited start')
   const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
   for (const neighbor of unvisitedNeighbors) {
     neighbor.distance = node.distance + 1;
     neighbor.previousNode = node;
   }
+//  console.log('update unvisited ENDDDD')
 }
 
 function getUnvisitedNeighbors(node, grid) {
- // debugger;
   const neighbors = [];
   const {column, row} = node;
 
@@ -56,7 +55,6 @@ function getUnvisitedNeighbors(node, grid) {
 }
 
 function getAllNodes(grid) {
-  debugger;
   const nodes = [];
   for (const row of grid) {
     for (const node of row) {
@@ -69,21 +67,27 @@ function getAllNodes(grid) {
 // Backtracks from the finishNode to find the shortest path.
 // Only works when called *after* the dijkstra method above.
 export function getNodesInShortestPathOrder(finishNode) {
-  console.log(finishNode)
-  debugger;
+  //console.log(finishNode)
+  // debugger;
 
   const nodesInShortestPathOrder = [];
   let currentNode = finishNode;
-
-  debugger;
+  //console.log(nodesInShortestPathOrder);
+  //console.log(currentNode)
+ //  debugger;
+ console.log(`current node`)
+ console.log(currentNode)
   while (currentNode !== null && currentNode !== undefined) {
-    console.log('in lopp')
-    console.log(nodesInShortestPathOrder)
-    nodesInShortestPathOrder.unshift(currentNode);
-    currentNode = currentNode.previousNode;
+    //console.log('in loop')
+   // console.log('in lopp')
+   // console.log(nodesInShortestPathOrder)
+    nodesInShortestPathOrder.unshift(currentNode); // add current node to the array
+    console.log('nodes in shortest path order')
+    console.log(nodesInShortestPathOrder);
+    currentNode = currentNode.previousNode; // check for previous node 
   }
   console.log(nodesInShortestPathOrder)
-  debugger;
+ //  debugger;
 
   return nodesInShortestPathOrder;
 }

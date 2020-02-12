@@ -63,23 +63,16 @@ export default class App extends Component {
 					g[i].classList.remove('singleNode-visited')
 				}
 				let nodes = this.state.nodes; 
-
+				// console.log(`nodesnodes}`)
+				// console.log(nodes)
 				 for (let i = 0; i < nodes.length; i++) {
 					for (let j = 0; j < nodes[i].length; j++) {
 						nodes[i][j].distance = Infinity;
-						nodes[i][j].isVisited = false;
-						(i === this.state.startNode.row && j === this.state.startNode.column) ? console.log(nodes[i][j].distance) : console.log('nothing')
-
+						nodes[i][j].isVisited = null;
 					}
-					//nodes[this.startN.row][this.startN.column].distance = 0;
 				}
-				
-				
-				this.setState({ nodes })
-			//console.log(this.state.nodes)
-			//console.log(this.state.startNode)
-			//console.log(this.state.targetNode)
-				
+				await this.setState({ nodes }) 
+			
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
 					this.state.nodes[this.state.startNode.row][this.state.startNode.column],
@@ -89,11 +82,6 @@ export default class App extends Component {
 					this.state.nodes[this.state.targetNode.row][this.state.targetNode.column]
 				);
 
-				// console.log('%c big break', 'font-size:30px; color:red;')
-				// console.log(visitedNodesInOrder);
-				// console.log(shortestPathNodesInOrder);
-
-				///////////////////////////wwwwwwwwwwwwwwwwww
 				for (let i = 0; i <= visitedNodesInOrder.length; i++) {
 					if (i === visitedNodesInOrder.length) {
 						for (let i = 0; i < shortestPathNodesInOrder.length; i++) {
@@ -273,7 +261,7 @@ export default class App extends Component {
 
 				//this.debouncedFunction();
 				
-				(debounce(() => {
+				(debounce(async() => {
 					if (current === 'start') {
 						
 						 //console.log('current is tart')
