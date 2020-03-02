@@ -23,9 +23,13 @@ export default class App extends Component {
 			},
 			walls: [],
 			startAlgorithm() {
+				
 				if (document.getElementById(`node-${this.state.targetNode.row}-${this.state.targetNode.column}`).classList.contains('singleNode-visited'))return;
 				this.isStarted = true;
-				
+				let toRemove = document.querySelectorAll('.singleNode-visited-instant');
+				for (let i = 0; i < toRemove.length; i++) {
+					toRemove[i].classList.remove('singleNode-visited-instant')
+				}
 				
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
@@ -90,7 +94,7 @@ export default class App extends Component {
 					// setTimeout(() => {
 						// colored visited nodes
 						const node = visitedNodesInOrder[i];
-						document.getElementById(`node-${node.row}-${node.column}`).classList.add('singleNode-visited');
+						document.getElementById(`node-${node.row}-${node.column}`).classList.add('singleNode-visited-instant');
 					// }, 3 * i);
 
 				} 
