@@ -225,10 +225,11 @@ export default class App extends Component {
 			
 			moveOver(e) {
 				if(!this.mousePressed)return;
+
 				 // console.log(e.target)
 				// console.log(this.lastTargetOver)
 				if(this.lastTargetOver && !this.firstTouchOnMoveOver) {
-					if (e.target.getAttribute('row') === this.lastTargetOver.getAttribute('row') && e.target.getAttribute('column') === this.lastTargetOver.getAttribute('column')) {
+					if ((e.target.getAttribute('row') === this.lastTargetOver.getAttribute('row') && e.target.getAttribute('column') === this.lastTargetOver.getAttribute('column')) || e.target.classList.contains('wall')) {
 						// console.log(" THE SAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 					//	alert('smae')
 					return;
@@ -312,8 +313,8 @@ export default class App extends Component {
 	 
 	componentDidMount() {
 		// create nodes array + choose start and target nodes
-		let numberC = (window.innerHeight-100) / 40.4; 
-		let numberR = window.innerWidth / 39.5;
+		let numberC = (window.innerHeight-100) / 41; 
+		let numberR = window.innerWidth / 40.5;
 
 		console.log(numberC)
 		console.log(numberR)
