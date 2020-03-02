@@ -22,14 +22,7 @@ export default class App extends Component {
 				column: 20
 			},
 			walls: [],
-			// isStarted: false,
-			// selectedTool: null,
-			// reseting:false,
 			startAlgorithm() {
-			//	return;
-			//	this.state.resetGrid()
-				// avoid multiple start
-				// if(this.isStarted)return; //////////////////
 				if (document.getElementById(`node-${this.state.targetNode.row}-${this.state.targetNode.column}`).classList.contains('singleNode-visited'))return;
 				this.isStarted = true;
 				

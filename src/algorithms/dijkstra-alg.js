@@ -78,12 +78,7 @@ export function getNodesInShortestPathOrder(finishNode) {
  console.log(`current node`)
  console.log(currentNode)
   while (currentNode !== null && currentNode !== undefined) {
-    //console.log('in loop')
-   // console.log('in lopp')
-   // console.log(nodesInShortestPathOrder)
     nodesInShortestPathOrder.unshift(currentNode); // add current node to the array
-    console.log('nodes in shortest path order')
-    console.log(nodesInShortestPathOrder);
     currentNode = currentNode.previousNode; // check for previous node 
   }
   console.log(nodesInShortestPathOrder)
