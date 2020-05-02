@@ -45,12 +45,13 @@ export default class App extends Component {
 					]
 				);
 			
-
+				this.isStarted = false;
 				const shortestPathNodesInOrder = getNodesInShortestPathOrder(
 					this.state.nodes[this.state.targetNode.row][
 						this.state.targetNode.column
 					]
 				);
+				// return;
 		//		if (this.mousePressed)return;
 				this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 			},
@@ -138,6 +139,9 @@ export default class App extends Component {
 					for (let j = 0; j < nodes[i].length; j++) {
 						nodes[i][j].distance = Infinity;
 						nodes[i][j].isVisited = false;
+						if(nodes[i][j].previousNode) {
+							 delete nodes[i][j].previousNode
+							} 
 					}
 
 				} 
@@ -199,6 +203,9 @@ export default class App extends Component {
 					for(let j=0;j < nodes[i].length;j++) {
 						nodes[i][j].distance = Infinity;
 						nodes[i][j].isVisited = undefined;
+						if (nodes[i][j].previousNode) {
+							delete nodes[i][j].previousNode
+						}
 					}
 					
 				} 
@@ -355,9 +362,7 @@ export default class App extends Component {
 
 
 	animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder) {
-		console.log('here we go again')
-		this.isStarted = false;
-		return;
+		
 		for (let i = 0; i <= visitedNodesInOrder.length; i++) {
 			if (i === visitedNodesInOrder.length) {
 				// console.log('%c EQUEL', 'font-size:40px')
