@@ -1,19 +1,15 @@
 // global func for dijkstra algorithm
 export function dijkstra(grid, startNode, targetNode) {
   const visitedNodesInOrder = [];
- // console.log(grid)
- // console.log(startNode)
- // console.log(targetNode)
 
   startNode.distance = 0; // set distance for start node to 0 (all the rest to infinity)
   const unvisitedNodes = getAllNodes(grid);
-  // console.log('unvisited length begginningn') 
-  // console.log(unvisitedNodes.length)
+ 
   // !! will return boolean value
   while (!!unvisitedNodes.length) {
     sortNodesByDistance(unvisitedNodes); // resort every time
     const closestNode = unvisitedNodes.shift();
-    // If we encounter a wall, we skip it.
+    // If we encounter a wall, skip it.
     if (closestNode.isWall) continue;
     // If the closest node is at a distance of infinity,
     // we must be trapped and should therefore stop.
@@ -75,13 +71,13 @@ export function getNodesInShortestPathOrder(finishNode) {
   //console.log(nodesInShortestPathOrder);
   //console.log(currentNode)
  //  debugger;
- console.log(`current node`)
- console.log(currentNode)
+ //console.log(`current node`)
+ //console.log(currentNode)
   while (currentNode !== null && currentNode !== undefined) {
     nodesInShortestPathOrder.unshift(currentNode); // add current node to the array
     currentNode = currentNode.previousNode; // check for previous node 
   }
-  console.log(nodesInShortestPathOrder)
+  //console.log(nodesInShortestPathOrder)
  //  debugger;
 
   return nodesInShortestPathOrder;

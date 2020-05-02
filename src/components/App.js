@@ -24,12 +24,16 @@ export default class App extends Component {
 			walls: [],
 			startAlgorithm() {
 				
+				// check if target node was changed
 				if (document.getElementById(`node-${this.state.targetNode.row}-${this.state.targetNode.column}`).classList.contains('singleNode-visited'))return;
+				
 				this.isStarted = true;
-				let toRemove = document.querySelectorAll('.singleNode-visited-instant');
+
+				/* let toRemove = document.querySelectorAll('.singleNode-visited-instant');
+				
 				for (let i = 0; i < toRemove.length; i++) {
 					toRemove[i].classList.remove('singleNode-visited-instant')
-				}
+				} */
 				
 				const visitedNodesInOrder = dijkstra(
 					this.state.nodes,
@@ -178,14 +182,14 @@ export default class App extends Component {
 
 				// console.log('setnodes')
 				if (this.isStarted) return;
-				console.log('000000000000000000000000000')
+				/* console.log('000000000000000000000000000')
 				
 				for (let i = 0; i < this.state.nodes.length; i++) {
 					for (let j = 0; j < this.state.nodes[i].length; j++) {
 						console.log(this.state.nodes[i][j].isVisited)
 					}
 
-				} 
+				}  */
 
 
 
