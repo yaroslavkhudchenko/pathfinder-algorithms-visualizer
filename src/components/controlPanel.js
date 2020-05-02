@@ -18,13 +18,13 @@ export default class ControlPanel extends Component {
 					Reset
 					</div>
 				<div className="selectAlgorithm">
-					<select>
+					{/* <select>
 						<option onClick={() => this.selectAlgorithm(dijkstra)}>
 						dijkstra
 						</option>
-					</select>
+					</select> */}
 					</div>	
-					{/* <div className="selectTool">
+					<div className="selectTool">
 					<select id='selectTool' onChange={context.selectTool} defaultValue='Target'>
 						<option>
 						Start
@@ -39,7 +39,7 @@ export default class ControlPanel extends Component {
 						Clear Wall
 						</option>
 					</select>	
-					</div> */}
+					</div>
 					<div
 						className="startButton"
 						onClick={
