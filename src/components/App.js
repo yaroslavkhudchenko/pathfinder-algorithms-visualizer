@@ -141,7 +141,7 @@ export default class App extends Component {
 					}
 
 				} 
-				 this.setState({nodes})
+				this.setState({nodes})
 
 
 
@@ -355,6 +355,9 @@ export default class App extends Component {
 
 
 	animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder) {
+		console.log('here we go again')
+		this.isStarted = false;
+		return;
 		for (let i = 0; i <= visitedNodesInOrder.length; i++) {
 			if (i === visitedNodesInOrder.length) {
 				// console.log('%c EQUEL', 'font-size:40px')
