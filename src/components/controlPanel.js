@@ -17,13 +17,13 @@ export default class ControlPanel extends Component {
 					>
 					Reset
 					</div>
-				<div className="selectAlgorithm">
-					{/* <select>
+				{/*<div className="selectAlgorithm">
+					 <select>
 						<option onClick={() => this.selectAlgorithm(dijkstra)}>
 						dijkstra
 						</option>
-					</select> */}
-					</div>	
+					</select
+					</div>	> */}
 					<div className="selectTool">
 					<select id='selectTool' onChange={context.selectTool} defaultValue='Target'>
 						<option>
@@ -42,16 +42,9 @@ export default class ControlPanel extends Component {
 					</div>
 					<div
 						className="startButton"
-						onClick={
-
-							((context.startNode.row || context.startNode.row === 0) && (context.targetNode.column || context.targetNode.column === 0))
-								? context.startAlgorithm
-								: console.log("first set nodes")
-						}
+						onClick={context.startAlgorithm}
 					>
-						{((context.startNode.row || context.startNode.row === 0) && (context.targetNode.column || context.targetNode.column === 0))
-							? "Start"
-							: "First set start/target nodes"}
+						"Start"
 					</div>
 						</div>
 					<div className='cBottom'>

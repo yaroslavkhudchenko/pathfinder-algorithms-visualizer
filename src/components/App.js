@@ -167,21 +167,47 @@ export default class App extends Component {
 				this.selectedTool = s;
 			},
 			setNodes(e) {
-				console.log(e)
-				console.log(e.target)
+				// console.log(e)
+				// console.log(e.target)
 				
+
+				if (this.selectedTool.toLowerCase() === 'start'){
+					console.log('start')
+					// return;
+				}
+
 				// console.log('setnodes')
 				if (this.isStarted) return;
+				console.log('000000000000000000000000000')
+				
+				for (let i = 0; i < this.state.nodes.length; i++) {
+					for (let j = 0; j < this.state.nodes[i].length; j++) {
+						console.log(this.state.nodes[i][j].isVisited)
+					}
+
+				} 
+
+
+
+
 				let nodes = this.state.nodes;
 				for (let i = 0; i < nodes.length; i++) {
 					for(let j=0;j < nodes[i].length;j++) {
 						nodes[i][j].distance = Infinity;
-						nodes[i][j].isVisited = false;
+						nodes[i][j].isVisited = undefined;
 					}
 					
 				} 
+			/* 	for (let i = 0; i < nodes.length; i++) {
+					for (let j = 0; j < nodes[i].length; j++) {
+						console.log(nodes[i][j].isVisited)
+					}
+
+				}  */
+
 				let s = this.selectedTool.toLowerCase();
 				if(s === 'start') {
+					//return;
 					this.setState({
 						startNode: {
 							row: e.target.getAttribute("row") * 1,
@@ -289,11 +315,11 @@ export default class App extends Component {
 		//this.state.startAlgorithmQuick = this.state.startAlgorithmQuick.bind(this);
 		this.isStarted = false;
 		this.selectedTool = 'target';
-		this.startN = this.state.startNode;
-		this.targetN = this.state.targetNode;
-		this.mousePressed = false;
-		this.lastTargetOver = null;
-		this.firstTouchOnMoveOver = true;
+		// this.startN = this.state.startNode;
+		// this.targetN = this.state.targetNode;
+		// this.mousePressed = false;
+		// this.lastTargetOver = null;
+		// this.firstTouchOnMoveOver = true;
 		//	this.debouncedFunction = 
 	}
 

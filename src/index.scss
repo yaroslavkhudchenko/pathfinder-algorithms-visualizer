@@ -2,6 +2,7 @@ body,html {
   margin: 0;
   padding:0;
   background: #42EADDFF;// #d5ebef; // crimson;
+  overflow: hidden;
 }
 
 .controlPanel {
@@ -46,42 +47,42 @@ body,html {
   // position: absolute;
 }
 .singleNode {
-  /* border: 1px solid white;
-  width: 25px;
-  height: 25px;
-  min-width: 24px;
-  min-height: 25px; */
-    border: 1px solid #CDB599FF;
-    width: 35px;
-    border-radius: 5px;
-    height: 35px;
-    min-width: 35px;
-    min-height: 35px;
-    margin: 1px;
+	/* border: 1px solid white;
+	width: 25px;
+	height: 25px;
+	min-width: 24px;
+	min-height: 25px; */
+	border: 1px solid #CDB599FF;
+	width: 35px;
+	border-radius: 5px;
+	height: 35px;
+	min-width: 35px;
+	min-height: 35px;
+	margin: 1px;
 }
 .singleNode-visited {
-  animation-name: visitedAnimation;
-  animation-duration: 1s;
-  animation-timing-function: ease-in;
-  animation-delay: 0;
-  animation-direction: alternate;
-  animation-iteration-count: 1;
-  animation-fill-mode: backwards;
-  animation-play-state: running;
-  background:  #CDB599FF;//#3f3f88;// navy;
+	animation-name: visitedAnimation;
+	animation-duration: 1s;
+	animation-timing-function: ease-in;
+	animation-delay: 0;
+	animation-direction: alternate;
+	animation-iteration-count: 1;
+	animation-fill-mode: backwards;
+	animation-play-state: running;
+	background:  #CDB599FF;//#3f3f88;// navy;
 }
 .singleNode-visited-instant {
-   background:  navy;//#3f3f88;// navy;
+	background:  navy;//#3f3f88;// navy;
 }
 .singleNode-visited-animation {
-animation-name: visitedAnimation;
-  animation-duration: 1s;
-  animation-timing-function: ease-in;
-  animation-delay: 0;
-  animation-direction: alternate;
-  animation-iteration-count: 1;
-  animation-fill-mode: backwards;
-  animation-play-state: running;
+	animation-name: visitedAnimation;
+	animation-duration: 1s;
+	animation-timing-function: ease-in;
+	animation-delay: 0;
+	animation-direction: alternate;
+	animation-iteration-count: 1;
+	animation-fill-mode: backwards;
+	animation-play-state: running;
 }
 .row {
   display: flex;
