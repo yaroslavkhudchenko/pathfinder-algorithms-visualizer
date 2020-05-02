@@ -4,7 +4,7 @@ import Grid from './Grid';
 import shortid from 'shortid';
 import { dijkstra, getNodesInShortestPathOrder } from './../algorithms/dijkstra-alg';
 import '../index.scss';
-import _, { debounce} from 'lodash';
+import { debounce} from 'lodash';
 
 export const AppContext = React.createContext();
 
@@ -50,7 +50,7 @@ export default class App extends Component {
 		//		if (this.mousePressed)return;
 				this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 			},
-			async startAlgorithmQuick() {
+			/* async startAlgorithmQuick() {
 				// this.state.resetGrid()
 
 				let g = document.querySelectorAll('.singleNode-visited');
@@ -106,7 +106,7 @@ export default class App extends Component {
 				
 
 
-			},
+			}, */
 			resetGrid() {
 				// console.log('reset')
 				// console.log('reset grid start')
@@ -167,7 +167,9 @@ export default class App extends Component {
 				this.selectedTool = s;
 			},
 			setNodes(e) {
-				return;
+				console.log(e)
+				console.log(e.target)
+				
 				// console.log('setnodes')
 				if (this.isStarted) return;
 				let nodes = this.state.nodes;
@@ -201,7 +203,7 @@ export default class App extends Component {
 					this.setState({ nodes });	
 				}
 			},
-			downMouse(e) {
+			/* downMouse(e) {
 				
 				if (this.isStarted) return;
 				
@@ -221,19 +223,16 @@ export default class App extends Component {
 					})
 					this.mousePressed = true;
 				} return;
-			},
+			}, */
 			
-			moveOver(e) {
+			/* moveOver(e) {
 				if(!this.mousePressed)return;
 
 				 // console.log(e.target)
 				// console.log(this.lastTargetOver)
 				if(this.lastTargetOver && !this.firstTouchOnMoveOver) {
-					if ((e.target.getAttribute('row') === this.lastTargetOver.getAttribute('row') && e.target.getAttribute('column') === this.lastTargetOver.getAttribute('column')) || e.target.classList.contains('wall')) {
-						// console.log(" THE SAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-					//	alert('smae')
-					return;
-					}
+					if ((e.target.getAttribute('row') === this.lastTargetOver.getAttribute('row') && e.target.getAttribute('column') === this.lastTargetOver.getAttribute('column')) 
+						|| e.target.classList.contains('wall'))return;
 				}
 					this.firstTouchOnMoveOver = false;
 					let current = e.target;
@@ -256,8 +255,6 @@ export default class App extends Component {
 							column: e.target.getAttribute("column") * 1
 						}
 					}
-
-				//this.debouncedFunction();
 				
 				(debounce(async() => {
 					if (current === 'start') {
@@ -279,27 +276,17 @@ export default class App extends Component {
 				}, .1))()
 			},
 			upMouse(e) {
-				console.log('on up dawfwafwa Mouse playground')				
-				/* if (this.state.currentDrag === 'start') {
-					this.setState({
-						 startNode: this.startN
-					})
-				} else if (this.state.currentDrag === 'target') {
-					this.setState({
-						targetNode: this.targetN
-					})
-				} */
 				this.mousePressed = false;
-			},
-		};
+			},*/
+		}; 
 		this.state.startAlgorithm = this.state.startAlgorithm.bind(this);
 		this.state.setNodes = this.state.setNodes.bind(this);
 		this.state.resetGrid = this.state.resetGrid.bind(this);
 		this.state.selectTool = this.state.selectTool.bind(this);
-		this.state.downMouse = this.state.downMouse.bind(this);
-		this.state.moveOver = this.state.moveOver.bind(this); 
-		this.state.upMouse = this.state.upMouse.bind(this);
-		this.state.startAlgorithmQuick = this.state.startAlgorithmQuick.bind(this);
+		//this.state.downMouse = this.state.downMouse.bind(this);
+		//this.state.moveOver = this.state.moveOver.bind(this); 
+		//this.state.upMouse = this.state.upMouse.bind(this);
+		//this.state.startAlgorithmQuick = this.state.startAlgorithmQuick.bind(this);
 		this.isStarted = false;
 		this.selectedTool = 'target';
 		this.startN = this.state.startNode;
