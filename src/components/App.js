@@ -130,8 +130,8 @@ export default class App extends Component {
 				}
 				let nodes = this.state.nodes;
 
-				for (let i = 0; i < 35; i++) {
-					for (let j = 0; j < 40; j++) {
+				for (let i = 0; i < nodes.length; i++) {
+					for (let j = 0; j < nodes[i].length; j++) {
 						nodes[i][j].distance = Infinity;
 						nodes[i][j].isVisited = false;
 					}
