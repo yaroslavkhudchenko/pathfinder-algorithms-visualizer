@@ -10,13 +10,7 @@ export default class ControlPanel extends Component {
               <div className="controlPanel">
 				  <div className='cTop'>
 					
-					<div className='resetButton'
-					onClick={
-					context.resetGrid
-					}
-					>
-					Reset
-					</div>
+					
 				{/*<div className="selectAlgorithm">
 					 <select>
 						<option onClick={() => this.selectAlgorithm(dijkstra)}>
@@ -44,8 +38,26 @@ export default class ControlPanel extends Component {
 						className="startButton"
 						onClick={context.startAlgorithm}
 					>
-						"Start"
+						Start
 					</div>
+					<div id='clearPart'>
+						<div className='resetButton'
+							onClick={
+								context.resetGrid
+							}
+						>
+							Reset
+						</div>
+						<div className='clearButton'
+							onClick={
+								context.clearWalls
+							}
+						>
+							Clear
+						</div>
+					</div>
+
+
 						</div>
 					<div className='cBottom'>
 

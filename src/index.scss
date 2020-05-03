@@ -29,8 +29,10 @@ body,html {
   }
 }
 .startButton {
+    line-height: 50px;
+    box-shadow: 0px 2px 1px 4px indigo;
     cursor: pointer;
-    padding: 0 5px;
+    padding: 0 10px;
     border-radius: 3px;
     background: indigo;
     position: absolute;
@@ -39,7 +41,9 @@ body,html {
     transform: translateX(-50%);
     height: 100%;
     box-sizing: border-box;
+    font-size: 20px;
 }
+
 #grid {
   // display: flex;
   // flex-wrap:wrap;

@@ -113,22 +113,12 @@ export default class App extends Component {
 
 			}, */
 			resetGrid() {
-				// console.log('reset')
-				// console.log('reset grid start')
-				// console.log(this.isStarted);
-				//	if(this.isStarted)return;
-			
-				// this.isStarted = false;
+				
+				if(this.isStarted)return;
+				this.isStarted = false;
 				
 				let g = document.querySelectorAll('.singleNode-visited');
-				//let w = document.querySelectorAll('.wall');
-				// console.log('w', w)
-
-				// not working, why? I have no idea
-				/* for (let i = 0; i < w.length; i++) {
-					console.log(w[i])
-					w[i].classList.toggle('wall')
-				} */
+				
 				for (let i = 0; i < g.length; i++) {
 					//g[i].style.animationPlayState = "paused";
 					g[i].classList.toggle('singleNode-visited')
@@ -147,28 +137,23 @@ export default class App extends Component {
 				} 
 				this.setState({nodes})
 
+			},
+			clearWalls() {
+				let w = document.querySelectorAll('.wall');
+				console.log('wall clear')
 
+				// not working, why? I have no idea
+				for (let i = 0; i < w.length; i++) {
+					console.log(w[i])
+					w[i].classList.remove('wall')
+				}
+				let nodes = this.state.nodes;
 
-			/* 	for (let i = 0; i < nodes.length; i++) {
+				for (let i = 0; i < nodes.length; i++) {
 					for (let j = 0; j < nodes[i].length; j++) {
-						nodes[i][j].walls = false;
+						if(nodes[i][j].isWall)nodes[i][j].isWall = false;
 					}
-
-				}  */
-				//setTimeout(() => {
-					/* this.setState({
-						startNode: {
-							row: 4,
-							column: 4
-						},
-						targetNode: {
-							row: 30,
-							column: 35
-						}
-					}) */
-				//}, 1000);
-				
-
+				}
 			},
 			selectTool(e) {
 				let s = document.getElementById("selectTool").value;
@@ -186,17 +171,6 @@ export default class App extends Component {
 
 				// console.log('setnodes')
 				if (this.isStarted) return;
-				/* console.log('000000000000000000000000000')
-				
-				for (let i = 0; i < this.state.nodes.length; i++) {
-					for (let j = 0; j < this.state.nodes[i].length; j++) {
-						console.log(this.state.nodes[i][j].isVisited)
-					}
-
-				}  */
-
-
-
 
 				let nodes = this.state.nodes;
 				for (let i = 0; i < nodes.length; i++) {
@@ -209,12 +183,6 @@ export default class App extends Component {
 					}
 					
 				} 
-			/* 	for (let i = 0; i < nodes.length; i++) {
-					for (let j = 0; j < nodes[i].length; j++) {
-						console.log(nodes[i][j].isVisited)
-					}
-
-				}  */
 
 				let s = this.selectedTool.toLowerCase();
 				if(s === 'start') {
@@ -319,6 +287,7 @@ export default class App extends Component {
 		this.state.startAlgorithm = this.state.startAlgorithm.bind(this);
 		this.state.setNodes = this.state.setNodes.bind(this);
 		this.state.resetGrid = this.state.resetGrid.bind(this);
+		this.state.clearWalls = this.state.clearWalls.bind(this);
 		this.state.selectTool = this.state.selectTool.bind(this);
 		//this.state.downMouse = this.state.downMouse.bind(this);
 		//this.state.moveOver = this.state.moveOver.bind(this); 
@@ -352,7 +321,7 @@ export default class App extends Component {
 						row: i,
 						key: shortid.generate(),
 						distance: Infinity,
-						isWall: i === 11 && j === 11 ? true : false
+						isWall: false
 					}); // target node
 				//}
 			}
