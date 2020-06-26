@@ -141,8 +141,7 @@ export default class App extends Component {
 			clearWalls() {
 				let w = document.querySelectorAll('.wall');
 				console.log('wall clear')
-
-				// not working, why? I have no idea
+				this.state.resetGrid();
 				for (let i = 0; i < w.length; i++) {
 					console.log(w[i])
 					w[i].classList.remove('wall')
@@ -154,6 +153,7 @@ export default class App extends Component {
 						if(nodes[i][j].isWall)nodes[i][j].isWall = false;
 					}
 				}
+				
 			},
 			selectTool(e) {
 				let s = document.getElementById("selectTool").value;

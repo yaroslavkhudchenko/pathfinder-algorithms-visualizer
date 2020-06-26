@@ -99,14 +99,16 @@ body,html {
 }
 .target {
   //background: #cacaca;
-  background-image: url('./assets/startA.png');
+  background-image: url('./assets/finish.png');// Icons made by https://www.flaticon.com/authors/freepik Freepik from https://www.flaticon.com/
   background-size:cover;
 }
 .checked {
   background: blue;
 }
 .wall {
-  background: black;
+  // background: black;
+  background-image: url('./assets/wall.png');
+  background-size:cover;
 }
 
 
@@ -135,10 +137,10 @@ body,html {
     transform: scale(1.9);
     background-color: rgba(83, 196, 216, 0.767);
   }
-  75% {
+  /* 75% {
     //transform: scale(1.9);
     background-color: rgba(35, 46, 167, 0.657);
-  }
+  } */
   100% {
     transform: scale(1);
     background-color: rgba(58, 0, 218, 0.082);
@@ -154,14 +156,44 @@ body,html {
 
 }
  */
-
-#selectTool {
-  background: lavender;
-  padding: 4px;
-  border-radius: 3px;
-  font-size: 20px;
+.selectToolDiv {
+  position: absolute;
+    left: 0;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    top: 50%;
+    transform: translateY(-50%);
+    #selectTool {
+      background: lavender;
+      padding: 4px;
+      border-radius: 3px;
+      font-size: 20px;
+    }
 }
+
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button {  
   opacity: 1;
+}
+
+#clearPart {
+  position: absolute;
+  right: 0;
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  height: 50px;
+  align-items: center;
+  div {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .resetButton {
+    background:cadetblue;
+  }
+  .clearButton {
+    background: red;
+  }
 }

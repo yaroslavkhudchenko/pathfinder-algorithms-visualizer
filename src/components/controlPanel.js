@@ -18,7 +18,7 @@ export default class ControlPanel extends Component {
 						</option>
 					</select
 					</div>	> */}
-					<div className="selectTool">
+					<div className="selectToolDiv">
 					<select id='selectTool' onChange={context.selectTool} defaultValue='Target'>
 						<option>
 						Start
