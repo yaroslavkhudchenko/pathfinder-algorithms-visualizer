@@ -42,6 +42,7 @@ body,html {
     height: 100%;
     box-sizing: border-box;
     font-size: 20px;
+    z-index: 999;
 }
 .singleNode {
 	border: 1px solid #CDB599FF;
@@ -166,5 +167,11 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .clearButton {
     background: red;
+  }
+}
+
+@media (max-width: 500px) {
+  .startButton {
+    top: 50px;
   }
 }
