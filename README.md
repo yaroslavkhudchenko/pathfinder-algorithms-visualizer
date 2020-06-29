@@ -21,4 +21,4 @@
 ### Frontend
 
 <p> Frontend is done entirely with React.js </p>
-<p> Context API are used for state management </p>
+<p> Context API is used for state management </p>
