@@ -10,14 +10,6 @@ export default class ControlPanel extends Component {
               <div className="controlPanel">
 				  <div className='cTop'>
 					
-					
-				{/*<div className="selectAlgorithm">
-					 <select>
-						<option onClick={() => this.selectAlgorithm(dijkstra)}>
-						dijkstra
-						</option>
-					</select
-					</div>	> */}
 					<div className="selectToolDiv">
 					<select id='selectTool' onChange={context.selectTool} defaultValue='Target'>
 						<option>
@@ -56,8 +48,6 @@ export default class ControlPanel extends Component {
 							Clear
 						</div>
 					</div>
-
-
 						</div>
 					<div className='cBottom'>
 

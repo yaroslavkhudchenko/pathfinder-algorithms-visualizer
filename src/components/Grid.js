@@ -14,7 +14,6 @@ export default class Grid extends Component {
                             {context.nodes.map((c, index) => ( // get every row(main array)
                             <div className={`row row${index}`} key={shortid.generate()}> 
                                 {c.map(node => {
-                                    // const {isStart, isTarget} = node;
                                     return (
                                         <Node 
                                             key={node.key}
