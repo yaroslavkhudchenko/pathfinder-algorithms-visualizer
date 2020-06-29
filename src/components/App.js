@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { ControlPanel } from './ControlPanel';
-import Grid from './Grid';
+import { Grid } from './Grid';
 import shortid from 'shortid';
 import { dijkstra, getNodesInShortestPathOrder } from './../algorithms/dijkstra-alg';
 import '../index.scss';
