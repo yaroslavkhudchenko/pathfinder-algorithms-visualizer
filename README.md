@@ -2,7 +2,7 @@
 
 ## Desription
 
-<p> Project is a visualization of how does the pathfinding algorithm work</p>
+<p> Project is a visualization of how does the pathfinding algorithm works </p>
 
 
       
