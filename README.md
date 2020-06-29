@@ -1,15 +1,24 @@
-<h1>Pathfinder algorithms visualizer</h1>
+# Pathfinder algorithms visualizer
 
-<h2>Description:</h2>
-<p>In this project I visualize te pathfinder algorithms</p>
+## Desription
 
-<h3>Algorithms</h3>
-<ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5</li>
-</ul>
+<p> Project is a visualization of how does the pathfinding algorithm work</p>
 
-<h2>How to use:</h2>
+
+      
+## Functionality
+
+1. <p> User can set start/end point </p>
+
+1. <p> User can set/remove walls </p>
+
+1. <p> User can <Reset> the current search </p>
+
+1. <p> User can <Clear> the current walls </p>
+    
+## Tech-stack
+
+### Frontend
+
+<p> Frontend is done entirely with React.js </p>
+<p> Context API are used for state management </p>
