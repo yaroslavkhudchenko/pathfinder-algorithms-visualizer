@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { AppContext } from './App';
 
 export const ControlPanel = () => 
