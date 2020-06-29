@@ -17,8 +17,8 @@ export default class App extends Component {
 				column: 4
 			},
 			targetNode: {
-				row: 15,
-				column: 20
+				row: 6,
+				column: 6
 			},
 			walls: [],
 			startAlgorithm() {
