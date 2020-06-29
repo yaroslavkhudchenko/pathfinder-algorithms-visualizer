@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import { ControlPanel } from './ControlPanel';
 import { Grid } from './Grid';
 import shortid from 'shortid';
@@ -6,11 +6,9 @@ import { dijkstra, getNodesInShortestPathOrder } from './../algorithms/dijkstra-
 import '../index.scss';
 
 export const AppContext = React.createContext();
+export const App = () => {
+	const [AppState, setAppState] = useState({
 
-export default class App extends Component { 
-	constructor(props) {
-		super(props);
-		this.state = {
 			nodes: [],
 			startNode: {
 				row: 4,
@@ -24,34 +22,34 @@ export default class App extends Component {
 			startAlgorithm() {
 				
 				// check if target node was changed
-				if (document.getElementById(`node-${this.state.targetNode.row}-${this.state.targetNode.column}`).classList.contains('singleNode-visited'))return;
+				if (document.getElementById(`node-${AppState.targetNode.row}-${AppState.targetNode.column}`).classList.contains('singleNode-visited'))return;
 				
-				this.isStarted = true;
+				isStarted = true;
 
 				const visitedNodesInOrder = dijkstra(
-					this.state.nodes,
-					this.state.nodes[this.state.startNode.row][
-						this.state.startNode.column
+					AppState.nodes,
+					AppState.nodes[AppState.startNode.row][
+						AppState.startNode.column
 					],
-					this.state.nodes[this.state.targetNode.row][
-						this.state.targetNode.column
+					AppState.nodes[AppState.targetNode.row][
+						AppState.targetNode.column
 					]
 				);
 			
-				this.isStarted = false;
+				isStarted = false;
 				const shortestPathNodesInOrder = getNodesInShortestPathOrder(
-					this.state.nodes[this.state.targetNode.row][
-						this.state.targetNode.column
+					AppState.nodes[AppState.targetNode.row][
+						AppState.targetNode.column
 					]
 				);
 				
-				this.animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
+				animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 			},
 			
 			resetGrid() {
 				
-				if(this.isStarted)return;
-				this.isStarted = false;
+				if(isStarted)return;
+				isStarted = false;
 				
 				let g = document.querySelectorAll('.singleNode-visited');
 				
@@ -59,7 +57,7 @@ export default class App extends Component {
 					//g[i].style.animationPlayState = "paused";
 					g[i].classList.toggle('singleNode-visited')
 				}
-				let nodes = this.state.nodes;
+				let nodes = AppState.nodes;
 
 				for (let i = 0; i < nodes.length; i++) {
 					for (let j = 0; j < nodes[i].length; j++) {
@@ -71,18 +69,21 @@ export default class App extends Component {
 					}
 
 				} 
-				this.setState({nodes})
+				setAppState({
+					...AppState,
+					nodes:nodes
+				})
 
 			},
 			clearWalls() {
 				let w = document.querySelectorAll('.wall');
 				console.log('wall clear')
-				this.state.resetGrid();
+				AppState.resetGrid();
 				for (let i = 0; i < w.length; i++) {
 					console.log(w[i])
 					w[i].classList.remove('wall')
 				}
-				let nodes = this.state.nodes;
+				let nodes = AppState.nodes;
 
 				for (let i = 0; i < nodes.length; i++) {
 					for (let j = 0; j < nodes[i].length; j++) {
@@ -93,13 +94,12 @@ export default class App extends Component {
 			},
 			selectTool(e) {
 				let s = document.getElementById("selectTool").value;
-				this.selectedTool = s;
+				selectedTool = s;
 			},
 			setNodes(e) {
 
-				if (this.isStarted) return;
-
-				let nodes = this.state.nodes;
+				if (isStarted) return;
+				let nodes = AppState.nodes;
 				for (let i = 0; i < nodes.length; i++) {
 					for(let j=0;j < nodes[i].length;j++) {
 						nodes[i][j].distance = Infinity;
@@ -111,17 +111,22 @@ export default class App extends Component {
 					
 				} 
 
-				let s = this.selectedTool.toLowerCase();
+				let s = selectedTool.toLowerCase();
 				if(s === 'start') {
 					//return;
-					this.setState({
+					setAppState({
+						...AppState,
 						startNode: {
 							row: e.target.getAttribute("row") * 1,
 							column: e.target.getAttribute("column") * 1
 						}
 					});
 				} else if (s === 'target') {
-					this.setState({
+					console.log('set nodes')
+					console.log(AppState)
+					console.log(e.target)
+					setAppState({
+						...AppState,
 						targetNode: {
 							row: e.target.getAttribute("row") * 1,
 							column: e.target.getAttribute("column") * 1
@@ -129,32 +134,22 @@ export default class App extends Component {
 					});
 				} else if (s === 'wall') {
 					nodes[e.target.getAttribute('row')][e.target.getAttribute('column')].isWall = true;
-					this.setState({ nodes });	
+					setAppState({...AppState, nodes:nodes });	
 				} else if (s === 'clear wall') {
 					nodes[e.target.getAttribute('row')][e.target.getAttribute('column')].isWall = false;
-					this.setState({ nodes });	
+					setAppState({...AppState, nodes:nodes });	
 				}
 			}
-		}; 
-		this.state.startAlgorithm = this.state.startAlgorithm.bind(this);
-		this.state.setNodes = this.state.setNodes.bind(this);
-		this.state.resetGrid = this.state.resetGrid.bind(this);
-		this.state.clearWalls = this.state.clearWalls.bind(this);
-		this.state.selectTool = this.state.selectTool.bind(this);
-		this.isStarted = false;
-		this.selectedTool = 'target';
-	}
+		});
+		useEffect(()=>{
+			// create nodes array + choose start and target nodes
+			let numberC = (window.innerHeight - 100) / 41;
+			let numberR = window.innerWidth / 40.5;
 
-	 
-	componentDidMount() {
-		// create nodes array + choose start and target nodes
-		let numberC = (window.innerHeight-100) / 41; 
-		let numberR = window.innerWidth / 40.5;
-
-		let nodes = [];
-		for (let i = 0; i < numberC; i++) {
-			nodes.push([]); // push array to display row
-			for (let j = 0; j < numberR; j++) {
+			let nodes = [];
+			for (let i = 0; i < numberC; i++) {
+				nodes.push([]); // push array to display row
+				for (let j = 0; j < numberR; j++) {
 					nodes[i].push({
 						column: j,
 						row: i,
@@ -162,20 +157,26 @@ export default class App extends Component {
 						distance: Infinity,
 						isWall: false
 					}); // target node
-				//}
+					//}
+				}
 			}
-		}
-		this.setState({nodes})
-	}
+			console.log(AppState.nodes)
+			console.log(nodes);
+			setAppState({ ...AppState, nodes: nodes })
+		},[])
+	
+		let isStarted = false;
+		let selectedTool = 'target';
+	
 
 
-	animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder) {
+	const animateAlgorithm = (visitedNodesInOrder, shortestPathNodesInOrder) => {
 		
 		for (let i = 0; i <= visitedNodesInOrder.length; i++) {
 			if (i === visitedNodesInOrder.length) {
 				setTimeout(() => {
 					// drawing line fron start to finish based on shortest path
-					this.animateShortestPath(shortestPathNodesInOrder);
+					animateShortestPath(shortestPathNodesInOrder);
 				}, 4 * i);
 				return;
 			}
@@ -192,7 +193,7 @@ export default class App extends Component {
 	}
 
 	// draw line from start to target
-	animateShortestPath(shortestPathNodesInOrder) {
+	const animateShortestPath = (shortestPathNodesInOrder) => {
 		for(let i=0;i<shortestPathNodesInOrder.length;i++) {
 			setTimeout(() => {
 				// console.log( document.getElementById(`node-${shortestPathNodesInOrder[i].row}-${shortestPathNodesInOrder[i].column}`))
@@ -200,18 +201,17 @@ export default class App extends Component {
 			}, i * 7);
 			
 		}
-		this.isStarted = false;
+		isStarted = false;
 	}
 
-	render() {
-		return(
-			<AppContext.Provider value={this.state}>
-				<div className="App">
-					<ControlPanel />
-					<Grid />
-				</div>
-				</AppContext.Provider>
-		);
-	}
+	return(
+		<AppContext.Provider value={AppState}>
+			<div className="App">
+				<ControlPanel />
+				<Grid />
+			</div>
+			</AppContext.Provider>
+	);
+
 	
 }

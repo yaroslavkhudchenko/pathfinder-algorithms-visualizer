@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Node } from './Node';
 import shortid from 'shortid';
 import { AppContext } from './App';
