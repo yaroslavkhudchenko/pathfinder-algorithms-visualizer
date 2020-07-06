@@ -16,16 +16,20 @@ export const App = () => {
 			},
 			targetNode: {
 				row: 6,
-				column: 6
+				column: 12
 			},
 			walls: [],
 			startAlgorithm() {
-				
+				console.log("start alg changed");
+				console.log(AppState);
+
+
 				// check if target node was changed
 				if (document.getElementById(`node-${AppState.targetNode.row}-${AppState.targetNode.column}`).classList.contains('singleNode-visited'))return;
-				
-				isStarted = true;
+				// console.log('start alg changed')
+				// console.log(AppState);
 
+				isStarted = true;
 				const visitedNodesInOrder = dijkstra(
 					AppState.nodes,
 					AppState.nodes[AppState.startNode.row][
@@ -42,7 +46,6 @@ export const App = () => {
 						AppState.targetNode.column
 					]
 				);
-				
 				animateAlgorithm(visitedNodesInOrder, shortestPathNodesInOrder);
 			},
 			
@@ -77,10 +80,10 @@ export const App = () => {
 			},
 			clearWalls() {
 				let w = document.querySelectorAll('.wall');
-				console.log('wall clear')
+				//console.log('wall clear')
 				AppState.resetGrid();
 				for (let i = 0; i < w.length; i++) {
-					console.log(w[i])
+					//console.log(w[i])
 					w[i].classList.remove('wall')
 				}
 				let nodes = AppState.nodes;
@@ -96,8 +99,11 @@ export const App = () => {
 				let s = document.getElementById("selectTool").value;
 				selectedTool = s;
 			},
-			setNodes(e) {
+			
 
+
+			setNodes(e) {
+				
 				if (isStarted) return;
 				let nodes = AppState.nodes;
 				for (let i = 0; i < nodes.length; i++) {
@@ -110,8 +116,11 @@ export const App = () => {
 					}
 					
 				} 
+				//console.log(nodes);
 
 				let s = selectedTool.toLowerCase();
+				// console.log(s)
+				// console.log(e.target)
 				if(s === 'start') {
 					//return;
 					setAppState({
@@ -125,13 +134,16 @@ export const App = () => {
 					console.log('set nodes')
 					console.log(AppState)
 					console.log(e.target)
+					let neww = AppState;
+		neww.targetNode.row= e.target.getAttribute("row") * 1;
+		neww.targetNode.column= e.target.getAttribute("column") * 1;
+
+
 					setAppState({
-						...AppState,
-						targetNode: {
-							row: e.target.getAttribute("row") * 1,
-							column: e.target.getAttribute("column") * 1
-						}
-					});
+            ...AppState,
+            targetNode: neww,
+          });
+					
 				} else if (s === 'wall') {
 					nodes[e.target.getAttribute('row')][e.target.getAttribute('column')].isWall = true;
 					setAppState({...AppState, nodes:nodes });	
@@ -139,14 +151,20 @@ export const App = () => {
 					nodes[e.target.getAttribute('row')][e.target.getAttribute('column')].isWall = false;
 					setAppState({...AppState, nodes:nodes });	
 				}
+				
 			}
 		});
+		useEffect(() => {
+			console.log("use eff app state");
+			console.log(AppState);
+			AppState.nodes.length !== 0 && AppState.startAlgorithm();
+		}, []);
 		useEffect(()=>{
 			// create nodes array + choose start and target nodes
 			let numberC = (window.innerHeight - 100) / 41;
 			let numberR = window.innerWidth / 40.5;
 
-			let nodes = [];
+			let nodes = AppState.nodes;
 			for (let i = 0; i < numberC; i++) {
 				nodes.push([]); // push array to display row
 				for (let j = 0; j < numberR; j++) {
@@ -160,8 +178,8 @@ export const App = () => {
 					//}
 				}
 			}
-			console.log(AppState.nodes)
-			console.log(nodes);
+			//console.log(AppState.nodes)
+			//console.log(nodes);
 			setAppState({ ...AppState, nodes: nodes })
 		},[])
 	
