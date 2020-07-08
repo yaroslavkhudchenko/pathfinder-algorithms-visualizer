@@ -122,26 +122,27 @@ export const App = () => {
 				// console.log(s)
 				// console.log(e.target)
 				if(s === 'start') {
-					//return;
+					
+					let neww = AppState;
+					neww.startNode.row= e.target.getAttribute("row") * 1;
+					neww.startNode.column= e.target.getAttribute("column") * 1;
+					console.log('wfaf')
+					console.log(neww.startNode)
 					setAppState({
 						...AppState,
-						startNode: {
-							row: e.target.getAttribute("row") * 1,
-							column: e.target.getAttribute("column") * 1
-						}
+						startNode: neww.startNode
 					});
-				} else if (s === 'target') {
-					console.log('set nodes')
-					console.log(AppState)
-					console.log(e.target)
-					let neww = AppState;
-		neww.targetNode.row= e.target.getAttribute("row") * 1;
-		neww.targetNode.column= e.target.getAttribute("column") * 1;
 
+
+				} else if (s === 'target') {
+					
+					let neww = AppState;
+					neww.targetNode.row= e.target.getAttribute("row") * 1;
+					neww.targetNode.column= e.target.getAttribute("column") * 1;
 
 					setAppState({
             ...AppState,
-            targetNode: neww,
+            targetNode: neww.targetNode
           });
 					
 				} else if (s === 'wall') {
